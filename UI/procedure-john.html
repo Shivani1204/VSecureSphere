@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 10:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page10.html">&#8226; Introduction</a></li>
+                <li><a href="aim-john.html">&#8226; Aim</a></li>
+                <li><a href="theory-john.html">&#8226; Theory</a></li>
+                <li><a href="procedure-john.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-john.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-john.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-john.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install John the Ripper</u></h3>
+            <p>John the Ripper is a powerful password cracking tool. To install it, open the terminal and enter the following command:</p>
+            <pre>
+            sudo apt-get install john
+            </pre>
+            <p>After installation, verify that John the Ripper is successfully installed by checking its version:</p>
+            <pre>
+            john --version
+            </pre>
+        
+            <h3><u>Step 2: Prepare the Password Hashes</u></h3>
+            <p>Before you can start cracking passwords, you need to have password hashes. These can be extracted from various systems like Linux, Windows, or web applications. For this experiment, we will use a sample password hash. If you are using Linux, you can extract password hashes from the <code>/etc/shadow</code> file.</p>
+            <p>Alternatively, use a hash generated with a tool like <code>openssl</code>:</p>
+            <pre>
+            echo -n "password123" | openssl dgst -sha256
+            </pre>
+            <p>This will produce a SHA-256 hash of the string "password123".</p>
+        
+            <h3><u>Step 3: Prepare a Wordlist</u></h3>
+            <p>John the Ripper uses wordlists (lists of possible passwords) to perform dictionary attacks. You can use a pre-built wordlist or create your own. For this example, we will use the popular <b>rockyou.txt</b> wordlist.</p>
+            <p>Download the <b>rockyou.txt</b> wordlist if it's not already available on your system:</p>
+            <pre>
+            sudo apt-get install wordlists
+            </pre>
+            <p>The wordlist can be found in the <code>/usr/share/wordlists/rockyou.txt.gz</code> directory. Unzip it if needed:</p>
+            <pre>
+            gzip -d /usr/share/wordlists/rockyou.txt.gz
+            </pre>
+        
+            <h3><u>Step 4: Run John the Ripper</u></h3>
+            <p>Once you have the password hash and wordlist ready, run John the Ripper on the hash file. Create a file containing the hash (e.g., <code>password_hash.txt</code>) and use the following command to start cracking:</p>
+            <pre>
+            john --wordlist=/usr/share/wordlists/rockyou.txt password_hash.txt
+            </pre>
+            <p>John will begin checking the hashes against the wordlist to find a match.</p>
+        
+            <h3><u>Step 5: Monitor the Cracking Process</u></h3>
+            <p>John will display the cracking process, showing how long each attempt took and how many passwords it has checked. You can view the progress of John the Ripper in real-time.</p>
+        
+            <h3><u>Step 6: View the Cracked Password</u></h3>
+            <p>Once the password is found, John will display it on the screen. You can also view the cracked password by running:</p>
+            <pre>
+            john --show password_hash.txt
+            </pre>
+        
+            <h3><u>Step 7: Conclude the Experiment</u></h3>
+            <p>After cracking the password, discuss the following:</p>
+            <ul>
+                <li>How password strength affects cracking time.</li>
+                <li>The importance of using complex, unpredictable passwords to prevent brute-force and dictionary attacks.</li>
+                <li>Ways to defend against password cracking, such as using multi-factor authentication (MFA) and secure hashing algorithms.</li>
+            </ul>
+            <p>Always remember that password cracking should only be performed in controlled, ethical environments, such as penetration testing and security research.</p>
+        </div>
+        
+        
+        
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction</title>
+    <title>Introduction - Password Cracking using John the Ripper</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,49 +11,64 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <ul>
-                <h3><u><b>Experiment 1:-</b></u></h3>
+                <h3><u><b>Experiment 10:-</b></u></h3>
                 <li><a href="index.html">&#8226; Home</a></li>
-                <li><a href="page1.html">&#8226; Introduction</a></li>
-                <li><a href="aim.html">&#8226; Aim</a></li>
-                <li><a href="theory.html">&#8226; Theory</a></li>
-                <li><a href="procedure.html">&#8226; Procedure</a></li>
-                <li><a href="perform-lab.html">&#8226; Perform Lab</a></li>
-                <li><a href="knowledge-check.html">&#8226; Knowledge Check</a></li>
-                <li><a href="conclusion.html">&#8226; Conclusion</a></li>
+                <li><a href="page10.html">&#8226; Introduction</a></li>
+                <li><a href="aim-john.html">&#8226; Aim</a></li>
+                <li><a href="theory-john.html">&#8226; Theory</a></li>
+                <li><a href="procedure-john.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-john.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-john.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-john.html">&#8226; Conclusion</a></li>
                 
             </ul>
         </aside>
 
         <!-- Main Content -->
         <div class="content-box">
-            <h2><u>Welcome to Experiment 1: Port Scanning through Nmap</u></h2>
+            <h2><u>Welcome to Experiment 10: Password Cracking using John the Ripper</u></h2>
         
-            <h3><b>Introduction to Nmap</b></h3>
+            <h3><b>Introduction to John the Ripper</b></h3>
         
             <p>
-                <b>Nmap</b> (short for <i>Network Mapper</i>) is a widely used open-source tool designed for network exploration and security auditing. 
-                Originally developed by <b>Gordon Lyon</b> (also known as <i>Fyodor</i>), Nmap has become an essential tool for network administrators and security professionals.
+                <b>John the Ripper</b> is a popular open-source password cracking tool. It was initially developed for Unix-based systems but now supports various other formats, including Windows and macOS. John is known for its ability to crack various password hashes, making it an essential tool for security professionals and penetration testers.
             </p>
         
             <p>
-                It allows users to <b>discover devices on a network, identify open ports, and determine the services running on those ports</b>. 
-                In addition to port scanning, Nmap can also perform <b>operating system detection</b> and <b>service version detection</b>, making it a powerful tool for vulnerability assessments.
+                John the Ripper uses <b>brute-force attacks</b> and <b>dictionary attacks</b> to try and match password hashes. It supports multiple hashing algorithms and can work with hashes from systems like Unix, Windows, and even web applications. Additionally, John can perform <b>password cracking using wordlists</b> and intelligently optimize its attack strategy to increase the chances of success.
             </p>
         
-            <p>
-                One of Nmap's key strengths is its <b>versatility</b>—it can scan anything from a single host to large networks, adjusting its speed and intensity as needed. 
-                This flexibility makes it a valuable resource for tasks such as:
-            </p>
-        
+            <h3><b>Key Features of John the Ripper</b></h3>
             <ul>
-                <li><b>Network inventory management</b></li>
-                <li><b>Service upgrade scheduling</b></li>
-                <li><b>Vulnerability detection</b></li>
+                <li><b>Crack a wide range of hash types</b>: including DES, MD5, and SHA1</li>
+                <li><b>Supports wordlist-based attacks</b>: utilizing popular password lists such as rockyou.txt</li>
+                <li><b>Customizable cracking rules</b>: to enhance brute-force and dictionary attacks</li>
+                <li><b>Optimized for performance</b>: using multiple CPU cores and specialized algorithms for speed</li>
+            </ul>
+        
+            <h3><b>Use Case in Penetration Testing</b></h3>
+            <p>
+                During a penetration test or security assessment, an attacker may attempt to crack passwords using tools like John the Ripper. This experiment demonstrates how an attacker can crack a password by exploiting weak hashing methods or poor password choice. 
+            </p>
+        
+            <h3><b>How it Works</b></h3>
+            <p>
+                The process begins with the attacker obtaining a file containing password hashes, typically from a vulnerable system. The hashes are then fed into John the Ripper, which begins its attack on the hashes. Using either a brute-force attack or dictionary attack, John will try different combinations to crack the password. Once cracked, the attacker gains access to the system or account associated with that password.
+            </p>
+        
+            <h3><b>Common Hashing Algorithms Supported</b></h3>
+            <ul>
+                <li><b>MD5</b></li>
+                <li><b>SHA1</b></li>
+                <li><b>SHA-256</b></li>
+                <li><b>DES</b></li>
+                <li><b>LM</b></li>
             </ul>
         
             <p>
-                Whether used for routine network maintenance or security testing, Nmap provides <b>detailed insights into the structure and security of a network</b>.
+                Whether used for legitimate security testing or by malicious attackers, John the Ripper is a powerful tool in the world of password cracking.
             </p>
+        
         </div>
         
     </div>

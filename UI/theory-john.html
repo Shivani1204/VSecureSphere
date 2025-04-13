@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 10:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page10.html">&#8226; Introduction</a></li>
+                <li><a href="aim-john.html">&#8226; Aim</a></li>
+                <li><a href="theory-john.html">&#8226; Theory</a></li>
+                <li><a href="procedure-john.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-john.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-john.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-john.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Theory</u></h2>
+            <h3>This experiment demonstrates how password cracking is performed using <b>John the Ripper</b>, a powerful tool for testing password strength and uncovering vulnerabilities in weak passwords.</h3>
+        
+            <p><b>What is Password Cracking?</b><br>
+            Password cracking is the process of attempting to gain access to a password-protected system by guessing or deciphering the password. Attackers use various techniques like brute force, dictionary attacks, and others to crack weak passwords and gain unauthorized access to systems.</p>
+        
+            <p><b>What is John the Ripper?</b><br>
+            John the Ripper (often abbreviated to "John") is an open-source password cracking software tool originally developed for Unix-based systems. It is designed to detect weak passwords by running a series of attacks on password hashes. John the Ripper supports a variety of encryption algorithms and is widely used in security audits to test the strength of password hashes.</p>
+        
+            <p><b>Key Features of John the Ripper:</b></p>
+            <ul>
+                <li>Supports cracking password hashes of different algorithms (MD5, SHA1, DES, etc.).</li>
+                <li>Can perform various attack modes such as dictionary, brute force, and hybrid attacks.</li>
+                <li>Can work on different file formats, including password hash files, encrypted documents, and more.</li>
+                <li>Has the ability to optimize the cracking process using rules and wordlists.</li>
+            </ul>
+        
+            <p><b>Understanding the Attack Flow:</b></p>
+            <ol>
+                <li>The attacker obtains the password hash, either through social engineering, a data breach, or through other means.</li>
+                <li>John the Ripper is configured with a wordlist or brute-force attack parameters.</li>
+                <li>John the Ripper begins cracking the password using various algorithms and attack methods.</li>
+                <li>Once a match is found, the password is revealed, allowing access to the protected system.</li>
+            </ol>
+        
+            <p><b>Why Password Cracking is Dangerous:</b></p>
+            <ul>
+                <li>Weak passwords can be easily cracked, allowing attackers to gain unauthorized access to sensitive systems and data.</li>
+                <li>Many users tend to reuse passwords across multiple sites, increasing the risk of a compromised system if one password is cracked.</li>
+                <li>Password cracking tools like John the Ripper can be automated to run on large datasets, speeding up the process of finding weak passwords.</li>
+            </ul>
+        
+            <p><b>Preventive Measures:</b></p>
+            <ul>
+                <li>Always use strong, complex passwords with a combination of uppercase, lowercase, numbers, and special characters.</li>
+                <li>Implement password policies that require password strength and prevent password reuse.</li>
+                <li>Enable multi-factor authentication (MFA) for an additional layer of security.</li>
+                <li>Use password hashing algorithms that are resistant to brute force attacks (e.g., bcrypt, PBKDF2, Argon2).</li>
+            </ul>
+        
+            <p>Through this experiment, learners will understand how password cracking tools like John the Ripper work, the methods attackers use to crack passwords, and the importance of using strong passwords and encryption techniques to protect sensitive information.</p>
+        </div>
+        
+         
+    </div>
+</body>
+</html>

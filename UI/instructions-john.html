@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Cracking Experiment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Password Cracking Experiment Using John the Ripper</h2>
+    <p>This experiment demonstrates how password cracking is performed using John the Ripper on a hashed password file.</p>
+    
+    <h3>Step 1: Login to Both Systems</h3>
+    <ul>
+        <li><strong>Attacker System:</strong> Password: <code>VSecureSphere</code></li>
+        <li><strong>Victim System:</strong> Password: <code>VSecureSphere</code></li>
+    </ul>
+    
+    <h3>Step 2: Start the Experiment</h3>
+    <p>We will simulate a password cracking attack by first obtaining the hashed password from the victim's system.</p>
+    
+    <h3>Step 3: Check the Hashed Password (Victim Side)</h3>
+    <p>On the victim's machine, open the terminal and run:</p>
+    <pre><code>cat /var/www/html/hash.txt</code></pre>
+    <p>This command will display the UNIX-style hashed password:</p>
+    <pre><code>shivani:$6$kF5z...$P69vEaq98Agjhniucn3ifdh/...</code></pre>
+    <img src="Password_Cracking_SS/1.png" alt="1">
+
+    <h3>Step 4: Confirm Apache is Running (Victim Side)</h3>
+    <p>Run the following command to confirm that Apache is running and serving the hash file:</p>
+    <pre><code>curl http://localhost/hash.txt</code></pre>
+    <p>If you see the hash, it's working ✅</p>
+    <p><strong>(Optional)</strong>: You can also open <code>http://<victim-minikube-ip>:<nodePort></code> from your browser to access the hash file.</p>
+    <img src="Password_Cracking_SS/2.png" alt="2">
+
+    <h3>Step 5: Fetch the Hash from the Victim Machine (Attacker Side)</h3>
+    <p>On the attacker's machine, run the following command to fetch the hash:</p>
+    <pre><code>curl http://{victim`s IP}:80/hash.txt -o hash.txt</code></pre>
+    <p>Or, if exposed via NodePort, use the full Minikube IP:</p>
+    <pre><code>curl http://{victim`s IP}:<port>/hash.txt -o hash.txt</code></pre>
+    <img src="Password_Cracking_SS/3.png" alt="3">
+
+    <h3>Step 6: View the Hash File (Attacker Side)</h3>
+    <p>After fetching the hash, you can view the contents by running:</p>
+    <pre><code>cat hash.txt</code></pre>
+    <img src="Password_Cracking_SS/4.png" alt="4">
+
+    <h3>Step 7: Run John the Ripper (Attacker Side)</h3>
+    <p>Now, use John the Ripper to crack the password. You will use the rockyou wordlist:</p>
+    <pre><code>john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</code></pre>
+    <p>You'll see output like this:</p>
+    <pre><code>Using default input encoding: UTF-8
+Loaded 1 password hash (sha512crypt, crypt(3) $6$ [SHA512 512/512 AVX512BW 16x])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+password123       (shivani)</code></pre>
+    <p>🎉 The password has been cracked!</p>
+    <img src="Password_Cracking_SS/5.png" alt="5">
+
+    <h3>Step 8: View Cracked Passwords (Attacker Side)</h3>
+    <p>To view the cracked password, run:</p>
+    <pre><code>john --show hash.txt</code></pre>
+    <p>Output:</p>
+    <pre><code>shivani:password123</code></pre>
+    <img src="Password_Cracking_SS/6.png" alt="6">
+
+</div>
+
+</body>
+</html>
