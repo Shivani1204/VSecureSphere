@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTables Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>IPTables Experiments</h2>
+    <p>Follow these step-by-step instructions to configure and experiment with IPTables on a Linux system.</p>
+
+    <h3>Step 1: To list the contents of the mangle table of IPTables</h3>
+    <pre><code>iptables -t mangle -L</code></pre>
+    <img src="Iptables_SS/screenshot_step1.png" alt="Screenshot for Step 1">
+    <p>As we see in the screenshot, the contents of the chains are empty and the default policy is ACCEPT. We will later see how to change this to DROP using the -P option (note it is uppercase 'P' for Policies and lowercase 'p' for ports).</p>
+
+    <h3>Step 2: To list the contents of the filter table of IPTables</h3>
+    <pre><code>iptables -L</code></pre>
+    <img src="Iptables_SS/screenshot_step2.png" alt="Screenshot for Step 2">
+    <p>We do not need to use the -t option when we want to access the filter table. If we run an iptables command without the -t option, the filter table will be processed by default.</p>
+
+    <h3>Step 3: Prevent access to a specific website</h3>
+    <pre><code>iptables -A OUTPUT -d 93.184.216.34 -j DROP</code></pre>
+    <p>We could open a web browser and try to visit <code>www.google.com</code>; we could visit without any problem. On the other hand, try to visit <code>www.example.com</code>; you will only see a message on the browser telling "connecting to...," but it could not connect eventually.</p>
+
+    <h3>Step 4: To delete all the entries in the IP tables/chains.</h3>
+    <pre><code>iptables -F</code></pre>
+    <p>This command will delete/flush all the entries in the filter iptable. If you want to delete all the entries in the nat table, you need to then run:</p>
+    <pre><code>iptables -t nat -F</code></pre>
+    <p><strong>IMPORTANT NOTE:</strong> The flush operation does not reset the default-accept or drop policy of a chain. One has to manually change the default policy of a chain to the intended policy.</p>
+    
+
+    <h3>Step 5: Allow only SSH communications as incoming connection</h3>
+    <p>If the objective is to allow only SSH communications as incoming connections, we could set the firewall to do this through two ways:</p>
+    <p><strong>Method 1 (Default Policy: ACCEPT)</strong></p>
+    <pre><code>iptables -A INPUT -i eth0 -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -i eth0 -j DROP</code></pre>
+    <img src="Iptables_SS/screenshot_step5-1.png" alt="Screenshot for Step 5 - Method 1">
+    
+    <p><strong>Method 2 (Default Policy: DROP)</strong></p>
+    <pre><code>iptables -P INPUT DROP
+iptables -A INPUT -i eth0 -p tcp --dport 22 -j ACCEPT</code></pre>
+    <img src="Iptables_SS/screenshot_step5-2.png" alt="Screenshot for Step 5 - Method 2">
+
+    <h3>Step 6: Restrict web traffic to a specific network</h3>
+    <pre><code>iptables -A INPUT -s 192.168.159.0/24 -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -j DROP</code></pre>
+    <img src="Iptables_SS/screenshot_step6.png" alt="Screenshot for Step 6">
+
+    <h3>Step 7: Reset and configure policies</h3>
+    <pre><code>iptables -F
+iptables -P INPUT ACCEPT
+iptables -A INPUT -j DROP
+iptables -I INPUT 1 -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT 2 -p tcp --dport 22 -j ACCEPT</code></pre>
+    <img src="Iptables_SS/screenshot_step7.png" alt="Screenshot for Step 7">
+
+    <h3>Step 8: Configure DNS and web access while blocking SSH</h3>
+    <pre><code>iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -j DROP</code></pre>
+    <img src="Iptables_SS/screenshot_step8.png" alt="Screenshot for Step 8">
+
+    <h3>Step 9: Allow SSH, HTTP, and HTTPS using multiport</h3>
+    <pre><code>iptables -A INPUT -m multiport --dports 22,80,443 -j ACCEPT</code></pre>
+    <img src="Iptables_SS/screenshot_step9.png" alt="Screenshot for Step 9">
+
+    <h3>Step 10: Limit active web connections</h3>
+    <pre><code>modprobe xt_connlimit
+iptables -A INPUT -p tcp --syn --dport 80 -m connlimit --connlimit-above 2 -j DROP</code></pre>
+    <p><strong>Explanation:</strong></p>
+    <ul>
+        <li><code>--syn</code> blocks SYN request packets for a web connection.</li>
+        <li><code>-m connlimit</code> enables the connection limit module.</li>
+        <li><code>--connlimit-above 2</code> blocks new connections if more than 2 are active.</li>
+    </ul>
+    <p>It is crucial to limit the number of active connections for the servers running on a host/network to help prevent Denial of Service (DoS) attacks.</p>
+    <img src="Iptables_SS/screenshot_step10.png" alt="Screenshot for Step 10">
+
+</div>
+
+</body>
+</html>

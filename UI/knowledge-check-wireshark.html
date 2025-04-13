@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Check</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 2:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page2.html">&#8226; Introduction</a></li>
+                <li><a href="aim-wireshark.html">&#8226; Aim</a></li>
+                <li><a href="theory-wireshark.html">&#8226; Theory</a></li>
+                <li><a href="procedure-wireshark.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-wireshark.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-wireshark.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-wireshark.html">&#8226; Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-box">
+			<h2><u>Knowledge Check</u></h2>
+			<br>
+		
+			<!-- Question 1 -->
+			<div class="question">
+				<h3>1. What is the primary function of Wireshark?</h3>
+				<label><input type="radio" name="q1" value="incorrect"> Network Discovery</label><br>
+				<label><input type="radio" name="q1" value="incorrect"> Network Management</label><br>
+				<label><input type="radio" name="q1" value="correct"> Network Traffic Analysis</label><br>
+				<label><input type="radio" name="q1" value="incorrect"> Network Performance Tuning</label>
+			</div>
+		
+			<!-- Question 2 -->
+			<div class="question">
+				<h3>2. Which protocol is primarily used for capturing HTTP traffic in Wireshark?</h3>
+				<label><input type="radio" name="q2" value="incorrect"> TCP</label><br>
+				<label><input type="radio" name="q2" value="correct"> HTTP</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> ICMP</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> ARP</label>
+			</div>
+		
+			<!-- Question 3 -->
+			<div class="question">
+				<h3>3. What can Wireshark be used to detect in network traffic?</h3>
+				<label><input type="radio" name="q3" value="incorrect"> Only Network Performance Issues</label><br>
+				<label><input type="radio" name="q3" value="correct"> Security Threats and Unauthorized Traffic</label><br>
+				<label><input type="radio" name="q3" value="incorrect"> Only IP Address Conflicts</label><br>
+				<label><input type="radio" name="q3" value="incorrect"> Only Packet Loss</label>
+			</div>
+		
+			<!-- Question 4 -->
+			<div class="question">
+				<h3>4. What is the default file format used to save captured packets in Wireshark?</h3>
+				<label><input type="radio" name="q4" value="incorrect"> .txt</label><br>
+				<label><input type="radio" name="q4" value="correct"> .pcap</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> .log</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> .csv</label>
+			</div>
+		
+			<!-- Question 5 -->
+			<div class="question">
+				<h3>5. How can you filter packets from a specific IP address in Wireshark?</h3>
+				<label><input type="radio" name="q5" value="incorrect"> ip.dst == 192.168.1.1</label><br>
+				<label><input type="radio" name="q5" value="correct"> ip.src == 192.168.1.10</label><br>
+				<label><input type="radio" name="q5" value="incorrect"> tcp.port == 80</label><br>
+				<label><input type="radio" name="q5" value="incorrect"> udp.port == 53</label>
+			</div>
+		
+			<!-- Question 6 -->
+			<div class="question">
+				<h3>6. Which layer of the OSI model does Wireshark analyze?</h3>
+				<label><input type="radio" name="q6" value="incorrect"> Only the Physical Layer</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> Only the Network Layer</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> Only the Transport Layer</label><br>
+				<label><input type="radio" name="q6" value="correct"> All Layers</label>
+			</div>
+		
+			<!-- Question 7 -->
+			<div class="question">
+				<h3>7. Which filter would you use to display only TCP packets in Wireshark?</h3>
+				<label><input type="radio" name="q7" value="incorrect"> udp</label><br>
+				<label><input type="radio" name="q7" value="correct"> tcp</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> icmp</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> arp</label>
+			</div>
+		
+			<!-- Question 8 -->
+			<div class="question">
+				<h3>8. What does a TCP SYN packet indicate in network traffic?</h3>
+				<label><input type="radio" name="q8" value="correct"> A connection request</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> A connection termination</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> A data transmission</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> An error message</label>
+			</div>
+		
+			<!-- Question 9 -->
+			<div class="question">
+				<h3>9. How can you capture packets on Wireshark without running it as root on Linux?</h3>
+				<label><input type="radio" name="q9" value="correct"> By adding the user to the 'wireshark' group</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> By disabling the firewall</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> By using the ‘-admin’ flag</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> By using a VPN</label>
+			</div>
+		
+			<!-- Question 10 -->
+			<div class="question">
+				<h3>10. Which protocol would you filter to analyze DNS requests in Wireshark?</h3>
+				<label><input type="radio" name="q10" value="incorrect"> TCP</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> HTTP</label><br>
+				<label><input type="radio" name="q10" value="correct"> DNS</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> ARP</label>
+			</div>
+		
+			<!-- Submit button -->
+			<button class="fancy-button" onclick="checkAnswers()">Submit</button>
+		
+			<!-- Result display -->
+			<div id="result"></div>
+		</div>		
+		
+		<script src="script.js"></script>
+		
+    </div>
+</body>
+</html>

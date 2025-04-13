@@ -1,0 +1,892 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background-image: url(bg.jpg);
+  background-size: 600px 500px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: right;
+ 
+}
+
+/* Navbar */
+nav {
+  background-color: #e09df481;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  display: block;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 25px 0;
+  
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10rem;
+  justify-content: space-around;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+nav ul li a:hover {
+  background-color: #fdfdfd;
+  border-radius: 10px;
+}
+
+/* Section Styles */
+.section {
+  padding: 80px 20px;
+  height: 100vh;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+}
+
+#home {
+  background-image: url('');
+  background-size: cover;
+  background-position: left;
+  color: rgb(0, 0, 0);
+}
+.intro-text {
+  max-width: 400px; /* Control the width of text */
+  font-family: 'Raleway', sans-serif;
+  color: #ffffff;
+  justify-content: left;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.intro-text h1 {
+  font-size: 48px;
+  color: #4A90E2;
+  margin-bottom: 20px;
+  padding-left: 0%;
+}
+
+.intro-text p {
+  font-size: 50px;
+  margin-bottom: 15px;
+  padding-left: 0%;
+}
+
+/* General Styling */
+body {
+  font-family: 'Raleway', sans-serif;
+    background-color: #ffffff; /* Light blue shade */
+}
+
+.section {
+    padding: 100px 0;
+    
+    align-items: left;
+}
+
+.introduction {
+    overflow: hidden;
+    
+}
+
+.slide-text {
+    position: relative;
+    opacity: 0; /* Start hidden */
+    transform: translateX(-100%); /* Start off-screen */
+    animation: slide-in 1.5s ease-out forwards; /* Apply animation */
+}
+
+.slide-text:nth-child(2) {
+    animation-delay: 0.5s; /* Delay for second line */
+}
+
+.slide-text:nth-child(3) {
+    animation-delay: 1s; /* Delay for third line */
+}
+
+/* Keyframes for sliding in animation */
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+#about, #contact {
+  background-color: #d165dd6c;
+
+}
+
+
+/* Experiments Section Styles */
+
+/* Ensure container aligns everything left */
+.section {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  flex-direction: column; /* Stack elements vertically */
+  padding-left: 20px; /* Add some padding on the left */
+}
+
+/* Experiment Heading */
+#experiments {
+  width: 50%;
+  margin: 200px 0;
+  text-align: left;
+}
+
+#experiments {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  justify-content: left;
+  align-items: left;
+  margin-left: 400px;
+}
+
+#experiments h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+}
+
+.experiment-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.experiment-card {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 300px;
+  margin: 15px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.476);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experiment-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.295);
+}
+
+.experiment-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.experiment-card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.start-btn {
+  background: #33383e;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.start-btn:hover {
+  background: #070a2b;
+}
+
+#experiments th, #experiments td {
+  padding: 12px 15px;
+  border: 1px solid #ffffff;
+  text-align: left;
+}
+
+#experiments th {
+  background-color: #f0aef5d3;
+  color: rgb(0, 0, 0);
+}
+
+#experiments tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#experiments tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Fancy Button Styles */
+.fancy-button {
+  background-color: #f081df; /* Bright blue background */
+  color: white; /* White text */
+  padding: 12px 20px; /* Padding for the button */
+  border: none; /* Remove default border */
+  border-radius: 25px; /* Rounded corners */
+  font-size: 1.2rem; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  margin-top: 20px; /* Space above the button */
+  box-shadow: 0 4px 15px rgba(225, 30, 255, 0.622); /* Shadow effect */
+}
+
+.fancy-button:hover {
+  background-color: #d00dd7ef; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.fancy-button:active {
+  background-color: #a02eaddc; /* Even darker on click */
+  transform: translateY(0); /* Reset lift effect */
+}
+
+
+/* Styling for start button */
+.start-btn {
+  background-color: #000000;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.start-btn:hover {
+  background-color: #4c4f52;
+}
+
+
+
+.content {
+  text-align: start;
+  max-width: 800px;
+}
+
+h1, h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Footer */
+footer {
+  background-color: #00000000;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+/* Experiment Page */
+.experiment-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #ffffff;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    color: white;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: rgb(254, 254, 254);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.experiment-content {
+    margin-left: 220px;
+    padding: 20px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.experiment-content h2 {
+    color: #1e90ff;
+}
+
+/* Experiment Page */
+.experiment-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 left;
+}
+
+
+.sidebar {
+  width: 10%;
+  background-color: #ffbcfc88;
+  padding: 30px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  overflow-y: auto;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  color: rgb(0, 0, 0);
+  font-family: Arial, sans-serif;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: rgb(0, 0, 0);
+  font-size: large;
+  padding: 10px 15px;
+  display: block;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: #091e3431;
+  border-radius: 10px;
+}
+
+.sidebar ul li.active a {
+  background-color: #ffffff;
+  color: white;
+}
+
+
+.experiment-content {
+  margin-left: 22%;
+  padding: 20px;
+}
+
+.experiment-content h2 {
+  color: #123354;
+  text-align: left;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 15px;
+}
+h1,h2 {
+  text-align: left;
+  margin: 2px;
+
+}
+p {
+  text-align: start;
+  line-height: 1.6;
+  margin: 5px 0;
+  margin-left: 25px;
+}
+
+/* Basic styling for the box */
+.box {
+  width: 300px;
+  padding: 20px;
+  margin: 50px auto;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.box h2 {
+  color: #000000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.box p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.box button {
+  background-color: #000101;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.box button:hover {
+  background-color: #000000;
+}
+
+.quiz-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #000000;
+  text-align: start;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1rem;
+}
+
+button {
+  background-color: #00000000;
+  color: rgb(110, 187, 255);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #5d8bb000;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+  color: green;
+}
+
+
+.about-content {
+	width: 100%;
+	position: relative;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+  padding: 20px;
+}
+.about-content .side-text {
+	width: 45%;
+  max-width: 550px;
+	padding: 30px;
+	background: #fff;
+	box-shadow: 2px 0 100px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	text-align: justify;
+	line-height: 22px;
+	opacity: 0;
+	transform: translateX(-100px);
+	transition: 1s ease-in-out;
+}
+.about-content .side-text-appear {
+	opacity: 1;
+	transform: translateX(0px);
+}
+.about-content .side-text h2 {
+	padding: 10px;
+  font-size: 24px;
+}
+.about-content .side-text p {
+	padding: 10px 0;
+  font-size: 16px;
+  line-height: 1.8rem;
+}
+.about-content .side-image {
+	width: 40%; /* Match width to .side-text */
+	display: flex;
+	justify-content: center; /* Center the image */
+}
+
+.about-content .side-image img {
+	width: 90%;
+	border-radius: 5px;
+}
+
+/* Basic reset and styling */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Background image settings */
+.background-image {
+  background-image: url('background-image-url.jpg'); /* Replace with your image path */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Main content box styling */
+.content-box {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffffd0;
+   /* White box with transparency */
+  padding: 50px;
+  width: 70%;
+  height: 750px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.content-box h1 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.content-box p {
+  font-size: 16px;
+}
+
+.about-content {
+	width: 100%;
+	position: relative;
+	justify-content: center;
+	flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+}
+.about-content .side-text {
+	width: 550px;
+	padding: 50px 40px;
+	background: #fff;
+	box-shadow: 2px 0 100px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	text-align: justify;
+	line-height: 22px;
+	opacity: 0;
+	transform: translateX(-100px);
+	transition: 1s ease-in-out;
+}
+.about-content .side-text-appear {
+	opacity: 1;
+	transform: translateX(0px);
+}
+.about-content .side-text h2 {
+	padding: 10px;
+}
+.about-content .side-text p {
+	padding: 10px;
+}
+.about-content .side-image img {
+	width: 90%;
+	border-radius: 5px;
+  
+}
+.sideImage {
+	transform: translateX(100px);
+	opacity: 0;
+	transition: .8s ease-in-out;
+}
+.sideImage-appear {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.diffSection {
+	width: 100%;
+	/*position: relative;*/
+	justify-content: center;
+	align-items: center;
+}
+.diffSection .content {
+	margin: 10px;
+	text-align: center;
+	padding: 10px 100px;
+	font-size: 1.1em;
+}
+
+/* Define keyframes for the animation */
+@keyframes slideIn {
+  from {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+/* Apply the animation to a specific class */
+.animate-slide {
+  animation: slideIn 1s ease-out forwards; /* 1s duration, ease-out timing function */
+}
+
+/*Contact Us Section*/
+/* Parent container for first and last name fields */
+.name-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Adds some space between the fields */
+}
+
+/* Make sure both inputs take equal width */
+.name-container input {
+  width: 100%;
+}
+
+/* Flex layout for centering contact form */
+.back-contact {
+  margin-top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centering form */
+  height: 100vh; /* Full screen height */
+}
+
+/* Styling the contact form container */
+.cc {
+  width: 100%;
+  max-width: 500px; /* Restricting max width */
+  border-radius: 10px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Form styles */
+.cc form {
+  width: 100%;
+}
+
+.cc form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.cc form input {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px lightgray;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  color: #000000;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+/* Required field indicator */
+.imp {
+  color: red;
+}
+
+/* Textarea styling */
+form textarea {
+  width: 100%;
+  height: 100px;
+  box-shadow: inset 0 0 5px lightgray;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: none;
+  color: #2E3D49;
+  font-weight: 600;
+  padding: 15px;
+}
+
+/* Submit button styling */
+#csubmit {
+  margin-top: 20px;
+  background: linear-gradient(to right, #7cc2ff, #1e2c6d);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 15px 25px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* Email and message input box styling */
+.cc form input[type="email"],
+.cc form textarea {
+  width: 100%; /* Full width for responsiveness */
+  max-width: 100%; /* Ensures the field doesn't exceed container size */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px lightgray;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+/* Increase the height of the textarea for messages */
+form textarea {
+  height: 200px; /* Increased height for the message box */
+}
+
+/* Ensure the form container takes up the proper width */
+.cc form {
+  width: 100%; /* Full width of the parent container */
+}
+
+
+.cc form input[type="text"],
+.cc form textarea {
+  width: 100%; /* Full width for responsiveness */
+  max-width: 100%; /* Ensures the field doesn't exceed container size */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px lightgray;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+/* Increase the height of the textarea for messages */
+form textarea {
+  height: 200px; /* Increased height for the message box */
+}
+
+/* Ensure the form container takes up the proper width */
+.cc form {
+  width: 100%; /* Full width of the parent container */
+}
+
+/* Responsive background video */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover; /* Ensures the video covers the background area */
+}
+
+
+/* Content styling */
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: rgba(0, 0, 0, 0);
+  padding: 50px 20px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Introduction Section */
+#home {
+  display: flex;
+  align-items: left;
+  justify-content: center; /* Align content to the left */
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+  background-color: #00000000; /* Light background */
+}
+
+.intro-text {
+  max-width: 400px; /* Control the width of text */
+  font-family: 'Arial', sans-serif;
+  color: #442121;
+  justify-content: left;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.intro-text h1 {
+  font-size: 48px;
+  color: #4A90E2;
+  margin-bottom: 20px;
+  padding-left: 0%;
+}
+
+.intro-text p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding-left: 0%;
+}
+
+

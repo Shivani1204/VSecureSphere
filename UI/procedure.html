@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 1:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page1.html">&#8226; Introduction</a></li>
+                <li><a href="aim.html">&#8226; Aim</a></li>
+                <li><a href="theory.html">&#8226; Theory</a></li>
+                <li><a href="procedure.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install Nmap</u></h3>
+            <p>To install Nmap, update your package list and install Nmap using the following commands:</p>
+            <pre>
+            sudo apt-get update
+            sudo apt-get install nmap
+            </pre>
+            <p>Type the above commands in the terminal.</p>
+        
+            <h3><u>Step 2: Find Your Network IP Range</u></h3>
+            <p>Use the following command to find your IP address and network range:</p>
+            <pre>
+            ifconfig
+            </pre>
+            <p>Look for an entry like <code>192.168.1.xxx</code> to determine your IP address.</p>
+        
+            <h3><u>Step 3: Run a Basic Network Scan</u></h3>
+            <p>Now that you know your network range, scan for active devices using Nmap:</p>
+            <pre>
+            nmap 192.168.1.x/xx
+            </pre>
+            <p>This command tells Nmap to scan all devices connected to your network.</p>
+        
+            <h3><u>Step 4: Identify Open Ports</u></h3>
+            <p>After scanning, Nmap will provide a list of detected devices. Each device will display:</p>
+            <ul>
+                <li><b>IP Address:</b> The unique identifier for the device.</li>
+                <li><b>Host Name:</b> The name of the device, if available.</li>
+                <li><b>Open Ports:</b> The network ports that are open on the device.</li>
+            </ul>
+        
+            <h3><u>Step 5: Find Open Ports on a Specific Device</u></h3>
+            <p>To check which ports are open on a specific device (e.g., <code>192.168.1.10</code>):</p>
+            <pre>
+            nmap -sV 192.168.1.10
+            </pre>
+            <p>The <code>-sV</code> option tells Nmap to detect the services running on open ports.</p>
+        
+            <h3><u>Step 6: Example Output</u></h3>
+            <p>After executing the above commands, you will see output similar to the following:</p>
+            <pre>
+            PORT     STATE  SERVICE
+            22/tcp   open   ssh
+            80/tcp   open   http
+            443/tcp  open   https
+            </pre>
+            <p><b>Explanation:</b></p>
+            <ul>
+                <li><b>22/tcp (SSH):</b> Used for remote login.</li>
+                <li><b>80/tcp (HTTP):</b> Used for web browsing.</li>
+                <li><b>443/tcp (HTTPS):</b> Used for secure web browsing.</li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+</html>

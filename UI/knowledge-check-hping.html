@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Check</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 3:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page3.html">&#8226; Introduction</a></li>
+                <li><a href="aim-hping.html">&#8226; Aim</a></li>
+                <li><a href="theory-hping.html">&#8226; Theory</a></li>
+                <li><a href="procedure-hping.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-hping.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-hping.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-hping.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Knowledge Check</u></h2>
+            <br>
+        
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. What is hping primarily used for?</h3>
+                <label><input type="radio" name="q1" value="incorrect"> Web development</label><br>
+                <label><input type="radio" name="q1" value="correct"> Network security testing and packet crafting</label><br>
+                <label><input type="radio" name="q1" value="incorrect"> File transfer</label><br>
+                <label><input type="radio" name="q1" value="incorrect"> Server management</label>
+            </div>
+        
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. Which protocol does hping use by default?</h3>
+                <label><input type="radio" name="q2" value="incorrect"> UDP</label><br>
+                <label><input type="radio" name="q2" value="correct"> TCP</label><br>
+                <label><input type="radio" name="q2" value="incorrect"> ICMP</label><br>
+                <label><input type="radio" name="q2" value="incorrect"> ARP</label>
+            </div>
+        
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. Which option in hping sends ICMP echo requests (like ping)?</h3>
+                <label><input type="radio" name="q3" value="incorrect"> -S</label><br>
+                <label><input type="radio" name="q3" value="correct"> -1</label><br>
+                <label><input type="radio" name="q3" value="incorrect"> -A</label><br>
+                <label><input type="radio" name="q3" value="incorrect"> -R</label>
+            </div>
+        
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. What is the purpose of the '-S' flag in hping?</h3>
+                <label><input type="radio" name="q4" value="correct"> Sends TCP SYN packets</label><br>
+                <label><input type="radio" name="q4" value="incorrect"> Sends UDP packets</label><br>
+                <label><input type="radio" name="q4" value="incorrect"> Sends ICMP requests</label><br>
+                <label><input type="radio" name="q4" value="incorrect"> Performs a traceroute</label>
+            </div>
+        
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. Which hping command sends a SYN scan to a specific IP on port 80?</h3>
+                <label><input type="radio" name="q5" value="correct"> hping3 -S -p 80 [target]</label><br>
+                <label><input type="radio" name="q5" value="incorrect"> hping3 -1 -p 80 [target]</label><br>
+                <label><input type="radio" name="q5" value="incorrect"> hping3 -A -p 80 [target]</label><br>
+                <label><input type="radio" name="q5" value="incorrect"> hping3 --ping -p 80 [target]</label>
+            </div>
+        
+            <!-- Question 6 -->
+            <div class="question">
+                <h3>6. What is the purpose of the '-p' flag in hping?</h3>
+                <label><input type="radio" name="q6" value="incorrect"> Selects a protocol</label><br>
+                <label><input type="radio" name="q6" value="correct"> Specifies a target port</label><br>
+                <label><input type="radio" name="q6" value="incorrect"> Sets packet size</label><br>
+                <label><input type="radio" name="q6" value="incorrect"> Performs a traceroute</label>
+            </div>
+        
+            <!-- Question 7 -->
+            <div class="question">
+                <h3>7. Which flag in hping is used for a UDP scan?</h3>
+                <label><input type="radio" name="q7" value="incorrect"> -S</label><br>
+                <label><input type="radio" name="q7" value="incorrect"> -A</label><br>
+                <label><input type="radio" name="q7" value="correct"> -2</label><br>
+                <label><input type="radio" name="q7" value="incorrect"> -F</label>
+            </div>
+        
+            <!-- Question 8 -->
+            <div class="question">
+                <h3>8. Which hping flag allows you to perform a traceroute?</h3>
+                <label><input type="radio" name="q8" value="incorrect"> -S</label><br>
+                <label><input type="radio" name="q8" value="incorrect"> -A</label><br>
+                <label><input type="radio" name="q8" value="correct"> --traceroute</label><br>
+                <label><input type="radio" name="q8" value="incorrect"> -p</label>
+            </div>
+        
+            <!-- Question 9 -->
+            <div class="question">
+                <h3>9. What does the '-F' flag do in hping?</h3>
+                <label><input type="radio" name="q9" value="correct"> Sets the FIN flag in TCP packets</label><br>
+                <label><input type="radio" name="q9" value="incorrect"> Sends UDP packets</label><br>
+                <label><input type="radio" name="q9" value="incorrect"> Performs a stealth scan</label><br>
+                <label><input type="radio" name="q9" value="incorrect"> Disables fragmentation</label>
+            </div>
+        
+            <!-- Question 10 -->
+            <div class="question">
+                <h3>10. How do you set a specific packet size in hping?</h3>
+                <label><input type="radio" name="q10" value="incorrect"> -p</label><br>
+                <label><input type="radio" name="q10" value="correct"> -d</label><br>
+                <label><input type="radio" name="q10" value="incorrect"> -s</label><br>
+                <label><input type="radio" name="q10" value="incorrect"> -t</label>
+            </div>
+        
+            <!-- Submit button -->
+            <button class="fancy-button" onclick="checkAnswers()">Submit</button>
+        
+            <!-- Result display -->
+            <div id="result"></div>
+        </div>
+        
+		
+		<script src="script.js"></script>
+		
+    </div>
+</body>
+</html>

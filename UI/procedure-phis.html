@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 5:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page5.html">&#8226; Introduction</a></li>
+                <li><a href="aim-phis.html">&#8226; Aim</a></li>
+                <li><a href="theory-phis.html">&#8226; Theory</a></li>
+                <li><a href="procedure-phis.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-phis.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-phis.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-phis.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Launch SEToolkit</u></h3>
+            <p>SEToolkit is a powerful framework for simulating real-world social engineering attacks. To launch it, open the terminal and enter:</p>
+            <pre>
+            sudo setoolkit
+            </pre>
+            <p>You may be prompted to agree to the terms and conditions — type <code>yes</code> to continue.</p>
+        
+            <h3><u>Step 2: Select Social Engineering Attacks</u></h3>
+            <p>From the SET main menu, choose option:</p>
+            <pre>
+            1) Social-Engineering Attacks
+            </pre>
+        
+            <h3><u>Step 3: Select Website Attack Vectors</u></h3>
+            <p>Next, choose the method to clone a website for the phishing simulation:</p>
+            <pre>
+            2) Website Attack Vectors
+            </pre>
+        
+            <h3><u>Step 4: Select Credential Harvester Attack Method</u></h3>
+            <p>This method allows us to clone a website and capture credentials:</p>
+            <pre>
+            3) Credential Harvester Attack Method
+            </pre>
+        
+            <h3><u>Step 5: Select Site Cloner</u></h3>
+            <p>Choose the Site Cloner option to clone a legitimate website (like Facebook, Gmail, etc.):</p>
+            <pre>
+            2) Site Cloner
+            </pre>
+        
+            <h3><u>Step 6: Enter the Attack Parameters</u></h3>
+            <p>When prompted:</p>
+            <ul>
+                <li>Enter your **local IP address** (you can find it using <code>ifconfig</code>).</li>
+                <li>Enter the **URL of the site** you want to clone (e.g., <code>https://accounts.google.com</code>).</li>
+            </ul>
+            <p>SEToolkit will clone the login page and set up a listener on your IP to capture credentials.</p>
+        
+            <h3><u>Step 7: Phishing Page Deployment</u></h3>
+            <p>The fake login page will be hosted locally (usually on port 80). Share your IP with the victim (only in a controlled lab setup), and once they enter details, the credentials will be stored locally.</p>
+        
+            <h3><u>Step 8: View Captured Credentials</u></h3>
+            <p>Captured usernames and passwords are stored in a file at:</p>
+            <pre>
+            /var/www/html/harvester_*.txt
+            </pre>
+            <p>Use <code>cat</code> or <code>nano</code> to view the captured credentials.</p>
+        
+            <h3><u>Step 9: Conclude the Experiment</u></h3>
+            <p>Discuss how phishing attacks work in real-world scenarios and how users can avoid falling victim to such techniques.</p>
+            <ul>
+                <li>Always check the URL and SSL certificate.</li>
+                <li>Never click on suspicious links from emails or messages.</li>
+                <li>Enable two-factor authentication for better security.</li>
+            </ul>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

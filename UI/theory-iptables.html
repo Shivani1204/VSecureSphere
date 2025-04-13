@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 8:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page8.html">&#8226; Introduction</a></li>
+                <li><a href="aim-iptables.html">&#8226; Aim</a></li>
+                <li><a href="theory-iptables.html">&#8226; Theory</a></li>
+                <li><a href="procedure-iptables.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-iptables.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-iptables.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-iptables.html">&#8226; Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Theory</u></h2>
+            <h3>The purpose of this experiment is to understand how to use <b>IPTables</b> to configure and manage a software firewall on a Linux host.</h3>
+        
+            <p><b>What is a Firewall?</b><br>
+            A <b>firewall</b> is a security system that monitors and controls incoming and outgoing network traffic based on predefined rules. It acts as a barrier between a trusted internal network and untrusted external networks, such as the internet. Firewalls help in preventing unauthorized access, blocking malicious traffic, and securing sensitive data.</p>
+        
+            <p><b>Types of Firewalls:</b></p>
+            <ul>
+                <li><b>Packet Filtering Firewall:</b> Examines packets and allows or blocks them based on rules.</li>
+                <li><b>Stateful Inspection Firewall:</b> Tracks the state of active connections to determine which packets should be allowed.</li>
+                <li><b>Proxy Firewall:</b> Acts as an intermediary between users and the internet, filtering requests.</li>
+                <li><b>Next-Generation Firewall (NGFW):</b> Includes advanced security features like intrusion prevention and deep packet inspection.</li>
+            </ul>
+        
+            <p><b>What is IPTables?</b><br>
+            <b>IPTables</b> is a Linux firewall tool that allows users to define rules for filtering, redirecting, and blocking network traffic. It operates within the <b>netfilter</b> framework in the Linux kernel and provides granular control over packet filtering.</p>
+        
+            <h4><b>Key Components of IPTables</b></h4>
+            <ul>
+                <li><b>Tables:</b> Organize rules into different categories.</li>
+                <li><b>Chains:</b> Define sequences of rules for packet processing.</li>
+                <li><b>Rules:</b> Specify actions to be taken on packets based on conditions.</li>
+            </ul>
+        
+            <p><b>Tables in IPTables</b><br>
+            IPTables consists of multiple tables, each serving a specific purpose:</p>
+            <ul>
+                <li><b>Filter Table:</b> The default table used for packet filtering (allowing or blocking traffic).</li>
+                <li><b>NAT Table:</b> Handles Network Address Translation (NAT) for modifying source/destination addresses.</li>
+                <li><b>Mangle Table:</b> Used for modifying packet headers (e.g., QoS settings).</li>
+            </ul>
+        
+            <p><b>Chains in the Filter Table</b></p>
+            <ul>
+                <li><b>INPUT:</b> Manages incoming packets destined for the local machine.</li>
+                <li><b>FORWARD:</b> Controls packets routed through the system.</li>
+                <li><b>OUTPUT:</b> Handles packets originating from the local machine.</li>
+            </ul>
+        
+            <p><b>Common IPTables Rules</b></p>
+            <ul>
+                <li><b>Allow SSH traffic:</b> <code>iptables -A INPUT -p tcp --dport 22 -j ACCEPT</code></li>
+                <li><b>Block all incoming traffic:</b> <code>iptables -P INPUT DROP</code></li>
+                <li><b>Allow web traffic (HTTP & HTTPS):</b> <code>iptables -A INPUT -p tcp --dport 80 -j ACCEPT</code></li>
+                <li><b>Allow DNS resolution:</b> <code>iptables -A INPUT -p udp --dport 53 -j ACCEPT</code></li>
+                <li><b>Flush all rules:</b> <code>iptables -F</code></li>
+            </ul>
+        
+            <p><b>How IPTables Works</b><br>
+            IPTables processes network packets based on predefined rules. When a packet arrives:</p>
+            <ul>
+                <li>It is matched against the rules in the applicable chain.</li>
+                <li>If a rule matches, the corresponding action (ACCEPT, DROP, REJECT) is applied.</li>
+                <li>If no rule matches, the packet is handled based on the default policy.</li>
+            </ul>
+        
+            <p><b>Testing Firewall Rules</b></p>
+            <ul>
+                <li><b>View existing rules:</b> <code>iptables -L</code></li>
+                <li><b>Check connectivity:</b> <code>ping -c 4 google.com</code></li>
+                <li><b>Test SSH access:</b> <code>ssh user@remote-host</code></li>
+                <li><b>Scan open ports:</b> <code>nmap -sS localhost</code></li>
+            </ul>
+        
+            <p>By properly configuring IPTables, we can create a secure environment, control access to services, and mitigate network-based attacks.</p>
+        </div>
+         
+    </div>
+</body>
+</html>

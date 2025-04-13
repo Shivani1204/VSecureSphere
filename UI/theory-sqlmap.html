@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 9:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page9.html">&#8226; Introduction</a></li>
+                <li><a href="aim-sqlmap.html">&#8226; Aim</a></li>
+                <li><a href="theory-sqlmap.html">&#8226; Theory</a></li>
+                <li><a href="procedure-sqlmap.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-sqlmap.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-sqlmap.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-sqlmap.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Theory</u></h2>
+            <h3>The purpose of this experiment is to understand how to use <b>SQLMap</b> to detect and exploit SQL Injection vulnerabilities in web applications.</h3>
+        
+            <p><b>What is SQL Injection?</b><br>
+            <b>SQL Injection (SQLi)</b> is a security vulnerability that allows an attacker to manipulate SQL queries executed by a web application. It occurs when user input is improperly sanitized, enabling malicious SQL code to be injected and executed by the database.</p>
+        
+            <p><b>Types of SQL Injection Attacks:</b></p>
+            <ul>
+                <li><b>Union-based SQL Injection:</b> Uses the <code>UNION</code> operator to extract data from other tables.</li>
+                <li><b>Error-based SQL Injection:</b> Exploits database error messages to retrieve information.</li>
+                <li><b>Blind SQL Injection:</b> Uses true/false conditions to extract data without error messages.</li>
+                <li><b>Time-based SQL Injection:</b> Uses SQL functions to delay database responses, inferring data based on response time.</li>
+            </ul>
+        
+            <p><b>What is SQLMap?</b><br>
+            <b>SQLMap</b> is an open-source penetration testing tool that automates the process of detecting and exploiting SQL Injection vulnerabilities. It helps security professionals assess database security and retrieve critical information.</p>
+        
+            <p><b>Key Features of SQLMap</b></p>
+            <ul>
+                <li><b>Automatic detection of SQL Injection vulnerabilities.</b></li>
+                <li><b>Database fingerprinting to determine the database type and version.</b></li>
+                <li><b>Data extraction, including database tables, columns, and user credentials.</b></li>
+                <li><b>Privilege escalation to exploit database permissions.</b></li>
+                <li><b>Gaining shell access through database takeover techniques.</b></li>
+            </ul>
+        
+            <p><b>Common SQLMap Commands and Explanations</b></p>
+        
+            <ul>
+                <li>
+                    <b>Check if a website is vulnerable:</b>  
+                    <pre><code>sqlmap -u "http://example.com/product.php?id=1" --dbs</code></pre>  
+                    <p>This command tests if the website parameter <code>id=1</code> is vulnerable to SQL Injection. If it is, SQLMap lists available databases.</p>
+                </li>
+        
+                <li>
+                    <b>List available databases:</b>  
+                    <pre><code>sqlmap -u "http://example.com/product.php?id=1" --dbs</code></pre>  
+                    <p>The <code>--dbs</code> flag tells SQLMap to retrieve all database names from the server.</p>
+                </li>
+        
+                <li>
+                    <b>List tables in a specific database:</b>  
+                    <pre><code>sqlmap -u "http://example.com/product.php?id=1" -D database_name --tables</code></pre>  
+                    <p>The <code>-D</code> option specifies the target database, and <code>--tables</code> lists all tables inside it.</p>
+                </li>
+        
+                <li>
+                    <b>Retrieve columns from a table:</b>  
+                    <pre><code>sqlmap -u "http://example.com/product.php?id=1" -D database_name -T users --columns</code></pre>  
+                    <p>The <code>-T users</code> flag specifies the <code>users</code> table, and <code>--columns</code> lists the available columns in it.</p>
+                </li>
+        
+                <li>
+                    <b>Extract usernames and passwords:</b>  
+                    <pre><code>sqlmap -u "http://example.com/product.php?id=1" -D database_name -T users -C username,password --dump</code></pre>  
+                    <p>This command extracts and displays the <code>username</code> and <code>password</code> columns from the <code>users</code> table.</p>
+                </li>
+            </ul>
+        
+            <p><b>How SQL Injection Works</b><br>
+            SQL Injection works by modifying SQL queries sent to the database:</p>
+            <ul>
+                <li>The attacker injects SQL code into input fields, URLs, or headers.</li>
+                <li>The database executes the injected query if input validation is weak.</li>
+                <li>Depending on the attack type, data is retrieved, modified, or deleted.</li>
+                <li>If exploited, the attacker may gain full control over the database.</li>
+            </ul>
+        
+            <p><b>Preventing SQL Injection Attacks</b></p>
+            <ul>
+                <li><b>Use Prepared Statements:</b> Bind user inputs instead of concatenating them in SQL queries.</li>
+                <li><b>Sanitize Inputs:</b> Validate and filter user input to prevent malicious injections.</li>
+                <li><b>Implement Web Application Firewalls:</b> Block SQL injection attempts using WAFs.</li>
+                <li><b>Use Least Privilege Principle:</b> Restrict database access rights to necessary actions only.</li>
+                <li><b>Monitor Database Activity:</b> Detect suspicious queries using logging and anomaly detection.</li>
+            </ul>
+        
+            <p>By properly securing web applications, developers can prevent SQL Injection attacks and protect sensitive database information.</p>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

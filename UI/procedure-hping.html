@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 3:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page3.html">&#8226; Introduction</a></li>
+                <li><a href="aim-hping.html">&#8226; Aim</a></li>
+                <li><a href="theory-hping.html">&#8226; Theory</a></li>
+                <li><a href="procedure-hping.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-hping.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-hping.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-hping.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install hping</u></h3>
+            <p>To install hping, update your package list and install hping using the following command:</p>
+            <pre>
+            sudo apt-get update
+            sudo apt-get install hping3
+            </pre>
+            <p>Type the above command in the terminal.</p>
+        
+            <h3><u>Step 2: Check if a Host is Alive (ICMP Ping)</u></h3>
+            <p>Use hping to send an ICMP echo request (similar to the ping command):</p>
+            <pre>
+            hping3 -1 <target-IP>
+            </pre>
+            <p>This command sends an ICMP echo request to check if the target is online.</p>
+        
+            <h3><u>Step 3: Perform a TCP SYN Scan</u></h3>
+            <p>To check for open ports on a target system, use the SYN scan:</p>
+            <pre>
+            hping3 -S -p <port> <target-IP>
+            </pre>
+            <p>The <code>-S</code> flag sends a SYN packet, and <code>-p</code> specifies the target port.</p>
+        
+            <h3><u>Step 4: Perform a TCP Connect Scan</u></h3>
+            <p>To fully establish a connection with a target system, use the following command:</p>
+            <pre>
+            hping3 -S -p <port> --tcp-connect <target-IP>
+            </pre>
+            <p>This method completes the full TCP handshake, unlike a SYN scan.</p>
+        
+            <h3><u>Step 5: Scan for Open UDP Ports</u></h3>
+            <p>To scan UDP ports (e.g., DNS on port 53), use:</p>
+            <pre>
+            hping3 --udp -p 53 <target-IP>
+            </pre>
+            <p>This command sends UDP packets to the target.</p>
+        
+            <h3><u>Step 6: Conduct a Flood Attack Simulation</u></h3>
+            <p>To test how a target system handles a high rate of requests:</p>
+            <pre>
+            hping3 -S --flood -p <port> <target-IP>
+            </pre>
+            <p><b>Warning:</b> This generates a large number of packets and should only be used in a controlled lab environment.</p>
+        
+            <h3><u>Step 7: Example Output</u></h3>
+            <p>After executing these commands, you may see output like:</p>
+            <pre>
+            HPING <target-IP> (eth0 <target-IP>): S set, 40 headers + 0 data bytes
+            len=46 ip=<target-IP> ttl=64 DF id=0 sport=80 flags=SA seq=0 win=65535
+            </pre>
+            <p><b>Explanation:</b></p>
+            <ul>
+                <li><b>SA (SYN-ACK):</b> Indicates that the port is open.</li>
+                <li><b>RA (RST-ACK):</b> Means the port is closed.</li>
+                <li><b>Flags:</b> Shows response types for TCP analysis.</li>
+            </ul>
+        
+        </div>
+        
+        
+    </div>
+</body>
+</html>

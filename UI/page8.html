@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 8:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page8.html">&#8226; Introduction</a></li>
+                <li><a href="aim-iptables.html">&#8226; Aim</a></li>
+                <li><a href="theory-iptables.html">&#8226; Theory</a></li>
+                <li><a href="procedure-iptables.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-iptables.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-iptables.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-iptables.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content-box">
+            <h2><u>Welcome to Experiment 8: Configuring a Firewall using IPTables</u></h2>
+        
+            <h3><b>Introduction to Firewalls and IPTables</b></h3>
+        
+            <p>
+                A <b>firewall</b> is a security mechanism that controls incoming and outgoing network traffic based on 
+                predetermined security rules. It serves as a <b>barrier</b> between a trusted internal network and 
+                untrusted external networks, such as the internet. Firewalls can be <b>hardware-based, software-based, or a 
+                combination of both</b> and are essential in safeguarding systems from unauthorized access and cyber threats.
+            </p>
+        
+            <p>
+                One of the most commonly used software-based firewalls on Linux systems is <b>IPTables</b>, a tool that enables 
+                administrators to define firewall rules for packet filtering and network security.
+            </p>
+        
+            <h3><b>Understanding IPTables</b></h3>
+        
+            <p>
+                <b>IPTables</b> is a <b>packet filtering framework</b> built into the Linux kernel that enables the creation 
+                of rules to <b>control, filter, and manipulate network traffic</b>. It works on the principle of 
+                <b>tables, chains, and rules</b> to determine how packets should be handled.
+            </p>
+        
+            <h4><b>Key Tables in IPTables:</b></h4>
+            <ul>
+                <li><b>Filter Table</b> – Responsible for filtering packets (Default Table).</li>
+                <li><b>NAT Table</b> – Handles network address translation (NAT) for modifying source/destination IP addresses.</li>
+                <li><b>Mangle Table</b> – Used for specialized packet alterations (e.g., modifying headers for Quality of Service).</li>
+            </ul>
+        
+            <h4><b>Chains in the Filter Table:</b></h4>
+            <ul>
+                <li><b>INPUT</b> – Manages packets destined for the local machine.</li>
+                <li><b>FORWARD</b> – Handles packets routed through the machine.</li>
+                <li><b>OUTPUT</b> – Controls packets sent from the machine.</li>
+            </ul>
+        
+            <h3><b>Common Use Cases of IPTables:</b></h3>
+            <ul>
+                <li><b>Blocking unauthorized access</b> by setting default policies.</li>
+                <li><b>Allowing or restricting specific services</b>, such as SSH and HTTP.</li>
+                <li><b>Preventing DoS attacks</b> by limiting connections.</li>
+                <li><b>Restricting ping requests</b> to prevent network enumeration.</li>
+            </ul>
+        
+            <p>
+                IPTables allows network administrators to enforce security policies and define granular access controls, 
+                making it a <b>powerful firewall tool</b> for system and network security.
+            </p>
+        </div>
+        
+    
+</body>
+</html>

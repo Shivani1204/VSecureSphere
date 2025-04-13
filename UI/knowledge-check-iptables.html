@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Check</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 8:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page8.html">&#8226; Introduction</a></li>
+                <li><a href="aim-iptables.html">&#8226; Aim</a></li>
+                <li><a href="theory-iptables.html">&#8226; Theory</a></li>
+                <li><a href="procedure-iptables.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-iptables.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-iptables.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-iptables.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+			<h2><u>Knowledge Check</u></h2>
+			<br>
+		
+			<!-- Question 1 -->
+			<div class="question">
+				<h3>1. What is the primary function of a firewall?</h3>
+				<label><input type="radio" name="q1" value="incorrect"> To increase internet speed</label><br>
+				<label><input type="radio" name="q1" value="correct"> To monitor and control network traffic</label><br>
+				<label><input type="radio" name="q1" value="incorrect"> To block all incoming connections</label><br>
+				<label><input type="radio" name="q1" value="incorrect"> To create new IP addresses</label>
+			</div>
+		
+			<!-- Question 2 -->
+			<div class="question">
+				<h3>2. What command is used to list all existing IPTables rules?</h3>
+				<label><input type="radio" name="q2" value="correct"> sudo iptables -L</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> sudo iptables --list</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> sudo firewall-cmd --list</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> sudo iptables -F</label>
+			</div>
+		
+			<!-- Question 3 -->
+			<div class="question">
+				<h3>3. What is the default table used in IPTables?</h3>
+				<label><input type="radio" name="q3" value="incorrect"> NAT</label><br>
+				<label><input type="radio" name="q3" value="correct"> Filter</label><br>
+				<label><input type="radio" name="q3" value="incorrect"> Mangle</label><br>
+				<label><input type="radio" name="q3" value="incorrect"> Raw</label>
+			</div>
+		
+			<!-- Question 4 -->
+			<div class="question">
+				<h3>4. Which IPTables chain is responsible for managing incoming traffic?</h3>
+				<label><input type="radio" name="q4" value="correct"> INPUT</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> FORWARD</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> OUTPUT</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> PREROUTING</label>
+			</div>
+		
+			<!-- Question 5 -->
+			<div class="question">
+				<h3>5. Which command is used to block all incoming traffic?</h3>
+				<label><input type="radio" name="q5" value="incorrect"> sudo iptables -A INPUT ACCEPT</label><br>
+				<label><input type="radio" name="q5" value="correct"> sudo iptables -P INPUT DROP</label><br>
+				<label><input type="radio" name="q5" value="incorrect"> sudo iptables -A OUTPUT DROP</label><br>
+				<label><input type="radio" name="q5" value="incorrect"> sudo iptables -P FORWARD ACCEPT</label>
+			</div>
+		
+			<!-- Question 6 -->
+			<div class="question">
+				<h3>6. What is the purpose of the NAT table in IPTables?</h3>
+				<label><input type="radio" name="q6" value="correct"> It modifies source and destination IP addresses</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> It filters packets</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> It logs all network traffic</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> It prevents DoS attacks</label>
+			</div>
+		
+			<!-- Question 7 -->
+			<div class="question">
+				<h3>7. How do you allow SSH (port 22) traffic in IPTables?</h3>
+				<label><input type="radio" name="q7" value="correct"> sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> sudo iptables -A FORWARD -p tcp --dport 22 -j ACCEPT</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> sudo iptables -P INPUT ACCEPT</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> sudo iptables -A OUTPUT -p tcp --dport 22 -j DROP</label>
+			</div>
+		
+			<!-- Question 8 -->
+			<div class="question">
+				<h3>8. How do you remove all existing IPTables rules?</h3>
+				<label><input type="radio" name="q8" value="correct"> sudo iptables -F</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> sudo iptables --reset</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> sudo iptables -D</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> sudo iptables -L -n</label>
+			</div>
+		
+			<!-- Question 9 -->
+			<div class="question">
+				<h3>9. Which command blocks all ICMP (ping) requests?</h3>
+				<label><input type="radio" name="q9" value="correct"> sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> sudo iptables -P FORWARD DROP</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> sudo iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> sudo iptables -P OUTPUT ACCEPT</label>
+			</div>
+		
+			<!-- Question 10 -->
+			<div class="question">
+				<h3>10. How do you save IPTables rules so they persist after a reboot?</h3>
+				<label><input type="radio" name="q10" value="correct"> sudo iptables-save > /etc/iptables/rules.v4</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> sudo iptables -P SAVE</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> sudo iptables --store</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> sudo iptables -L --save</label>
+			</div>
+		
+			<!-- Submit button -->
+			<button class="fancy-button" onclick="checkAnswers()">Submit</button>
+		
+			<!-- Result display -->
+			<div id="result"></div>
+		</div>
+		
+		<script src="script.js"></script>
+		
+</body>
+</html>

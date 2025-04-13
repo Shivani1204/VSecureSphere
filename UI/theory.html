@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 5:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page5.html">&#8226; Introduction</a></li>
+                <li><a href="aim-phis.html">&#8226; Aim</a></li>
+                <li><a href="theory-phis.html">&#8226; Theory</a></li>
+                <li><a href="procedure-phis.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-phis.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-phis.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-phis.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Theory</u></h2>
+            <h3>The purpose of this experiment is to understand how to use <b>Nmap (Network Mapper)</b> to scan a network and gather information about active devices, open ports, and services running on those devices.</h3>
+        
+            <p><b>What is Nmap?</b><br>
+            Nmap is a free, open-source tool designed for <b>network discovery</b> and <b>security auditing</b>. It is widely used by network administrators, security professionals, and ethical hackers to analyze network security and identify vulnerabilities. Some key functions of Nmap include:</p>
+        
+            <ul>
+                <li>Discovering hosts (devices) on a network.</li>
+                <li>Detecting open ports.</li>
+                <li>Identifying running services and their versions.</li>
+                <li>Performing OS detection.</li>
+                <li>Detecting firewalls and security mechanisms.</li>
+            </ul>
+        
+            <p><b>Understanding Ports and Services</b><br>
+            In networking, a <b>port</b> is a logical communication endpoint that allows devices to send and receive data. Think of ports as doors in a building—each door (port) leads to a different service or function.</p>
+        
+            <p><b>Port Numbers and Their Uses:</b></p>
+            <ul>
+                <li><b>Port 22 (SSH):</b> Secure remote login.</li>
+                <li><b>Port 80 (HTTP):</b> Unencrypted web traffic.</li>
+                <li><b>Port 443 (HTTPS):</b> Secure web browsing.</li>
+                <li><b>Port 25 (SMTP):</b> Email transfer.</li>
+                <li><b>Port 53 (DNS):</b> Domain name resolution.</li>
+            </ul>
+        
+            <p><b>Types of Port States in Nmap</b><br>
+            When scanning a target, Nmap categorizes ports into different states:</p>
+            <ul>
+                <li><b>Open:</b> The port is accessible and a service is actively listening.</li>
+                <li><b>Closed:</b> The port is reachable but no service is running.</li>
+                <li><b>Filtered:</b> A firewall or security mechanism is blocking access.</li>
+                <li><b>Unfiltered:</b> The port is accessible, but Nmap can't determine its state.</li>
+            </ul>
+        
+            <p><b>How Nmap Works</b><br>
+            Nmap sends specially crafted packets to the target system and analyzes the responses to determine:</p>
+            <ul>
+                <li>The list of live hosts on a network.</li>
+                <li>The operating system running on a device.</li>
+                <li>The services and their versions running on open ports.</li>
+                <li>Firewall and security settings.</li>
+            </ul>
+        
+            <p><b>Common Nmap Scan Types</b></p>
+            <ul>
+                <li><b>Ping Scan (-sn):</b> Detects active hosts without scanning ports.</li>
+                <li><b>SYN Scan (-sS):</b> Stealth scan that doesn’t complete the handshake, making it harder to detect.</li>
+                <li><b>TCP Connect Scan (-sT):</b> Fully establishes a connection before scanning.</li>
+                <li><b>UDP Scan (-sU):</b> Detects open UDP ports (used for DNS, SNMP, etc.).</li>
+                <li><b>Service Version Detection (-sV):</b> Identifies versions of running services.</li>
+                <li><b>Operating System Detection (-O):</b> Attempts to determine the OS of the target.</li>
+            </ul>
+        
+            <p>By using Nmap effectively, we can analyze network security, identify potential vulnerabilities, and ensure that only necessary services are exposed to the internet.</p>
+        </div>        
+    </div>
+</body>
+</html>

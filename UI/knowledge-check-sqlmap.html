@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Check</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+			<ul>
+                <h3><u><b>Experiment 9:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page9.html">&#8226; Introduction</a></li>
+                <li><a href="aim-sqlmap.html">&#8226; Aim</a></li>
+                <li><a href="theory-sqlmap.html">&#8226; Theory</a></li>
+                <li><a href="procedure-sqlmap.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-sqlmap.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-sqlmap.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-sqlmap.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+			<h2><u>Knowledge Check</u></h2>
+			<br>
+		
+			<!-- Question 1 -->
+			<div class="question">
+				<h3>1. What is the primary purpose of SQLMap?</h3>
+				<label><input type="radio" name="q1" value="incorrect"> To create new SQL databases</label><br>
+				<label><input type="radio" name="q1" value="correct"> To detect and exploit SQL Injection vulnerabilities</label><br>
+				<label><input type="radio" name="q1" value="incorrect"> To encrypt SQL databases</label><br>
+				<label><input type="radio" name="q1" value="incorrect"> To manage user authentication</label>
+			</div>
+
+			<!-- Question 2 -->
+			<div class="question">
+				<h3>2. What command is used to check if a website is vulnerable to SQL Injection?</h3>
+				<label><input type="radio" name="q2" value="correct"> sqlmap -u "http://example.com/index.php?id=1"</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> sqlmap --check "http://example.com/index.php?id=1"</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> sqlmap -scan "http://example.com/index.php?id=1"</label><br>
+				<label><input type="radio" name="q2" value="incorrect"> sqlmap -test "http://example.com/index.php?id=1"</label>
+			</div>
+
+			<!-- Question 3 -->
+			<div class="question">
+				<h3>3. Which SQLMap option is used to list all available databases?</h3>
+				<label><input type="radio" name="q3" value="incorrect"> --tables</label><br>
+				<label><input type="radio" name="q3" value="correct"> --dbs</label><br>
+				<label><input type="radio" name="q3" value="incorrect"> --columns</label><br>
+				<label><input type="radio" name="q3" value="incorrect"> --dump</label>
+			</div>
+
+			<!-- Question 4 -->
+			<div class="question">
+				<h3>4. Which SQLMap flag is used to extract table names from a database?</h3>
+				<label><input type="radio" name="q4" value="incorrect"> --columns</label><br>
+				<label><input type="radio" name="q4" value="correct"> --tables</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> --dump</label><br>
+				<label><input type="radio" name="q4" value="incorrect"> --search</label>
+			</div>
+
+			<!-- Question 5 -->
+			<div class="question">
+				<h3>5. Which SQLMap option allows extracting usernames and passwords?</h3>
+				<label><input type="radio" name="q5" value="incorrect"> --dbs</label><br>
+				<label><input type="radio" name="q5" value="incorrect"> --tables</label><br>
+				<label><input type="radio" name="q5" value="incorrect"> --columns</label><br>
+				<label><input type="radio" name="q5" value="correct"> --dump</label>
+			</div>
+
+			<!-- Question 6 -->
+			<div class="question">
+				<h3>6. What is the most common way SQL Injection attacks occur?</h3>
+				<label><input type="radio" name="q6" value="correct"> Through unsanitized user input in web applications</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> By installing a virus on the database server</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> By using an outdated version of MySQL</label><br>
+				<label><input type="radio" name="q6" value="incorrect"> By encrypting database queries</label>
+			</div>
+
+			<!-- Question 7 -->
+			<div class="question">
+				<h3>7. Which of the following is a recommended way to prevent SQL Injection?</h3>
+				<label><input type="radio" name="q7" value="incorrect"> Using simple string concatenation for SQL queries</label><br>
+				<label><input type="radio" name="q7" value="correct"> Using prepared statements and parameterized queries</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> Allowing all user inputs without validation</label><br>
+				<label><input type="radio" name="q7" value="incorrect"> Disabling the database firewall</label>
+			</div>
+
+			<!-- Question 8 -->
+			<div class="question">
+				<h3>8. What does the SQLMap option `--batch` do?</h3>
+				<label><input type="radio" name="q8" value="correct"> Runs SQLMap without requiring user interaction</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> Dumps all databases automatically</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> Deletes the target database</label><br>
+				<label><input type="radio" name="q8" value="incorrect"> Closes all SQLMap sessions</label>
+			</div>
+
+			<!-- Question 9 -->
+			<div class="question">
+				<h3>9. Which attack type is used by SQLMap for extracting data when errors are not displayed?</h3>
+				<label><input type="radio" name="q9" value="incorrect"> Error-based SQL Injection</label><br>
+				<label><input type="radio" name="q9" value="correct"> Blind SQL Injection</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> Cross-site scripting (XSS)</label><br>
+				<label><input type="radio" name="q9" value="incorrect"> Code Injection</label>
+			</div>
+
+			<!-- Question 10 -->
+			<div class="question">
+				<h3>10. What is the command to retrieve column names from a table using SQLMap?</h3>
+				<label><input type="radio" name="q10" value="incorrect"> sqlmap -u "http://example.com?id=1" -D database_name --dbs</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> sqlmap -u "http://example.com?id=1" -D database_name -T users --tables</label><br>
+				<label><input type="radio" name="q10" value="correct"> sqlmap -u "http://example.com?id=1" -D database_name -T users --columns</label><br>
+				<label><input type="radio" name="q10" value="incorrect"> sqlmap -u "http://example.com?id=1" -D database_name -T users --dump</label>
+			</div>
+
+		
+			<!-- Submit button -->
+			<button class="fancy-button" onclick="checkAnswers()">Submit</button>
+		
+			<!-- Result display -->
+			<div id="result"></div>
+		</div>
+		
+		<script src="script.js"></script>
+		
+</body>
+</html>

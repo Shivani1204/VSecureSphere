@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireshark Network Traffic Analysis Experiment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Wireshark Network Traffic Analysis Experiment</h2>
+    <p>In this experiment, you will use Wireshark, a network protocol analyzer, to observe, capture, and analyze network traffic. Follow each step carefully and note your observations.</p>
+
+    <h3>1. Login to the System</h3>
+    <ol>
+        <li>Open the noVNC interface using the Minikube service URL provided by your instructor.</li>
+        <li>Enter the password below when prompted:</li>
+        <pre><code>Password: VSecureSphere</code></pre>
+    </ol>
+
+    <h3>2. Open a Terminal Window</h3>
+    <ol>
+        <li>Locate the Terminal application on the desktop or in the taskbar.</li>
+        <li>Click on it to open a command-line interface (CLI), where you’ll be able to start Wireshark and execute other network commands.</li>
+    </ol>
+
+    <h3>3. Launch Wireshark</h3>
+    <pre><code>wireshark &</code></pre>
+    <p>Wireshark should open in a new window. This tool will allow you to capture and analyze packets traveling through the network interface.</p>
+
+    <h3>4. Select a Network Interface for Packet Capture</h3>
+    <ol>
+        <li>When Wireshark opens, you’ll see a list of available network interfaces (such as eth0, lo, etc.).</li>
+        <li>Select the main network interface (usually eth0 or lo if testing locally) by double-clicking on it to start capturing live network traffic.</li>
+    </ol>
+
+    <h3>5. Generate Network Traffic</h3>
+    <p>Now that packet capture is running, let’s generate some network traffic for analysis. Perform the following actions in a new terminal window:</p>
+    <ol>
+        <li><strong>Ping a Website:</strong> Use the ping command to send ICMP packets to a website:</li>
+        <pre><code>ping google.com -c 5</code></pre>
+        <p>This will send five ICMP packets to google.com and display responses in the terminal. Observe the packets appearing in the Wireshark capture window.</p>
+
+        <li><strong>Fetch a Web Page:</strong> To generate HTTP traffic, use the curl command:</li>
+        <pre><code>curl http://example.com</code></pre>
+        <p>This command sends an HTTP request to example.com and returns the HTML content of the page in the terminal. Look for HTTP packets in Wireshark.</p>
+
+        <li><strong>DNS Query:</strong> Perform a DNS lookup to resolve a domain name:</li>
+        <pre><code>nslookup google.com</code></pre>
+        <p>This command queries a DNS server to resolve the IP address of google.com. You should see DNS packets in Wireshark.</p>
+    </ol>
+
+    <h3>6. Analyzing the Captured Packets</h3>
+    <ol>
+        <li>Return to the Wireshark window, where you’ll see packets appearing in real time.</li>
+        <li>Stop the Capture by clicking the red square button in the Wireshark toolbar once you have a few packets.</li>
+        <li>The Wireshark window has three main sections:</li>
+        <ul>
+            <li><strong>Packet List Pane (top):</strong> Displays a list of all captured packets with basic details (time, source, destination, protocol).</li>
+            <li><strong>Packet Details Pane (middle):</strong> Shows detailed information about the selected packet, organized by protocol layers (Ethernet, IP, TCP/UDP, etc.).</li>
+            <li><strong>Packet Bytes Pane (bottom):</strong> Displays the raw data of the selected packet in hexadecimal and ASCII formats.</li>
+        </ul>
+        <li>Explore Each Section:</li>
+        <ul>
+            <li>Click on different packets in the Packet List to view their details.</li>
+            <li>In the Packet Details pane, expand each protocol layer (such as Ethernet, IP, TCP) to view more information.</li>
+            <li>The Packet Bytes pane shows the raw binary data, which is often useful for deeper analysis.</li>
+        </ul>
+    </ol>
+
+    <h3>7. Applying Filters for Specific Traffic</h3>
+    <p>Wireshark allows you to apply filters to focus on specific types of network traffic. Let’s try a few:</p>
+    <ol>
+        <li><strong>Filter by Protocol:</strong>
+            <ul>
+                <li><strong>ICMP Traffic (Ping):</strong> Type <code>icmp</code> in the Display Filter box at the top and press Enter.</li>
+                <li><strong>HTTP Traffic:</strong> Type <code>http</code> and press Enter.</li>
+                <li><strong>DNS Traffic:</strong> Type <code>dns</code> and press Enter.</li>
+            </ul>
+        </li>
+        <li><strong>Filter by IP Address:</strong> Use the following format to view only packets coming from or going to a specific IP address:</li>
+        <pre><code>ip.addr == &lt;IP_ADDRESS&gt;</code></pre>
+        <p>Replace <code>&lt;IP_ADDRESS&gt;</code> with the actual IP (e.g., <code>ip.addr == 8.8.8.8</code>).</p>
+        <li><strong>Experiment with Filters:</strong> Apply each filter one by one and observe how the packet list changes to match the specified criteria.</li>
+    </ol>
+
+    <h3>8. Save Your Packet Capture</h3>
+    <ol>
+        <li>Once you have completed the capture and analysis, save your work for further review.</li>
+        <li>Go to <strong>File > Save As</strong> in the Wireshark menu.</li>
+        <li>Choose a filename and location to save the capture in <code>.pcapng</code> format.</li>
+    </ol>
+
+    <h3>9. Close Wireshark</h3>
+    <ol>
+        <li>To exit Wireshark, select <strong>File > Quit</strong> or click the close button on the window.</li>
+        <li>Make sure you have saved your capture file if you want to review it later.</li>
+    </ol>
+</div>
+
+</body>
+</html>

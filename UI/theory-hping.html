@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 3:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page3.html">&#8226; Introduction</a></li>
+                <li><a href="aim-hping.html">&#8226; Aim</a></li>
+                <li><a href="theory-hping.html">&#8226; Theory</a></li>
+                <li><a href="procedure-hping.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-hping.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-hping.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-hping.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Theory</u></h2>
+            <h3>The purpose of this experiment is to understand how to use <b>hping</b> for network security testing, traffic analysis, and DoS attack simulation.</h3>
+        
+            <p><b>What is hping?</b><br>
+            hping is a command-line network tool used for <b>packet crafting, network security testing, and firewall analysis</b>. It allows users to generate and manipulate packets for different protocols, including TCP, UDP, and ICMP. Some key functions of hping include:</p>
+        
+            <ul>
+                <li>Testing and analyzing firewalls and intrusion detection systems (IDS).</li>
+                <li>Performing TCP/IP fingerprinting.</li>
+                <li>Simulating different types of cyberattacks, including DoS attacks.</li>
+                <li>Measuring network performance and detecting packet loss.</li>
+                <li>Sending custom packets to test network responses.</li>
+            </ul>
+        
+            <p><b>Understanding Packets and Protocols</b><br>
+            A <b>packet</b> is the fundamental unit of communication in networking. It contains data along with headers that define source, destination, and other attributes.</p>
+        
+            <p><b>Common Protocols Used in hping:</b></p>
+            <ul>
+                <li><b>TCP (Transmission Control Protocol):</b> Ensures reliable communication between devices.</li>
+                <li><b>UDP (User Datagram Protocol):</b> Used for fast, connectionless communication.</li>
+                <li><b>ICMP (Internet Control Message Protocol):</b> Used for diagnostics and network status checks.</li>
+            </ul>
+        
+            <p><b>Types of Packet States in hping</b><br>
+            When analyzing network behavior, hping helps categorize responses into different states:</p>
+            <ul>
+                <li><b>Open:</b> The target device is accepting connections on the specified port.</li>
+                <li><b>Closed:</b> The port is reachable, but no service is listening.</li>
+                <li><b>Filtered:</b> A firewall is blocking access, preventing a response.</li>
+                <li><b>No Response:</b> The target does not reply, indicating possible filtering or dropping of packets.</li>
+            </ul>
+        
+            <p><b>How hping Works</b><br>
+            hping generates and sends packets to a target system, then analyzes the responses to determine:</p>
+            <ul>
+                <li>Whether a host is active.</li>
+                <li>The open and closed ports on a system.</li>
+                <li>The behavior of firewalls and intrusion detection systems.</li>
+                <li>Network latency and packet loss.</li>
+            </ul>
+        
+            <p><b>Common hping Command Types</b></p>
+            <ul>
+                <li><b>ICMP Ping (-1):</b> Sends ICMP echo requests like the ping command.</li>
+                <li><b>TCP SYN Scan (-S):</b> Sends TCP SYN packets to check if a port is open.</li>
+                <li><b>UDP Scan (--udp):</b> Sends UDP packets to test open UDP ports.</li>
+                <li><b>DoS Simulation (-flood):</b> Sends a rapid flood of packets to test system resilience.</li>
+                <li><b>Firewall Testing (-p [port]):</b> Tests if a firewall is filtering packets on a given port.</li>
+                <li><b>Traceroute Mode (--traceroute):</b> Maps the network path to a destination.</li>
+            </ul>
+        
+            <p>By using hping effectively, we can analyze network behavior, test security defenses, and simulate real-world attack scenarios to strengthen cybersecurity measures.</p>
+        </div>
+        
+    </div>
+</body>
+</html>

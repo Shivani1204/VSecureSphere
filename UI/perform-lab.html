@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perform Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #experiments {
+            text-align: center;
+            margin-top: 0; /* Remove extra space */
+        }
+        .experiment-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .experiment-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .experiment-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        .fancy-button {
+            background: rgb(248, 164, 178);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 1:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page1.html">&#8226; Introduction</a></li>
+                <li><a href="aim.html">&#8226; Aim</a></li>
+                <li><a href="theory.html">&#8226; Theory</a></li>
+                <li><a href="procedure.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+           <h2><u>Perform Lab</u></h2>
+           <br>
+            <p>Instructions for performing the lab...</p>
+            <p>You can access the virtual lab here: </p>
+            <p><b>Password: VSecureSphere</b></p>
+
+            <section id="experiments">
+                <h3>Choose Environment</h3>
+                <div class="experiment-cards">
+                    <div class="experiment-card">
+                        <h3>Ubuntu</h3>
+                        <button class="fancy-button" onclick="window.open('lab-page.html', '_blank')">Open Lab Interface</button> 
+                    </div>
+                    
+                    <div class="experiment-card">
+                        <h3>Kali Linux</h3>
+                        <button class="fancy-button" onclick="window.open('lab-page-kali-nmap.html', '_blank')">Open Lab Interface</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

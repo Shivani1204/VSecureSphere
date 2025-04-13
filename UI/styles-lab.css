@@ -1,0 +1,114 @@
+/* Styles for the experiment container */
+.experiment-container {
+    display: flex;
+    max-width: 1200px; /* Set a max width for the container */
+    margin: 0 auto;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 20%; /* Fixed width for the sidebar */
+    background-color: #ffbcfc88;
+    padding: 30px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+}
+
+/* Content Box Styles */
+.content-box {
+    margin-left: 2%; /* Make space for the sidebar */
+    padding: 20px;
+}
+
+/* Iframe Container */
+.iframe-container {
+    display: flex; /* Arrange items in a row */
+    justify-content: space-between; /* Space between the iframes */
+    flex-wrap: wrap; /* Allow wrapping of elements */
+    margin-top: 20px; /* Add space above the iframes */
+}
+/* Individual Iframe Box */
+.iframe-box {
+    flex: 1; /* Allow the boxes to grow equally */
+    margin: 0 10px; /* Add space between the boxes */
+    max-width: 103444px; /* Set max width for the iframe box */
+}
+/* Third Iframe to take full width */
+.iframe-box.full-width {
+    flex-basis: 100%; /* Make the third iframe take full width */
+    margin-top: 50px; /* Add space between the rows */
+}
+
+/* Iframe Styles */
+iframe {
+    width: 100%; /* Make the iframe responsive to its container */
+    height: 550px; /* Set fixed height for the iframe */
+    border: 2px solid #ffffff; /* Match the border with the theme */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    background-color: #f9f9f9; /* Light background color for the iframe */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .iframe-box {
+        margin: 0; /* Reset margin for small screens */
+        flex-basis: 100%; /* Stack the iframes vertically */
+    }
+    
+    iframe {
+        height: 400px; /* Reduce height on smaller screens */
+    }
+}
+
+/* Basic styling for the box */
+.box {
+    width: 300px;
+    padding: 20px;
+    margin: 50px auto;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #f0f8ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.box h2 {
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.box p {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.box button {
+    background-color: #000101;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.box button:hover {
+    background-color: #4c4f52;
+}
+
+h3{
+    text-align: center;
+}
+/* Additional styles can go here */

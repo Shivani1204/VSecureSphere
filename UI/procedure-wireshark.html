@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 2:-</b></u></h3>
+                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="page2.html">&#8226; Introduction</a></li>
+                <li><a href="aim-wireshark.html">&#8226; Aim</a></li>
+                <li><a href="theory-wireshark.html">&#8226; Theory</a></li>
+                <li><a href="procedure-wireshark.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-wireshark.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-wireshark.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-wireshark.html">&#8226; Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install Wireshark</u></h3>
+            <p>
+                To install Wireshark on a Linux system, open the terminal and execute the following commands:
+            </p>
+            <pre>
+            sudo apt-get update
+            sudo apt-get install wireshark
+            </pre>
+            <p>
+                This updates the package list and installs Wireshark. During installation, you may be prompted to allow non-root users to capture packets.
+            </p>
+        
+            <h3><u>Step 2: Launch Wireshark</u></h3>
+            <p>
+                Start Wireshark with the necessary permissions using the command:
+            </p>
+            <pre>
+            sudo wireshark
+            </pre>
+            <p>
+                Running Wireshark with `sudo` ensures that it has the required permissions to capture network traffic.
+            </p>
+        
+            <h3><u>Step 3: Select a Network Interface</u></h3>
+            <p>
+                Once Wireshark opens, you will see a list of available network interfaces. Choose the appropriate interface 
+                (e.g., Wi-Fi, Ethernet) to monitor traffic.
+            </p>
+        
+            <h3><u>Step 4: Start Capturing Packets</u></h3>
+            <p>
+                Click the <b>"Start"</b> button to begin capturing network traffic. Wireshark will now display live packet data in real time.
+            </p>
+        
+            <h3><u>Step 5: Analyze Captured Packets</u></h3>
+            <p>
+                Once sufficient traffic has been captured, click the <b>"Stop"</b> button to halt the capture. Wireshark will display captured packets in a tabular format, which includes:
+            </p>
+            <ul>
+                <li><b>Source:</b> The device that sent the packet.</li>
+                <li><b>Destination:</b> The device that received the packet.</li>
+                <li><b>Protocol:</b> The communication protocol used (e.g., TCP, UDP, HTTP).</li>
+                <li><b>Length:</b> The size of the packet.</li>
+                <li><b>Info:</b> A brief description of the packet’s content.</li>
+            </ul>
+        
+            <h3><u>Step 6: Apply Filters</u></h3>
+            <p>
+                Wireshark allows users to apply filters to refine packet analysis. Some common filters include:
+            </p>
+            <ul>
+                <li><b>Filter by Protocol:</b> To view only HTTP traffic, type <code>http</code> in the filter bar and press Enter.</li>
+                <li><b>Filter by Source IP:</b> To view packets from a specific IP, use <code>ip.src == 192.168.1.10</code>.</li>
+                <li><b>Filter by Destination IP:</b> To track packets sent to a specific IP, use <code>ip.dst == 192.168.1.1</code>.</li>
+                <li><b>Filter by TCP Flags:</b> To view only SYN packets (connection requests), use <code>tcp.flags.syn == 1</code>.</li>
+            </ul>
+        
+            <h3><u>Step 7: Save and Export Data</u></h3>
+            <p>
+                To save captured data for future analysis:
+            </p>
+            <ul>
+                <li>Click <b>"File" > "Save As"</b> and choose a location.</li>
+                <li>Select the preferred file format (e.g., `.pcap` for standard packet capture files).</li>
+                <li>You can analyze the saved capture offline later.</li>
+            </ul>
+        
+            <h3><u>Step 8: Sample Packet Capture Output</u></h3>
+            <p>
+                Below is an example of a captured TCP packet:
+            </p>
+            <pre>
+            Source:      192.168.1.5
+            Destination: 192.168.1.1
+            Protocol:    TCP
+            Length:      74 bytes
+            Info:        SYN Packet (Connection Request)
+            </pre>
+            <p>
+                This information helps network administrators understand traffic patterns and detect potential security threats such as unauthorized access attempts, packet spoofing, or network anomalies.
+            </p>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

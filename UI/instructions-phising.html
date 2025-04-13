@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Experiment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Phishing Experiment Using SET and Docker</h2>
+    <p>This experiment demonstrates how phishing attacks are simulated using Social Engineering Toolkit (SET) inside a Docker container.</p>
+    <h3>Step 1: Login to Both Systems</h3>
+    <ul>
+        <li><strong>Attacker System:</strong> Password: <code>VSecureSphere</code></li>
+        <li><strong>Victim System:</strong> Password: <code>VSecureSphere</code></li>
+    </ul>
+    <h3>Step 2: Start Social Engineering Toolkit (SET)</h3>
+    <p>Update the package lists to get the latest versions of packages and dependencies:</p>
+    <pre><code>apt-get update</code></pre>
+    <img src="Phishing_SS/8.png" alt="8">
+
+    <p>Install the <code>python3-pexpect</code> package, which allows SET to interact with terminal-based programs:</p>
+    <pre><code>apt-get install python3-pexpect -y</code></pre>
+    <img src="Phishing_SS/9.png" alt="9">
+
+    <p>Navigate to the SEToolkit directory:</p>
+    <pre><code>cd /opt/setoolkit</code></pre>
+
+    <p>Install the Social Engineering Toolkit using the Python setup script:</p>
+    <pre><code>sudo python3 setup.py install</code></pre>
+    <img src="Phishing_SS/10.png" alt="10">
+
+    <p>Start the SET interface:</p>
+    <pre><code>sudo setoolkit</code></pre>
+    <img src="Phishing_SS/1.png" alt="1">
+    <p>After running the above commands, you will see the SET main menu. Follow the steps below to perform a phishing attack.</p> 
+
+    <h3>Step 3: Choose Social Engineering Attacks</h3>
+    <p>In the SET main menu, choose the Social-Engineering Attacks option: <strong>1</strong></p>
+    <img src="Phishing_SS/2.png" alt="2">
+    
+    <h3>Step 4: Select Website Attack Vectors</h3>
+    <p>Select the Website Attack Vectors option: <strong>2</strong></p>
+    <img src="Phishing_SS/3.png" alt="3">
+    
+    <h3>Step 5: Select Credential Harvester Attack Method</h3>
+    <p>Select the Credential Harvester Attack Method: <strong>3</strong></p>
+    <img src="Phishing_SS/4.png" alt="4">
+    
+    <h3>Step 6: Choose Site Cloner</h3>
+    <p>Select the Site Cloner option to mirror a real website: <strong>2</strong></p>
+    <img src="Phishing_SS/5.png" alt="5">
+    
+    <h3>Step 7: Enter Attacker IP</h3>
+    <p>When prompted for "What is the IP address to use for the POST back?", enter the attacker's container IP. You can find it using:</p>
+    <pre><code>ifconfig</code></pre>
+    <img src="Phishing_SS/6.png" alt="6">
+    
+    <h3>Step 8: Enter the Website URL to Clone</h3>
+    <p>Enter a real login page to clone, such as:</p>
+    <pre><code>https://accounts.google.com</code></pre>
+    <p>SET will clone the site and host it on port 80.</p>
+    <img src="Phishing_SS/7.png" alt="7">
+    
+    <h3>Step 9: Access the Fake Site from the Victim</h3>
+    <p>On the victim's machine, open a browser and enter the attacker's IP to access the fake login page, e.g.:</p>
+    <pre><code>http://192.168.49.1</code></pre>
+    <img src="Phishing_SS/11.png" alt="11">
+    
+    <h3>Step 10: Capture Credentials</h3>
+    <p>Once the victim enters their credentials, SET will capture and store them. You can find the results in:</p>
+    <pre><code>/root/.set/reports/&lt;date-folder&gt;/</code></pre>
+    <img src="Phishing_SS/12.png" alt="12">
+
+    
+</div>
+
+</body>
+</html>

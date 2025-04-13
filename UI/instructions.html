@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap Experiment Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Nmap Experiment Instructions</h2>
+
+        <h3>Step 1: Login to Both Systems</h3>
+        <ul>
+            <li><strong>Attacker System:</strong> Password: <code>VSecureSphere</code></li>
+            <li><strong>Victim System:</strong> Password: <code>VSecureSphere</code></li>
+        </ul>
+
+        <h3>Step 2: Configure Network Connectivity</h3>
+        <p>Check the IP addresses of both the attacker and victim systems using the following command:</p>
+        <pre><code>ifconfig</code></pre>
+        <p>Note the IP address of the victim system for further steps.</p>
+
+        <h3>Step 3: Verify Connectivity Between Attacker and Victim</h3>
+        <p>From the attacker system, ping the victim system to confirm they are on the same network:</p>
+        <pre><code>ping &lt;victim_IP&gt;</code></pre>
+        <p>Replace <code>&lt;victim_IP&gt;</code> with the actual IP address of the victim system.</p>
+
+        <h3>Step 4: Perform Basic Nmap Scans</h3>
+        <ul>
+            <li><strong>Basic Ping Scan:</strong> Checks if the victim system is online.
+                <pre><code>nmap -sn &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>Simple Port Scan:</strong> Lists open ports and services on the victim system.
+                <pre><code>nmap &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>Service Version Detection:</strong> Identifies the version of services running.
+                <pre><code>nmap -sV &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>Operating System Detection:</strong> Detects the victim's OS.
+                <pre><code>nmap -O &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>Aggressive Scan:</strong> Comprehensive scan to gather detailed information.
+                <pre><code>nmap -A &lt;victim_IP&gt;</code></pre>
+            </li>
+        </ul>
+
+        <h3>Step 5: Scan Specific Ports</h3>
+        <p>If you want to scan specific ports (e.g., ports 80 and 443), use:</p>
+        <pre><code>nmap -p 80,443 &lt;victim_IP&gt;</code></pre>
+        <p>To scan a range of ports (e.g., 1 to 1000):</p>
+        <pre><code>nmap -p 1-1000 &lt;victim_IP&gt;</code></pre>
+
+        <h3>Step 6: Detect Vulnerabilities</h3>
+        <p>To detect known vulnerabilities on the victim system, use the following command:</p>
+        <pre><code>nmap --script vuln &lt;victim_IP&gt;</code></pre>
+
+        <h3>Step 7: Advanced Scans</h3>
+        <ul>
+            <li><strong>TCP SYN Scan:</strong> Detects open ports.
+                <pre><code>nmap -sS &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>UDP Scan:</strong> Scans for open UDP ports.
+                <pre><code>sudo nmap -sU &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>Scan All Ports:</strong> Scans all 65,535 ports.
+                <pre><code>nmap -p- &lt;victim_IP&gt;</code></pre>
+            </li>
+            <li><strong>Stealthy Scan:</strong> Attempts to evade detection.
+                <pre><code>nmap -sS &lt;victim_IP&gt;</code></pre>
+            </li>
+        </ul>
+
+        <h3>Step 8: Save Scan Results</h3>
+        <p>You can save your Nmap scan results in a file for later analysis:</p>
+        <pre><code>nmap -oN scan_results.txt &lt;victim_IP&gt;</code></pre>
+        <p>To save the results in XML format:</p>
+        <pre><code>nmap -oX scan_results.xml &lt;victim_IP&gt;</code></pre>
+    </div>
+
+</body>
+</html>
