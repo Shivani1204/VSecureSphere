@@ -1,25 +1,40 @@
 function checkAnswers() {
     let score = 0;
-    let totalQuestions = 10; // Update this to the total number of questions
+    let totalQuestions = 10;
     let unanswered = 0;
 
-    // Loop through all questions dynamically
+    // Clear previous highlights
+    document.querySelectorAll(".question").forEach((q) => {
+        q.style.border = "";
+        q.style.backgroundColor = "";
+    });
+
     for (let i = 1; i <= totalQuestions; i++) {
+        const questionDiv = document.querySelector(`.question:nth-of-type(${i})`);
         const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
-        
+        const correctOption = document.querySelector(`input[name="q${i}"][value="correct"]`);
+
         if (!selectedOption) {
-            unanswered++; // Count unanswered questions
+            unanswered++;
+            questionDiv.style.border = "2px solid #2196F3";
+            questionDiv.style.backgroundColor = "#E3F2FD"; // Light blue for unanswered
         } else if (selectedOption.value === "correct") {
             score++;
+            selectedOption.parentElement.style.color = "green";
+            questionDiv.style.border = "2px solid green";
+            questionDiv.style.backgroundColor = "#e6ffe6"; // light green background
+        } else {
+            selectedOption.parentElement.style.color = "red";
+            questionDiv.style.border = "2px solid red";
+            questionDiv.style.backgroundColor = "#ffe6e6"; // light red background
+            correctOption.parentElement.style.color = "green"; // highlight correct answer
         }
     }
 
-    // Display result message
+    // Display result
     const result = document.getElementById('result');
     result.innerHTML = `<h3>You scored ${score} out of ${totalQuestions}</h3>`;
-
-    // Centering styles for result
-    result.style.textAlign = "center"; // Center text
+    result.style.textAlign = "center";
     result.style.marginTop = "20px";
     result.style.padding = "15px";
     result.style.fontSize = "18px";
@@ -29,20 +44,18 @@ function checkAnswers() {
     result.style.alignItems = "center";  
     result.style.justifyContent = "center";
 
-    // Change result color and add feedback message
     if (score === totalQuestions) {
         result.style.color = "green";
-        result.innerHTML += `<p style="color: green; font-size: 18px;">🎉 Excellent! Perfect Score! 🎉</p>`;
+        result.innerHTML += `<p style="color: green;">🎉 Excellent! Perfect Score! 🎉</p>`;
     } else if (score >= totalQuestions / 2) {
         result.style.color = "orange";
-        result.innerHTML += `<p style="color: orange; font-size: 18px;">😊 Good job! Keep improving! 😊</p>`;
+        result.innerHTML += `<p style="color: orange;">😊 Good job! Keep improving! 😊</p>`;
     } else {
         result.style.color = "red";
-        result.innerHTML += `<p style="color: red; font-size: 18px; text-align: center;">💡 Needs Improvement. Try again! 💡</p>`;
+        result.innerHTML += `<p style="color: red;">💡 Needs Improvement. Try again! 💡</p>`;
     }
 
-    // Warn about unanswered questions
     if (unanswered > 0) {
-        result.innerHTML += `<p style="color: blue; font-size: 16px;">⚠️ You left ${unanswered} question(s) unanswered.</p>`;
+        result.innerHTML += `<p style="color: blue;">⚠️ You left ${unanswered} question(s) unanswered.</p>`;
     }
 }
