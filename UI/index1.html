@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSecureSphere Virtual Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+</div>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fa fa-fw fa-home"></i>Home</a></li>
+            <li><a href="#about"><i class="fa fa-fw fa-address-card"></i>About Us</a></li>
+            <li><a href="#experiments"><i class="fa fa-fw fa-bug"></i>Experiments</a></li>
+            <li><a href="#contact"><i class="fa fa-fw fa-address-book"></i>Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="introduction">
+        
+           
+            <br><br><br><br><br><br>
+            <h1 class="slide-text">Welcome to VSecureSphere</h1>
+            <p class="slide-text">Empowering Cyber Defenses for a Safer Future.</p>
+            <p class="slide-text"><strong>Join the future of digital defense today!</strong></p>
+        </div>
+    </section>
+    <script>
+        // Check if the element is in the viewport
+        const slideText = document.querySelector('.slide-text');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Start animation by adding a class
+                    slideText.classList.add('start-animation');
+                }
+            });
+        });
+
+        observer.observe(slideText);
+    </script>
+    
+    
+
+    <!-- About Us Section -->
+    <section id="about" class="section">
+        <div class="about-content">
+            <div class="side-image">
+                <img class="sideImage" src="image.png" alt="About Image">
+            </div>
+            <div class="side-text">
+                <h1>VSecureSphere</h1>
+                <p>At VSecureSphere, we believe in shaping the cybersecurity professionals of tomorrow. Our virtual lab isn’t just about theory — it’s about practical, hands-on experience in a controlled, dynamic environment. Whether you're a beginner or an advanced learner, we offer a space where you can experiment, learn, and challenge yourself with real-world scenarios.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiment Section -->
+     <section id="experiments">
+            <h2>Practical Exercises</h2>
+            <div class="experiment-container">
+                
+                <!-- Card 1 -->
+                <div class="experiment-card">
+                    <h3>Port Scanning</h3>
+                    <p>To identify open ports and services running on a target system using Nmap.</p>
+                    <a href="page1.html" class="start-btn">Start Exercise</a>
+                </div>
+                <!-- Card 2 -->
+                <div class="experiment-card">
+                    <h3>Sniffing</h3>
+                    <p>To capture and analyze network packets using Wireshark to monitor network traffic.</p>
+                    <a href="page2.html" class="start-btn">Start Exercise</a>
+                </div>
+                <!-- Card 3 -->
+                <div class="experiment-card">
+                    <h3>DoS Attack Simulation</h3>
+                    <p>To simulate a DoS attack using Hping and analyze its impact on network performance.</p>
+                    <a href="page3.html" class="start-btn">Start Exercise</a>
+                </div>
+    
+                <!-- Card 4 -->
+                <div class="experiment-card">
+                    <h3>Metasploit Exploitation</h3>
+                    <p>To exploit system vulnerabilities and test security defenses using the Metasploit framework.</p>
+                    <a href="page4.html" class="start-btn">Start Exercise</a>
+                </div>
+                <!-- Card 5 -->
+                <div class="experiment-card">
+                    <h3>Phishing</h3>
+                    <p>To simulate a phishing attack using SET and analyze victim interaction and response.</p>
+                    <a href="page5.html" class="start-btn">Start Exercise</a>
+                </div>
+                <!-- Card 6 -->
+                <div class="experiment-card">
+                    <h3>Intrusion Detection System (IDS)</h3>
+                    <p>To detect and analyze network threats using Snort IDS.</p>
+                    <a href="page6.html" class="start-btn">Start Exercise</a>
+                </div>
+                <!-- Card 7 -->
+                <div class="experiment-card">
+                    <h3>Vulnerability Scanning</h3>
+                    <p>To capture and analyze network traffic using the Nessus tool for vulnerability assessment.</p>
+                    <a href="page7.html" class="start-btn">Start Exercise</a>
+                </div>
+               <!-- Card 8 -->
+                <div class="experiment-card">
+                    <h3>Firewall</h3>
+                    <p>To study the use of Iptables for configuring and managing a software firewall on a Linux host.</p>
+                    <a href="page8.html" class="start-btn">Start Exercise</a>
+               </div>
+                <!-- Card 9 -->
+                <div class="experiment-card">
+                    <h3>SQL Injection</h3>
+                    <p>To exploit SQL injection vulnerabilities and understand database security using SQLMap.</p>
+                    <a href="page9.html" class="start-btn">Start Exercise</a>
+                </div>
+                <!-- Card 10 -->
+                <div class="experiment-card">
+                    <h3>Password Cracking</h3>
+                    <p>To perform password cracking and analyze password security using John the Ripper.</p>
+                    <a href="page10.html" class="start-btn">Start Exercise</a>
+                </div> 
+                
+            
+            </div>
+     </section>
+    
+      
+    
+
+    <!-- Contact Us Section -->
+            
+           
+
+    <!-- Include the EmailJS SDK -->
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+  emailjs.init({
+    publicKey: "j9dpUGgtR-eHsqjc1",
+  });
+})();
+</script>
+<section id="contact" class="section">
+
+    <h2><center>Contact Us</center></h2>
+    <div class="back-contact">
+        <div class="cc">
+            <form id="contact-form">
+                <div class="form-group">
+                    <label>First Name <span class="imp">*</span></label>
+                    <input type="text" name="first_name" class="input-field" required="required" placeholder="First Name">
+                    <label>Last Name <span class="imp">*</span></label>
+
+                <div class="form-group">
+                    <div class="name-inputs">
+                        <input type="text" name="last_name" class="input-field" required="required" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email <span class="imp">*</span></label>
+                    <input type="email" name="email" class="input-field" required="required" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label>Message <span class="imp">*</span></label>
+                    <input type="text" name="message" class="input-field" required="required" placeholder="Your Message">
+                </div>
+                <div class="form-group">
+                    <label>Additional Details</label>
+                    <textarea name="additional_details" class="textarea-field" placeholder="Additional Details"></textarea>
+                </div>
+                <button type="submit" id="csubmit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+  // Add the JavaScript code for EmailJS to handle the form submission
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from submitting the default way
+
+    // Define the parameters to send
+    const formData = {
+      first_name: this.first_name.value,
+      last_name: this.last_name.value,
+      email: this.email.value,
+      message: this.message.value,
+      additional_details: this.additional_details.value
+    };
+
+    // Use EmailJS to send the form data
+    emailjs.send('service_6ve5hw7', 'template_201olzq', formData)
+    .then(function(response) {
+       alert('Message sent successfully!'); // Success feedback
+    }, function(error) {
+       alert('Failed to send message. Please try again later.'); // Error feedback
+    });
+  });
+</script>
+
+    <!-- Footer -->
+    <footer>
+        <p><div class="center">&copy; 2024 VSecureSphere Virtual Lab. All rights reserved.</div></p>
+    </footer>
+
+    <!-- Script for smooth scrolling and section animation -->
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', function () {
+            const sideText = document.querySelector('.side-text');
+            const sideImage = document.querySelector('.sideImage');
+            const section = document.querySelector('#about');
+            const sectionPosition = section.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+
+            if (sectionPosition < screenPosition) {
+                sideText.classList.add('side-text-appear');
+                sideImage.classList.add('sideImage-appear');
+            }
+        });
+    </script>
+</body>
+</html>
