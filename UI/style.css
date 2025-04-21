@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f1d7fc;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    background: #ffffff43;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-toggle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-toggle button {
+    background: none;
+    border: none;
+    color: #a260c9;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  /* Hover effect for Login/Register buttons */
+  .form-toggle button:hover {
+    color: #7a2fb6;
+    text-shadow: 1px 1px 8px rgba(162, 96, 201, 0.6);
+  }
+  
+  form {
+    display: none;
+    flex-direction: column;
+  }
+  
+  form.active {
+    display: flex;
+  }
+  
+  input {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #a260c9;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #a260c9;
+  }
+  
+  @media (max-width: 400px) {
+    .container {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  }
+  
+  .welcome-text {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #7a2fb6;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 5px rgba(122, 47, 182, 0.3);
+  }
+  
+  /* Footer */
+footer {
+  background-color: #00000000;
+  color: rgb(13, 0, 0);
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
