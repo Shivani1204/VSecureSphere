@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify OTP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<center>
+<h2>Verify OTP</h2>
+
+<div class="container">
+  <form id="verifyOtpForm">
+    <input type="text" id="otp" placeholder="Enter OTP" required />
+    <input type="password" id="newPassword" placeholder="Enter New Password" required />
+    <button type="submit">Reset Password</button>
+  </form>
+</div>
+</center>
+
+<script>
+// Get mobile from URL
+const urlParams = new URLSearchParams(window.location.search);
+const mobile_number = urlParams.get('mobile');
+
+document.getElementById("verifyOtpForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const otp = document.getElementById("otp").value;
+    const new_password = document.getElementById("newPassword").value;
+
+    try {
+        // First verify OTP
+        const verifyResponse = await fetch("http://localhost:8000/verify-otp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ mobile_number, otp })
+        });
+
+        const verifyData = await verifyResponse.json();
+
+        if (verifyResponse.ok) {
+            // After OTP verified, send new password (you can add another API to handle this properly)
+            alert("OTP verified. Now reset your password manually through admin.");
+            window.location.href = "index.html";  // or a separate password reset
+        } else {
+            alert(verifyData.detail || "OTP verification failed.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong.");
+    }
+});
+</script>
+
+</body>
+</html>

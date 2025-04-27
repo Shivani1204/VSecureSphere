@@ -11,19 +11,25 @@
 <center>
 <h2 class="welcome-text">You are Welcome to VSecureSphere!!</h2>
 
-
 <div class="container">
   <div class="form-toggle">
     <button onclick="toggleForm('login')">Login</button>
     <button onclick="toggleForm('register')">Register</button>
   </div>
 
+  <!-- Login Form -->
   <form id="loginForm" class="active">
     <input type="text" placeholder="Username" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Login</button>
+
+    <!-- Forgot Password Link -->
+    <div class="forgot-password">
+      <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+    </div>
   </form>
 
+  <!-- Register Form -->
   <form id="registerForm">
     <input type="text" placeholder="Full Name" required />
     <input type="email" placeholder="Email" required />
@@ -31,13 +37,16 @@
     <input type="password" placeholder="Password" required />
     <button type="submit">Register</button>
   </form>
-  <form id="loginForm" class="active">
-    
-    <!-- Forgot Password Link -->
-    <div class="forgot-password">
-      <a href="#">Forgot Password?</a>
+
+  <!-- Forgot Password Form (Hidden initially) -->
+  <form id="forgotPasswordForm" style="display: none;">
+    <input type="email" id="forgotEmail" placeholder="Enter your email" required />
+    <button type="submit">Send Reset Link</button>
+    <div style="margin-top: 10px;">
+      <a href="#" onclick="backToLogin()">Back to Login</a>
     </div>
-  
+  </form>
+
 </div>
 
 <script src="login.js"></script>
