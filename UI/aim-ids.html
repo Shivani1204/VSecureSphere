@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 6:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page6.html">&#8226; Introduction</a></li>
+                <li><a href="aim-ids.html">&#8226; Aim</a></li>
+                <li><a href="theory-ids.html">&#8226; Theory</a></li>
+                <li><a href="procedure-ids.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-ids.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-ids.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-ids.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Aim</u></h2>
+            
+            <h3>To simulate a network-based intrusion using tools like hping3 and analyze detection using Snort IDS on the victim system.</h3>
+            
+            <br>
+            
+            <h2><u>Prerequisites</u></h2>
+            
+            <ul>
+                <li>Basic understanding of <b>Intrusion Detection Systems (IDS)</b>, especially <b>Snort</b>.</li>
+                <li>Familiarity with <b>Linux command-line operations</b>.</li>
+                <li>Knowledge of common penetration testing tools such as <b>hping3</b> and <b>Nmap</b>.</li>
+                <li>Both <b>Attacker</b> (Kali) and <b>Victim</b> (Ubuntu with Snort) containers must be running and accessible via browser-based <b>noVNC terminals</b>.</li>
+                <li><b>Docker</b>, <b>Kubernetes</b> (or Minikube), and <b>noVNC</b> should be properly set up and configured.</li>
+                <li>The <b>attacker container</b> should have necessary capabilities (e.g., <code>--privileged</code>) for generating raw packets.</li>
+                <li>The <b>victim container</b> should be running <b>Snort</b> configured with appropriate rules and listening on the correct network interface.</li>
+            </ul>
+        
+            <br>
+            
+            <h2><u>Tools Required</u></h2>
+            <ul>
+                <li><b>hping3</b> - A network tool used for crafting custom packets and simulating network-based attacks.</li>
+                <li><b>Snort IDS</b> - An open-source intrusion detection and prevention system used to monitor network traffic for suspicious activity.</li>
+                <li><b>Docker</b> - A platform used for running the attacker and victim containers in isolated environments.</li>
+                <li><b>noVNC</b> - A tool used to access remote Linux desktops via a browser, allowing interaction with containers.</li>
+                <li><b>Kali Linux</b> - The attacker machine, equipped with tools for penetration testing and security analysis.</li>
+                <li><b>Ubuntu</b> - The victim machine, running Snort to detect and analyze intrusions.</li>
+            </ul>
+        
+            <br>
+            
+            <h2><u>Learning Outcomes</u></h2>
+            <ul>
+                <li>Understand the basic concepts of <b>Intrusion Detection Systems</b> and their role in network security.</li>
+                <li>Learn how to simulate <b>network-based intrusions</b> using tools like <b>hping3</b>.</li>
+                <li>Gain practical experience in configuring <b>Snort IDS</b> for network traffic analysis.</li>
+                <li>Analyze the effectiveness of <b>IDS</b> in detecting simulated intrusions.</li>
+                <li>Understand how to fine-tune IDS rules to improve detection accuracy.</li>
+                <li>Develop skills in using containers and noVNC for conducting penetration testing in a virtual environment.</li>
+            </ul>
+        
+            <br>
+            
+            <h2><u>Safety Precautions</u></h2>
+            <ul>
+                <li>Ensure the experiment is performed in a <b>controlled lab environment</b> or isolated test network.</li>
+                <li>Only use <b>authorized systems</b> for conducting intrusion simulations.</li>
+                <li>Monitor traffic carefully to avoid unintentional network disruptions.</li>
+                <li>Ensure that the Snort IDS rules are properly configured to avoid unnecessary alerts.</li>
+                <li>Follow ethical guidelines when simulating intrusions and ensure that the tests are non-destructive.</li>
+                <li>Document the process, settings, and findings for educational purposes.</li>
+            </ul>
+        </div>
+        
+                
+        
+    </div>
+</body>
+</html>

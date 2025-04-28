@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 4:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page4.html">&#8226; Introduction</a></li>
+                <li><a href="aim-meta.html">&#8226; Aim</a></li>
+                <li><a href="theory-meta.html">&#8226; Theory</a></li>
+                <li><a href="procedure-meta.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-meta.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-meta.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-meta.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Theory</u></h2>
+            <h3>The purpose of this experiment is to understand how to use <b>Metasploit</b> for penetration testing, vulnerability exploitation, and gaining control over remote systems.</h3>
+        
+            <p><b>What is Metasploit?</b><br>
+            Metasploit is an open-source framework used for <b>developing and executing exploits</b> against remote systems. It provides a suite of tools for penetration testing, vulnerability research, and security auditing. Metasploit is widely used by security professionals to test the resilience of systems and applications. Some key functions of Metasploit include:</p>
+        
+            <ul>
+                <li>Developing and executing <b>exploits</b> against known vulnerabilities.</li>
+                <li>Creating and using <b>payloads</b> to gain control of remote systems after successful exploitation.</li>
+                <li>Performing <b>post-exploitation</b> tasks, such as maintaining access and collecting information from compromised systems.</li>
+                <li>Performing <b>vulnerability scanning</b> to identify weaknesses in target systems.</li>
+                <li>Creating custom <b>auxiliary modules</b> for various network tasks, such as brute forcing passwords or scanning ports.</li>
+            </ul>
+        
+            <p><b>Understanding Exploits and Payloads</b><br>
+            An <b>exploit</b> is a piece of code that takes advantage of a vulnerability in a system or application to gain unauthorized access or perform a malicious action. A <b>payload</b> is the code that is executed on the target machine once the exploit is successful. Common payloads include reverse shells, meterpreter sessions, and more.</p>
+        
+            <p><b>Common Exploits and Vulnerabilities</b></p>
+            <ul>
+                <li><b>Buffer Overflow:</b> A vulnerability that occurs when more data is written to a buffer than it can hold, allowing an attacker to overwrite adjacent memory.</li>
+                <li><b>Remote Code Execution (RCE):</b> A vulnerability that allows an attacker to execute arbitrary code on a target system.</li>
+                <li><b>Privilege Escalation:</b> Exploiting a flaw to gain elevated privileges on a system.</li>
+                <li><b>Cross-Site Scripting (XSS):</b> A vulnerability that allows attackers to inject malicious scripts into web applications.</li>
+                <li><b>SQL Injection:</b> A vulnerability that allows attackers to execute arbitrary SQL commands in a database.</li>
+            </ul>
+        
+            <p><b>How Metasploit Works</b><br>
+            Metasploit operates by selecting a target system, choosing an appropriate exploit for a vulnerability, and then deploying a payload to gain control over the system. The process typically follows these steps:</p>
+            <ul>
+                <li><b>Information Gathering:</b> Use tools like Nmap to gather information about the target system and identify vulnerabilities.</li>
+                <li><b>Exploit Selection:</b> Choose an appropriate exploit based on the target's system and vulnerability.</li>
+                <li><b>Payload Deployment:</b> Once the exploit succeeds, deploy a payload to establish a connection with the target system.</li>
+                <li><b>Post-Exploitation:</b> After gaining access, perform tasks like extracting data, maintaining persistence, or escalating privileges.</li>
+            </ul>
+        
+            <p><b>Common Metasploit Commands</b></p>
+            <ul>
+                <li><b>use [exploit_name]:</b> Select an exploit module to use.</li>
+                <li><b>set [option] [value]:</b> Configure options for the selected exploit, such as RHOST (target address) or LHOST (local address).</li>
+                <li><b>run:</b> Execute the exploit or payload.</li>
+                <li><b>sessions:</b> Manage active sessions with compromised targets.</li>
+                <li><b>exploit:</b> Launch the selected exploit against the target system.</li>
+                <li><b>meterpreter:</b> Interact with the compromised system using Metasploit's Meterpreter payload.</li>
+            </ul>
+        
+            <p>By using Metasploit effectively, we can simulate real-world cyberattacks, identify vulnerabilities in systems, and help organizations strengthen their security measures by addressing weaknesses before they can be exploited by malicious actors.</p>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

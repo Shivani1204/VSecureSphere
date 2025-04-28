@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nessus Vulnerability Scanning Instructions</title>
+    <title>Nessus Vulnerability Scan Instructions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,9 +11,6 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
-        }
-        h2 {
-            color: #333;
         }
         .container {
             background-color: white;
@@ -32,92 +29,133 @@
             border-radius: 5px;
             white-space: pre-wrap;
         }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        ol, ul {
+            margin-bottom: 20px;
+        }
+        ol li, ul li {
+            margin-bottom: 10px;
+        }
+        .step {
+            margin-top: 30px;
+        }
+        .command {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Nessus Vulnerability Scanning Instructions</h2>
 
-        <h3>Step 1: Login to Both Systems</h3>
-        <p>Use the following credentials to log in:</p>
+<div class="container">
+    <h2>Nessus Vulnerability Scan Instructions</h2>
+    <p>Follow the steps below to perform a vulnerability scan using Nessus on a specific target, such as the OWASP Juice Shop system or any other system you need to assess.</p>
+
+    <div class="step">
+        <h3><u>Step 1: Security Warning</u></h3>
         <ul>
-            <li><strong>Attacker System:</strong> Username: <code>user</code>, Password: <code>VSecureSphere</code></li>
-            <li><strong>Victim System:</strong> Username: <code>user</code>, Password: <code>VSecureSphere</code></li>
+            <li>When you see a "Not Secure" warning in your browser, click on the "Advanced" option.</li>
+            <li>Then, click on the "Proceed to the site" button to bypass the warning and continue to the Nessus interface.</li>
         </ul>
+    </div>
+    <p><strong>Website being scanned:</strong> <a href="http://192.168.49.2:31000/" target="_blank">OWASP Juice Shop</a></p>
+    <img src="Nessus_SS/5.png" alt="Scan Results Example">
 
-        <h3>Step 2: Verify Network Connectivity (Attacker System)</h3>
-        <p>Check the IP addresses of both systems on the attacker machine:</p>
-        <pre><code>ifconfig</code></pre>
-        <p>Ping the victim system from the attacker system to verify connectivity:</p>
-        <pre><code>ping &lt;victim_IP&gt;</code></pre>
-        <p>Ensure that the victim system responds to pings.</p>
+    <div class="step">
+        <h3><u>Step 2: Login to Nessus</u></h3>
+        <ul>
+            <li>Use the username and password provided to you (or created during setup) to log in.</li>
+        </ul>
+    </div>
 
-        <h3>Step 3: Start and Access Nessus on the Attacker System</h3>
-        <p>Start the Nessus service on the attacker system:</p>
-        <pre><code>sudo systemctl start nessusd</code></pre>
-        <p>Check if Nessus is running:</p>
-        <pre><code>sudo systemctl status nessusd</code></pre>
-        <p>Once Nessus is running, open a web browser on the attacker system and type:</p>
-        <pre><code>http://localhost:8834</code></pre>
-        <p>If accessing Nessus remotely, replace <code>localhost</code> with the attacker's IP address:</p>
-        <pre><code>http://&lt;attacker_IP&gt;:8834</code></pre>
-        <p>Ensure port <code>8834</code> is open in the firewall:</p>
-        <pre><code>sudo ufw allow 8834/tcp</code></pre>
-        <p>Follow these steps in the Nessus web interface on the attacker system:</p>
-        <ol>
-            <li>Go to <code>http://localhost:8834</code> (or <code>http://&lt;attacker_IP&gt;:8834</code>).</li>
-            <li>Click on <strong>Get Started</strong>.</li>
-            <li>Choose <strong>Nessus Essentials</strong> and register with an email.</li>
-            <li>Enter the activation key received via email.</li>
-            <li>Wait for Nessus to install necessary components.</li>
-            <li>Once installation is complete, log in with your credentials.</li>
-        </ol>
+    <div class="step">
+        <h3><u>Step 3: Initialization and Database Upgrade</u></h3>
+        <ul>
+            <li>After logging in, Nessus will begin initializing and upgrading its database, which can take around 5 to 10 minutes.</li>
+            <li>Please be patient while this process completes.</li>
+            <img src="Nessus_SS/1.png" alt="Scan Results Example">
+            <img src="Nessus_SS/2.png" alt="Scan Results Example">
+        </ul>
+    </div>
 
-        <h3>Step 4: Perform a Nessus Vulnerability Scan (Attacker System)</h3>
-        <p>In Nessus, create a new scan:</p>
-        <ol>
-            <li>Click on <strong>New Scan</strong>.</li>
-            <li>Select <strong>Basic Network Scan</strong>.</li>
-            <li>Enter scan details:
+    <div class="step">
+        <h3><u>Step 4: Create a New Scan</u></h3>
+        <ul>
+            <li>Once initialization is complete, click on "New Scan" in the left sidebar.</li>
+            <li>Choose the "Basic Network Scan" template (for general network scans) or "Web Application Scan" (for deeper web application vulnerability testing).</li>
+            <img src="Nessus_SS/4.png" alt="Scan Results Example">
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3><u>Step 5: Detailed Configuration of Nessus Scan</u></h3>
+        <ul>
+            <li>To ensure the scan targets the specific port (31000) used by your OWASP Juice Shop instance, follow these configuration steps:</li>
+            <li>Create a New Scan by going to the "Scans" tab in Nessus and clicking on "+ New Scan".</li>
+            <li>Choose the "Basic Network Scan" template (or "Web Application Scan" for more detailed testing).</li>
+            <li>Configure the Scan with the following:
                 <ul>
-                    <li><strong>Name:</strong> "Victim System Scan"</li>
-                    <li><strong>Target:</strong> &lt;victim_IP&gt;</li>
-                    <li><strong>Scan Type:</strong> Basic Network Scan</li>
+                    <li>Name: "OWASP Juice Shop Scan" (or any name you prefer).</li>
+                    <li>Description: Add details here if necessary.</li>
+                    <li>Targets: In the "Targets" field, enter the IP address of your Minikube instance (e.g., <code>192.168.49.2</code>).</li>
+                    <img src="Nessus_SS/10.png" alt="Scan Results Example">
+                    <li>In the "Discovery" settings section, make sure port scanning is enabled and include port <code>31000</code> (since that's where Juice Shop is running).</li>
                 </ul>
             </li>
-            <li>Click <strong>Save & Launch</strong> to start scanning.</li>
-        </ol>
-
-        <h3>Step 5: Advanced Scanning Techniques (Attacker System)</h3>
-        <p>Nessus allows various types of scans, including:</p>
-        <ul>
-            <li><strong>Vulnerability Mapping:</strong> Identifies weaknesses in the victim system.</li>
-            <li><strong>Advanced Network Scanning:</strong> Detects misconfigurations on the victim system.</li>
-            <li><strong>Port Scanning:</strong> Identifies open and vulnerable ports on the victim system.</li>
-            <li><strong>Plugin-Based Scanning:</strong> Uses Nessus plugins to detect specific vulnerabilities.</li>
+            <li>Under "Port Scanning" settings:
+                <ul>
+                    <li>Enable "Custom ports" and enter <code>31000</code> in the custom ports field.</li>
+                    <li>Alternatively, specify a range like <code>31000-31010</code> or even <code>31000, 8080-8090, 1-1024</code> to include common ports and the custom port you're targeting.</li>
+                    <img src="Nessus_SS/11.png" alt="Scan Results Example">
+                </ul>
+            </li>
+            <li>If you're using the Web Application Scan template, provide the full URL: <code>http://192.168.49.2:31000/</code>.</li>
+            <li>Configure authentication settings if needed (e.g., if Juice Shop requires a login).</li>
         </ul>
-
-        <h3>Step 6: Monitor and Analyze Scan Results (Attacker System)</h3>
-        <p>Once the scan is complete, check the scan report in Nessus.</p>
-        <p>Vulnerabilities are categorized as:</p>
-        <ul>
-            <li><strong>Critical (Red):</strong> Immediate threats requiring urgent attention.</li>
-            <li><strong>High (Orange):</strong> Major security risks that need to be fixed soon.</li>
-            <li><strong>Medium (Yellow):</strong> Moderate vulnerabilities that should be addressed.</li>
-            <li><strong>Low (Blue):</strong> Minor vulnerabilities that may not be urgent.</li>
-        </ul>
-        <p>Click on each vulnerability to view details such as affected services and recommended security fixes.</p>
-
-        <h3>Step 7: Secure the Victim System (Victim System)</h3>
-        <p>To fix vulnerabilities, connect to the victim system via SSH from the attacker system:</p>
-        <pre><code>ssh -p 22 user@&lt;victim_IP&gt;</code></pre>
-        <p>Apply security patches on the victim system:</p>
-        <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
-        <p>Disable unnecessary services on the victim system:</p>
-        <pre><code>sudo systemctl stop &lt;service_name&gt;</code></pre>
-        <p>Change default passwords on the victim system:</p>
-        <pre><code>passwd</code></pre>
-        <p>After applying fixes, re-run the Nessus scan on the attacker system to verify if vulnerabilities have been mitigated.</p>
     </div>
+
+    <div class="step">
+        <h3><u>Step 6: Web Application Settings (Optional)</u></h3>
+        <ul>
+            <li>If you are performing a Web Application Scan, provide the full URL: <code>http://192.168.49.2:31000/</code>.</li>
+            <li>Configure any authentication settings if needed (e.g., if Juice Shop requires a login).</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3><u>Step 7: Launch the Scan</u></h3>
+        <ul>
+            <li>After configuring your scan, click Save, and then click "Launch" to start the scan.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3><u>Step 8: Review the Scan Results</u></h3>
+        <ul>
+            <li>Once the scan is complete, you can review the vulnerabilities detected in the OWASP Juice Shop.</li>
+            <li>Nessus will categorize the vulnerabilities by severity (High, Medium, Low) and provide recommendations for remediation.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3><u>Scan Result Example</u></h3>
+        <p>Once the scan completes, Nessus will display the scan results, categorizing vulnerabilities and providing necessary remediation steps.</p>
+        <img src="Nessus_SS/9.png" alt="Scan Results Example">
+        <img src="Nessus_SS/6.png" alt="Scan Results Example">
+        <img src="Nessus_SS/7.png" alt="Scan Results Example">
+        <img src="Nessus_SS/8.png" alt="Scan Results Example">
+    </div>
+
+</div>
+
 </body>
 </html>

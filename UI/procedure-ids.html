@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 6:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page6.html">&#8226; Introduction</a></li>
+                <li><a href="aim-ids.html">&#8226; Aim</a></li>
+                <li><a href="theory-ids.html">&#8226; Theory</a></li>
+                <li><a href="procedure-ids.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-ids.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-ids.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-ids.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Start Snort on Victim System</u></h3>
+            <p>On the victim container, start Snort with appropriate configurations:</p>
+            <pre>
+            sudo snort -A console -i eth0 -c /etc/snort/snort.conf
+            </pre>
+            <p>This command starts Snort in console mode, monitors the specified interface (e.g., eth0), and uses the default configuration file.</p>
+        
+            <h3><u>Step 2: Generate Traffic from Attacker</u></h3>
+            <p>From the attacker container, simulate suspicious traffic using:</p>
+            <pre>
+            sudo hping3 -S &lt;victim-ip&gt; -p 80 --flood
+            </pre>
+            <p>Or use Nmap to simulate a port scan:</p>
+            <pre>
+            sudo nmap -sS &lt;victim-ip&gt;
+            </pre>
+        
+            <h3><u>Step 3: Observe Snort Alerts</u></h3>
+            <p>In the victim terminal where Snort is running, observe the console output for alerts triggered by the simulated traffic. These might include:</p>
+            <ul>
+                <li>Port scan detected</li>
+                <li>SYN flood attempt</li>
+                <li>TCP/UDP traffic anomalies</li>
+            </ul>
+        
+            <h3><u>Step 4: Analyze the Logs</u></h3>
+            <p>Snort may also generate logs (if configured) in:</p>
+            <pre>
+            /var/log/snort/
+            </pre>
+            <p>Use <code>cat</code>, <code>less</code>, or <code>grep</code> to analyze these logs and identify the pattern of intrusion.</p>
+        
+            <h3><u>Step 5: Discuss Mitigation and Response</u></h3>
+            <p>Discuss how IDS systems like Snort help detect network-based attacks. Points to consider:</p>
+            <ul>
+                <li>Types of traffic detected and flagged by Snort</li>
+                <li>Role of rule configuration in accuracy of alerts</li>
+                <li>Use of IDS in real-world enterprise setups for early threat detection</li>
+            </ul>
+        
+            <h3><u>Step 6: Conclude the Experiment</u></h3>
+            <p>Summarize the importance of IDS in monitoring and defending network environments. Emphasize how proper traffic inspection and alerting mechanisms can reduce the risk of breaches.</p>
+        </div>
+        
+        
+        
+    </div>
+</body>
+</html>

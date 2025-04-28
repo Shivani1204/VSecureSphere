@@ -11,50 +11,71 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <ul>
-                <h3><u><b>Experiment 1:-</b></u></h3>
-                <li><a href="index.html">&#8226; Home</a></li>
-                <li><a href="page1.html">&#8226; Introduction</a></li>
-                <li><a href="aim.html">&#8226; Aim</a></li>
-                <li><a href="theory.html">&#8226; Theory</a></li>
-                <li><a href="procedure.html">&#8226; Procedure</a></li>
-                <li><a href="perform-lab.html">&#8226; Perform Lab</a></li>
-                <li><a href="knowledge-check.html">&#8226; Knowledge Check</a></li>
-                <li><a href="conclusion.html">&#8226; Conclusion</a></li>
+                <h3><u><b>Experiment 4:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page4.html">&#8226; Introduction</a></li>
+                <li><a href="aim-meta.html">&#8226; Aim</a></li>
+                <li><a href="theory-meta.html">&#8226; Theory</a></li>
+                <li><a href="procedure-meta.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-meta.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-meta.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-meta.html">&#8226; Conclusion</a></li>
                 
             </ul>
         </aside>
 
         <!-- Main Content -->
         <div class="content-box">
-            <h2><u>Welcome to Experiment 1: Port Scanning through Nmap</u></h2>
+            <h2><u>Welcome to Experiment 4: Metasploit Exploitation</u></h2>
         
-            <h3><b>Introduction to Nmap</b></h3>
+            <h3><b>Introduction to Metasploit</b></h3>
         
             <p>
-                <b>Nmap</b> (short for <i>Network Mapper</i>) is a widely used open-source tool designed for network exploration and security auditing. 
-                Originally developed by <b>Gordon Lyon</b> (also known as <i>Fyodor</i>), Nmap has become an essential tool for network administrators and security professionals.
+                <b>Metasploit</b> is an open-source penetration testing framework that enables security professionals and ethical hackers to discover, exploit, and validate vulnerabilities in a system. 
+                Developed by <b>H.D. Moore</b> in 2003, Metasploit has become one of the most widely used tools in cybersecurity due to its extensive library of exploits and payloads.
             </p>
         
             <p>
-                It allows users to <b>discover devices on a network, identify open ports, and determine the services running on those ports</b>. 
-                In addition to port scanning, Nmap can also perform <b>operating system detection</b> and <b>service version detection</b>, making it a powerful tool for vulnerability assessments.
+                Metasploit allows users to <b>automate the process of exploiting vulnerabilities</b> by using pre-configured exploits and payloads. It is not only useful for ethical hacking, 
+                but also for <b>vulnerability research</b>, <b>security auditing</b>, and <b>incident response</b>.
             </p>
         
             <p>
-                One of Nmap's key strengths is its <b>versatility</b>—it can scan anything from a single host to large networks, adjusting its speed and intensity as needed. 
-                This flexibility makes it a valuable resource for tasks such as:
+                Some of the core features of Metasploit include:
             </p>
         
             <ul>
-                <li><b>Network inventory management</b></li>
-                <li><b>Service upgrade scheduling</b></li>
-                <li><b>Vulnerability detection</b></li>
+                <li><b>Exploit Modules:</b> Pre-built scripts designed to take advantage of specific vulnerabilities in systems and applications.</li>
+                <li><b>Payloads:</b> Pieces of code that can be delivered to the target system once an exploit is successful, often providing a way to control or gather data from the system.</li>
+                <li><b>Post-Exploitation:</b> Tools that help attackers maintain access, escalate privileges, or gather more information from a compromised system.</li>
+                <li><b>Auxiliary Modules:</b> Scripts for performing various scanning and enumeration tasks like port scanning and service version detection.</li>
             </ul>
         
             <p>
-                Whether used for routine network maintenance or security testing, Nmap provides <b>detailed insights into the structure and security of a network</b>.
+                Whether used for educational purposes, penetration testing, or security research, Metasploit provides <b>valuable insights into system vulnerabilities</b> and helps organizations 
+                understand the risks associated with their networks.
+            </p>
+        
+            <h3><b>Steps for Metasploit Exploitation</b></h3>
+            <p>
+                In this experiment, you will perform exploitation using Metasploit by identifying a vulnerability on a target system and exploiting it to gain unauthorized access. 
+                The process involves the following steps:
+            </p>
+        
+            <ol>
+                <li><b>Reconnaissance:</b> Begin by scanning the victim system to identify open ports and running services using tools like Nmap.</li>
+                <li><b>Vulnerability Identification:</b> Once you know the services running on the victim system, search for known vulnerabilities in those services.</li>
+                <li><b>Exploit Selection:</b> Choose an appropriate exploit for the identified vulnerability. Metasploit’s <code>search</code> command can help find relevant exploits.</li>
+                <li><b>Payload Configuration:</b> Set up a payload to be delivered once the exploit successfully compromises the target.</li>
+                <li><b>Exploitation:</b> Execute the exploit to gain access to the victim system.</li>
+                <li><b>Post-Exploitation:</b> Once access is gained, perform post-exploitation tasks like gathering information or escalating privileges.</li>
+            </ol>
+        
+            <p>
+                Metasploit is a powerful tool, and with great power comes great responsibility. It is important to use Metasploit ethically and only against systems you have permission to test.
             </p>
         </div>
+        
         
     </div>
     

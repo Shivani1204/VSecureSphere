@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Interfaces</title>
+    <link rel="stylesheet" href="styles-lab.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Only for this experiment to adjust iframe layout */
+        .iframe-container {
+            display: block;
+        }
+
+        .iframe-box {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;  /* Adjusted height for better viewing */
+            border: 1px solid #ddd;
+        }
+
+        .lab-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .lab-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lab-link {
+            display: block;
+            background: #dd7be8;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            margin: 10px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .lab-link:hover {
+            background: #e8b8e4;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 5:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page7.html">&#8226; Introduction</a></li>
+                <li><a href="aim-nessus.html">&#8226; Aim</a></li>
+                <li><a href="theory-nessus.html">&#8226; Theory</a></li>
+                <li><a href="procedure-nessus.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-nessus.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-nessus.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-nessus.html">&#8226; Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2>Virtual Lab Interfaces</h2>
+            <p>Access the lab environments using the links below.</p>
+            
+            <div class="lab-container">
+                <div class="lab-box">
+                    <h3>Attacker: Nessus Interface</h3>
+                    <div class="warning">
+                        <strong>Note:</strong> You'll need to accept the security certificate when accessing Nessus.
+                    </div>
+                    <a href="https://192.168.49.2:31833/" target="_blank" class="lab-link">
+                        Launch Nessus Interface
+                    </a>
+                    <p><small>Password: VSecureSphere</small></p>
+                </div>
+
+                <div class="lab-box">
+                    <h3>Target: OWASP Juice Shop</h3>
+                    <a href="http://192.168.49.2:31000/#/" target="_blank" class="lab-link">
+                        Launch Juice Shop
+                    </a>
+                </div>
+
+                <div class="iframe-box full-width">
+                    <h3>Instructions</h3>
+                    <iframe src="instructions-nesus.html" title="Instructions"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

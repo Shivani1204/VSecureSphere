@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 7:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page7.html">&#8226; Introduction</a></li>
+                <li><a href="aim-nessus.html">&#8226; Aim</a></li>
+                <li><a href="theory-nessus.html">&#8226; Theory</a></li>
+                <li><a href="procedure-nessus.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-nessus.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-nessus.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-nessus.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Procedure</u></h2>
+        
+            <h3><u>Step 1: Install Nessus</u></h3>
+            <p>Before you can start scanning, you need to install Nessus. On Kali Linux, use the following command to install Nessus:</p>
+            <pre>
+            sudo apt install nessus
+            </pre>
+            <p>Once installed, start the Nessus service:</p>
+            <pre>
+            sudo systemctl start nessusd
+            </pre>
+            <p>You can check the status of Nessus with:</p>
+            <pre>
+            sudo systemctl status nessusd
+            </pre>
+            <p>Once Nessus is running, open a browser and go to <code>https://localhost:8834</code> to access the Nessus web interface.</p>
+        
+            <h3><u>Step 2: Set Up an Account</u></h3>
+            <p>When you access Nessus for the first time, you'll be prompted to set up an account. Provide your email and create a password to log in.</p>
+        
+            <h3><u>Step 3: Start a New Scan</u></h3>
+            <p>Once logged in, you’ll be on the Nessus dashboard. To create a new scan, click on the <b>New Scan</b> button.</p>
+            <p>Choose the type of scan you want to run. For a basic vulnerability scan, select <b>Basic Network Scan</b>.</p>
+        
+            <h3><u>Step 4: Configure Scan Settings</u></h3>
+            <p>In the scan configuration page:</p>
+            <ul>
+                <li>Enter the target IP address or range of the system(s) you want to scan.</li>
+                <li>Optionally, configure authentication or credentialed scans if needed.</li>
+                <li>Set any advanced scan options as required (e.g., scan ports, detection settings).</li>
+            </ul>
+        
+            <h3><u>Step 5: Start the Scan</u></h3>
+            <p>Once the scan is configured, click <b>Save</b> and then <b>Launch</b> to start the scan. Nessus will begin scanning the target system for vulnerabilities.</p>
+        
+            <h3><u>Step 6: Monitor Scan Progress</u></h3>
+            <p>You can monitor the progress of the scan in real-time from the Nessus dashboard. The scan may take a few minutes depending on the number of systems being scanned and the complexity of the scan.</p>
+        
+            <h3><u>Step 7: Review Scan Results</u></h3>
+            <p>Once the scan is complete, you’ll be able to see the results in the scan report. The results will include:</p>
+            <ul>
+                <li><b>Vulnerabilities:</b> A list of discovered vulnerabilities, categorized by severity (critical, high, medium, low).</li>
+                <li><b>Detailed Description:</b> Information about each vulnerability, including its impact and possible exploits.</li>
+                <li><b>Remediation Advice:</b> Recommendations on how to fix or mitigate each vulnerability.</li>
+            </ul>
+        
+            <h3><u>Step 8: Address the Vulnerabilities</u></h3>
+            <p>Based on the scan results, prioritize and address the vulnerabilities with the highest severity. Follow the remediation advice to patch or fix the vulnerabilities. Some common steps include:</p>
+            <ul>
+                <li>Applying security patches to the system.</li>
+                <li>Disabling unnecessary services or ports.</li>
+                <li>Changing weak or default passwords.</li>
+            </ul>
+        
+            <h3><u>Step 9: Re-scan After Remediation</u></h3>
+            <p>After remediating the vulnerabilities, re-scan the system to ensure that the issues have been resolved. This will help confirm the effectiveness of your fixes.</p>
+        
+            <h3><u>Step 10: Conclude the Experiment</u></h3>
+            <p>Once all vulnerabilities have been addressed and the system is secure, conclude the experiment by discussing:</p>
+            <ul>
+                <li>The importance of regular vulnerability scanning in maintaining system security.</li>
+                <li>The role of Nessus in identifying security risks and helping with remediation.</li>
+                <li>How vulnerability management contributes to an overall cybersecurity strategy.</li>
+            </ul>
+        </div>
+        
+        
+        
+    </div>
+</body>
+</html>

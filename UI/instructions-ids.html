@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDS Experiment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        ol, ul {
+            margin-bottom: 20px;
+        }
+        ol li, ul li {
+            margin-bottom: 10px;
+        }
+        .step {
+            margin-top: 30px;
+        }
+        .command {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>IDS Experiment Using Snort IDS</h2>
+    <p>This experiment demonstrates how to detect network-based intrusions using an Intrusion Detection System (IDS) like Snort.</p>
+
+    <h3>Step 1: Login to Both Systems</h3>
+    <ul>
+        <li><strong>Attacker System:</strong> Password: <code>VSecureSphere</code></li>
+        <li><strong>Victim System:</strong> Password: <code>VSecureSphere</code></li>
+    </ul>
+
+    <div class="step">
+        <h3><u>Step 2: Setting Up Snort IDS on Victim (Ubuntu Container)</u></h3>
+        <ol>
+            
+            <li>Log in and open a terminal inside the victim container.</li>
+            <li>Install Snort IDS on the victim container: Run the following commands inside the victim container:
+                <br><div class="command"><code>apt-get update</code></div>
+                <img src="IDS_SS/1.png" alt="Snort IDS Setup">
+                <br><div class="command"><code>apt-get install -y snort</code></div>
+                <img src="IDS_SS/2.png" alt="2">
+            </li>
+            <li>Configure Snort: During installation, you might be prompted for configuration settings like network interfaces. You can skip the interface configuration for now as we will use the default network interface eth0.
+                <br>Snort needs to know the network range you are monitoring. Set this in <code>/etc/snort/snort.conf</code>:
+                <br>Use the <code>sed</code> command to update the <code>ipvar HOME_NET</code> setting without opening a text editor:
+                <br><div class="command"><code>sed -i 's/^ipvar HOME_NET .*/ipvar HOME_NET 10.244.0.0\/24/' /etc/snort/snort.conf</code>
+                <br><div class="command"><code>grep 'ipvar HOME_NET' /etc/snort/snort.conf</code>  <br>
+                <img src="IDS_SS/3.png" alt="3"> 
+                </div>
+            </li>
+            <li>Start Snort: Run Snort in detection mode on the victim container:
+                <br><div class="command"><code>snort -A console -c /etc/snort/snort.conf -i eth0</code></div>
+                <br>This will run Snort in console mode, showing alerts in the terminal for any detected threats. Make sure you see the message that Snort is running, listening on eth0. <br>
+                <img src="IDS_SS/4.png" alt="4"> <br>
+                <img src="IDS_SS/5.png" alt="5"> 
+            </li>
+        </ol>
+    </div>
+    
+
+    <div class="step">
+        <h3><u>Step 3: Simulating Network Attacks from Attacker (Kali Linux Container)</u></h3>
+        <ol>
+
+            <li>Log in and open a terminal inside the attacker container.</li>
+            <li>Perform some attack simulations:
+                <br>
+                <br><b>Example 1: Port Scanning with Nmap:</b><br>
+                <div class="command"><pre><code>nmap -sP &lt;victim-ip&gt;</code></pre></div>
+                <p>This command will scan the network for hosts in the 172.17.0.0/24 range and can trigger an alert in Snort for network scanning activity.</p>
+                <img src="IDS_SS/6.png" alt="6">
+                <b>Example 2: Denial of Service (DoS) using hping3:</b><br>
+                <div class="command"><pre><code>hping3 &lt;victim-ip&gt; -S -p 80 --flood</code></pre></div>
+                <p>This will send a flood of TCP packets to port 80 on the victim container, simulating a DoS attack.</p>
+                <img src="IDS_SS/7.png" alt="7">
+            </li>
+        </ol>
+    </div>
+    
+
+    <div class="step">
+        <h3><u>Step 4: Monitor IDS Alerts from Snort on Victim</u></h3>
+        <ol>
+            <li>Analyze Snort Output: After executing any of the above attacks, go back to the terminal where Snort is running on the victim container. Snort should print out alerts whenever it detects an attack.
+                <br>For example, after the Port Scan using Nmap, you might see an alert like:
+                <br><div class="command"><code>[**] [1:2028444:1] ET CINS Active Threats - Port Scan [**]</code></div>
+                <br><div class="command"><code>[**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 172.17.0.2:80 -> 172.17.0.1:59243</code></div> <br>
+                <img src="IDS_SS/8.png" alt="Snort Alerts">
+            </li>
+            <li>Review Snort Logs: Snort writes its alerts to log files, so you can check the log files for detailed alerts. The default location is usually <code>/var/log/snort/</code>. You can review the logs by running:
+                <br><div class="command"><code>sudo tail -f /var/log/snort/snort_alert</code></div>
+            </li>
+        </ol>
+    </div>
+    
+
+    <div class="step">
+        <h3><u>Step 5: Analyze and Interpret the IDS Alerts</u></h3>
+        <ul>
+            <li><b>Port Scanning Alerts:</b> Snort will detect network scanning and flag it as a potential attack (using ET CINS Active Threats - Port Scan).</li>
+            <li><b>DoS Alerts:</b> For flood attacks (e.g., DoS), Snort will raise alerts for flooding behavior (e.g., DOS UDP/ACK Flood).</li>
+            <li><b>Brute Force Alerts:</b> If a brute force attack (via hydra) is detected, Snort might trigger alerts for password guessing or authentication bypass.</li>
+            <li><b>False Positives:</b> Some benign activities might be detected as attacks (false positives). Snort configuration can be fine-tuned to reduce this.</li>
+        </ul>
+    </div>
+    
+
+    <div class="step">
+        <h3><u>Step 6: Wrapping Up</u></h3>
+        <ul>
+            <li>Once you've finished analyzing the Snort alerts, you can:
+                <ul>
+                    <li>Tune Snort rules to improve detection.</li>
+                    <li>Simulate other attacks to observe how Snort detects different types of intrusions (e.g., SQL injection, XSS, or more complex DoS attacks).</li>
+                    <li>Generate reports based on the logged alerts to understand attack patterns.</li>
+                </ul>
+            </li>
+            <li>You can also implement other security measures, such as integrating the IDS with a SIEM system for central monitoring.</li>
+        </ul>
+    </div>
+    
+</div>
+
+</body>
+</html>

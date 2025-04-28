@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Check</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="experiment-container">
+        <aside class="sidebar">
+            <ul>
+                <h3><u><b>Experiment 4:-</b></u></h3>
+                <li><a href="index1.html">&#8226; Home</a></li>
+                <li><a href="page4.html">&#8226; Introduction</a></li>
+                <li><a href="aim-meta.html">&#8226; Aim</a></li>
+                <li><a href="theory-meta.html">&#8226; Theory</a></li>
+                <li><a href="procedure-meta.html">&#8226; Procedure</a></li>
+                <li><a href="perform-lab-meta.html">&#8226; Perform Lab</a></li>
+                <li><a href="knowledge-check-meta.html">&#8226; Knowledge Check</a></li>
+                <li><a href="conclusion-meta.html">&#8226; Conclusion</a></li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-box">
+            <h2><u>Knowledge Check</u></h2>
+            <br>
+        
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. What is the primary purpose of Metasploit?</h3>
+                <label><input type="radio" name="q1" value="incorrect"> File transfer</label><br>
+                <label><input type="radio" name="q1" value="correct"> Exploitation of vulnerabilities and post-exploitation</label><br>
+                <label><input type="radio" name="q1" value="incorrect"> Network monitoring</label><br>
+                <label><input type="radio" name="q1" value="incorrect"> Web development</label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. Which of the following is used to launch a reverse shell payload in Metasploit?</h3>
+                <label><input type="radio" name="q2" value="incorrect"> msfvenom -p linux/x86/shell_bind_tcp</label><br>
+                <label><input type="radio" name="q2" value="correct"> msfvenom -p linux/x86/shell_reverse_tcp</label><br>
+                <label><input type="radio" name="q2" value="incorrect"> msfvenom -p windows/meterpreter/reverse_https</label><br>
+                <label><input type="radio" name="q2" value="incorrect"> msfvenom -p android/meterpreter/reverse_tcp</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. Which Metasploit command is used to search for available exploits?</h3>
+                <label><input type="radio" name="q3" value="incorrect"> search_exploit</label><br>
+                <label><input type="radio" name="q3" value="correct"> search</label><br>
+                <label><input type="radio" name="q3" value="incorrect"> find_exploit</label><br>
+                <label><input type="radio" name="q3" value="incorrect"> exploit_search</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. What is the purpose of the 'use' command in Metasploit?</h3>
+                <label><input type="radio" name="q4" value="correct"> It selects a specific module to use</label><br>
+                <label><input type="radio" name="q4" value="incorrect"> It starts a new attack</label><br>
+                <label><input type="radio" name="q4" value="incorrect"> It configures the victim machine</label><br>
+                <label><input type="radio" name="q4" value="incorrect"> It exits Metasploit</label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. What is the function of the 'set' command in Metasploit?</h3>
+                <label><input type="radio" name="q5" value="incorrect"> It installs a payload</label><br>
+                <label><input type="radio" name="q5" value="correct"> It sets specific parameters for a module</label><br>
+                <label><input type="radio" name="q5" value="incorrect"> It executes an exploit</label><br>
+                <label><input type="radio" name="q5" value="incorrect"> It checks for vulnerable services</label>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question">
+                <h3>6. Which Metasploit module allows you to exploit Windows SMB vulnerabilities?</h3>
+                <label><input type="radio" name="q6" value="incorrect"> auxiliary/scanner/http/apache_status</label><br>
+                <label><input type="radio" name="q6" value="correct"> exploit/windows/smb/ms17_010_eternalblue</label><br>
+                <label><input type="radio" name="q6" value="incorrect"> exploit/linux/http/apache_mod_cgi_bash</label><br>
+                <label><input type="radio" name="q6" value="incorrect"> auxiliary/scanner/ftp/ftp_bounce</label>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question">
+                <h3>7. What is the purpose of the 'sessions' command in Metasploit?</h3>
+                <label><input type="radio" name="q7" value="incorrect"> To start a new payload listener</label><br>
+                <label><input type="radio" name="q7" value="correct"> To interact with active sessions</label><br>
+                <label><input type="radio" name="q7" value="incorrect"> To enumerate services on the target</label><br>
+                <label><input type="radio" name="q7" value="incorrect"> To configure the attack parameters</label>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question">
+                <h3>8. What does the 'exploit' command do in Metasploit?</h3>
+                <label><input type="radio" name="q8" value="incorrect"> It scans the network for vulnerabilities</label><br>
+                <label><input type="radio" name="q8" value="correct"> It executes the selected exploit against the target</label><br>
+                <label><input type="radio" name="q8" value="incorrect"> It configures the payload options</label><br>
+                <label><input type="radio" name="q8" value="incorrect"> It exits Metasploit</label>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question">
+                <h3>9. Which type of Metasploit payload allows for a remote command shell over HTTP?</h3>
+                <label><input type="radio" name="q9" value="incorrect"> linux/x86/meterpreter_reverse_tcp</label><br>
+                <label><input type="radio" name="q9" value="incorrect"> windows/meterpreter/reverse_https</label><br>
+                <label><input type="radio" name="q9" value="correct"> windows/meterpreter/reverse_http</label><br>
+                <label><input type="radio" name="q9" value="incorrect"> php/meterpreter/reverse_tcp</label>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question">
+                <h3>10. How do you check the status of a listener in Metasploit?</h3>
+                <label><input type="radio" name="q10" value="incorrect"> show listeners</label><br>
+                <label><input type="radio" name="q10" value="correct"> jobs</label><br>
+                <label><input type="radio" name="q10" value="incorrect"> list_sessions</label><br>
+                <label><input type="radio" name="q10" value="incorrect"> status</label>
+            </div>
+
+        
+            <!-- Submit button -->
+            <button class="fancy-button" onclick="checkAnswers()">Submit</button>
+        
+            <!-- Result display -->
+            <div id="result"></div>
+        </div>
+        
+		
+		<script src="script.js"></script>
+		
+    </div>
+</body>
+</html>

@@ -11,7 +11,7 @@
         <aside class="sidebar">
             <ul>
                 <h3><u><b>Experiment 10:-</b></u></h3>
-                <li><a href="index.html">&#8226; Home</a></li>
+                <li><a href="index1.html">&#8226; Home</a></li>
                 <li><a href="page10.html">&#8226; Introduction</a></li>
                 <li><a href="aim-john.html">&#8226; Aim</a></li>
                 <li><a href="theory-john.html">&#8226; Theory</a></li>
@@ -25,21 +25,57 @@
 
         <div class="content-box">
             <h2><u>Aim</u></h2>
-        
+            
             <h3>To perform password cracking and analyze password security using John the Ripper.</h3>
+            
+            <br>
+            
+            <h2><u>Prerequisites</u></h2>
+            
+            <ul>
+                <li>Basic knowledge of <b>password hashing algorithms</b> and how they work (e.g., MD5, SHA-1, bcrypt).</li>
+                <li>Familiarity with <b>Kali Linux</b> and its <b>command-line interface (CLI)</b>.</li>
+                <li>Understanding of how <b>brute-force</b> and <b>dictionary-based attacks</b> operate for cracking password hashes.</li>
+                <li>Both <b>Attacker and Victim</b> machines must be set up, with access to the <b>password hashes</b> for cracking.</li>
+                <li>Basic understanding of <b>John the Ripper</b> and its configuration files, including hash formats and cracking techniques.</li>
+                <li>Ensure that necessary <b>wordlists</b> (e.g., <b>rockyou.txt</b>) are available for password cracking.</li>
+                <li>Basic knowledge of <b>Linux</b> commands and tools for hash extraction (e.g., <code>unshadow</code>, <code>john</code>).</li>
+            </ul>
         
             <br>
-            <h2><u>Prerequisites</u></h2>
-        
+            
+            <h2><u>Tools Required</u></h2>
             <ul>
-                <li>Basic knowledge of password hashing algorithms and how they work.</li>
-                <li>Familiarity with Kali Linux and its command-line interface.</li>
-                <li>Understanding of how brute-force and dictionary-based attacks operate.</li>
-                <li>Both Attacker and Victim machines must be set up and running with access to the hashes.</li>
-                <li>Basic understanding of John the Ripper and its configuration files.</li>
-                <li>Ensure that the necessary wordlists (e.g., rockyou.txt) are available for password cracking.</li>
+                <li><b>John the Ripper</b> - A popular open-source password cracking tool used to crack hashed passwords using various attack methods.</li>
+                <li><b>Linux Distribution (Kali Linux)</b> - For running John the Ripper and performing cracking operations.</li>
+                <li><b>Password Hashes</b> - Password hashes to crack, which could be obtained from a test environment or vulnerable system.</li>
+                <li><b>Wordlists</b> - A dictionary file, such as <code>rockyou.txt</code>, for dictionary-based attacks.</li>
+                <li><b>Terminal</b> - A terminal to run John the Ripper and execute cracking commands.</li>
+            </ul>
+        
+            <br>
+            
+            <h2><u>Learning Outcomes</u></h2>
+            <ul>
+                <li>Understand how password hashing works and the vulnerabilities of weak hashing algorithms.</li>
+                <li>Learn how to use <b>John the Ripper</b> for cracking password hashes with dictionary and brute-force attacks.</li>
+                <li>Gain hands-on experience with cracking techniques and how they can be applied to assess password strength.</li>
+                <li>Learn about the importance of using strong, salted hashes and best practices for securing passwords.</li>
+                <li>Understand how attackers exploit weak password policies and how to defend against such attacks.</li>
+            </ul>
+        
+            <br>
+            
+            <h2><u>Safety Precautions</u></h2>
+            <ul>
+                <li>Ensure you have explicit permission to crack passwords on any target system, as unauthorized password cracking is illegal and unethical.</li>
+                <li>Perform all testing in a <b>controlled environment</b>, such as a virtual machine or isolated network.</li>
+                <li>Do not use real-world passwords or target live systems without proper authorization.</li>
+                <li>Keep track of all tests performed and document the results for responsible reporting.</li>
+                <li>Always use <b>strong encryption</b> for storing and transmitting sensitive information to prevent unauthorized access.</li>
             </ul>
         </div>
+        
         
         
     </div>
