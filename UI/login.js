@@ -1,4 +1,9 @@
-// Toggle between login and register forms
+// Auto-redirect if already logged in
+if (localStorage.getItem("loggedIn") === "true") {
+    window.location.href = "index1.html"; // Correct redirect
+}
+
+// Toggle between forms
 function toggleForm(form) {
     document.getElementById('loginForm').style.display = "none";
     document.getElementById('registerForm').style.display = "none";
@@ -9,9 +14,7 @@ function toggleForm(form) {
 
 // Show forgot password form
 function showForgotPassword() {
-    document.getElementById('loginForm').style.display = "none";
-    document.getElementById('registerForm').style.display = "none";
-    document.getElementById('forgotPasswordForm').style.display = "flex";
+    toggleForm('forgotPassword');
 }
 
 // Go back to login from forgot password
@@ -20,11 +23,11 @@ function backToLogin() {
 }
 
 // Handle login form submission
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const username = document.querySelector('#loginForm input[type="text"]').value;
-    const password = document.querySelector('#loginForm input[type="password"]').value;
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
 
     try {
         const response = await fetch("http://localhost:8000/login", {
@@ -36,50 +39,51 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         const data = await response.json();
 
         if (response.ok) {
-            sessionStorage.setItem("loggedIn", "true");
-            alert("Login successful!");
+            localStorage.setItem("loggedIn", "true");
+            localStorage.setItem("username", username);
+            alert(data.message || "Login successful!");
             window.location.href = "index1.html";
         } else {
             alert(data.detail || "Login failed. Check your credentials.");
         }
     } catch (error) {
         console.error("Error logging in:", error);
-        alert("Something went wrong. Try again.");
+        alert("Something went wrong. Try again later.");
     }
 });
 
 // Handle register form submission
-document.getElementById("registerForm").addEventListener("submit", async function(e) {
+document.getElementById("registerForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const full_name = document.querySelector('#registerForm input[placeholder="Full Name"]').value;
-    const email = document.querySelector('#registerForm input[placeholder="Email"]').value;
-    const username = document.querySelector('#registerForm input[placeholder="Username"]').value;
-    const password = document.querySelector('#registerForm input[placeholder="Password"]').value;
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
+    const username = document.getElementById('registerUsername').value;
+    const password = document.getElementById('registerPassword').value;
 
     try {
         const response = await fetch("http://localhost:8000/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ full_name, email, username, password })
+            body: JSON.stringify({ name, email, username, password })
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            alert("Registration successful! Now you can log in.");
+            alert(data.message || "Registration successful! Now you can log in.");
             toggleForm('login');
         } else {
             alert(data.detail || "Registration failed.");
         }
     } catch (error) {
         console.error("Error registering:", error);
-        alert("Something went wrong. Try again.");
+        alert("Something went wrong. Try again later.");
     }
 });
 
 // Handle forgot password form submission
-document.getElementById("forgotPasswordForm").addEventListener("submit", async function(e) {
+document.getElementById("forgotPasswordForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const email = document.getElementById("forgotEmail").value;
@@ -94,13 +98,13 @@ document.getElementById("forgotPasswordForm").addEventListener("submit", async f
         const data = await response.json();
 
         if (response.ok) {
-            alert("Password reset link sent! Check your email.");
-            toggleForm('login'); // Go back to login
+            alert(data.message || "Password reset link sent! Check your email.");
+            toggleForm('login');
         } else {
             alert(data.detail || "Failed to send reset link.");
         }
     } catch (error) {
         console.error("Error sending reset link:", error);
-        alert("Something went wrong. Try again.");
+        alert("Something went wrong. Try again later.");
     }
 });

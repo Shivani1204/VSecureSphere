@@ -1,12 +1,22 @@
+// Initialize attempts counter
+let attempts = localStorage.getItem('hping_attempts') ? parseInt(localStorage.getItem('hping_attempts')) : 0;
+
 function checkAnswers() {
     let score = 0;
     let totalQuestions = 10;
     let unanswered = 0;
 
+    // Increase attempt count
+    attempts++;
+    localStorage.setItem('hping_attempts', attempts);
+
     // Clear previous highlights
     document.querySelectorAll(".question").forEach((q) => {
         q.style.border = "";
         q.style.backgroundColor = "";
+        q.querySelectorAll('label').forEach((label) => {
+            label.style.color = ""; // reset label colors
+        });
     });
 
     for (let i = 1; i <= totalQuestions; i++) {
@@ -33,7 +43,8 @@ function checkAnswers() {
 
     // Display result
     const result = document.getElementById('result');
-    result.innerHTML = `<h3>You scored ${score} out of ${totalQuestions}</h3>`;
+    result.innerHTML = `<h3>You scored ${score} out of ${totalQuestions}</h3>
+                        <p><strong>Attempt Number:</strong> ${attempts}</p>`;
     result.style.textAlign = "center";
     result.style.marginTop = "20px";
     result.style.padding = "15px";
@@ -58,4 +69,10 @@ function checkAnswers() {
     if (unanswered > 0) {
         result.innerHTML += `<p style="color: blue;">⚠️ You left ${unanswered} question(s) unanswered.</p>`;
     }
+}
+
+// Optional: Reset attempts (for testing or if you want a reset button)
+function resetAttempts() {
+    localStorage.removeItem('hping_attempts');
+    attempts = 0;
 }

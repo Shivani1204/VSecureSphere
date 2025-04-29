@@ -17,10 +17,23 @@
             <li><a href="#about"><i class="fa fa-fw fa-address-card"></i>About Us</a></li>
             <li><a href="#experiments"><i class="fa fa-fw fa-bug"></i>Experiments</a></li>
             <li><a href="#contact"><i class="fa fa-fw fa-address-book"></i>Contact Us</a></li>
+            <li><a href="#" onclick="logout()" class="logout-link"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li>
         </ul>
     </nav>
+    
 
     <!-- Home Section -->
+    <script>
+        function logout() {
+            // Clear any session (if you are using localStorage, sessionStorage, cookies etc.)
+            // Example clearing localStorage/sessionStorage:
+            localStorage.clear();
+            sessionStorage.clear();
+        
+            // Redirect to login page (assuming your login page is 'index.html')
+            window.location.href = "index.html";
+        }
+        </script>
     <section id="home" class="section">
         <div class="introduction">
         
@@ -45,6 +58,7 @@
 
         observer.observe(slideText);
     </script>
+
     
     
 
@@ -236,6 +250,8 @@
                 sideImage.classList.add('sideImage-appear');
             }
         });
+        
     </script>
+    
 </body>
 </html>

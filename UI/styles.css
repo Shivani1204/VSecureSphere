@@ -885,3 +885,11 @@ body {
   margin-bottom: 15px;
   border-radius: 10px;
 }
+
+.logout-link {
+  color: red; /* Make logout link red */
+  font-weight: bold;
+}
+.logout-link:hover {
+  text-decoration: underline;
+}

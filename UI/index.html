@@ -18,9 +18,9 @@
   </div>
 
   <!-- Login Form -->
-  <form id="loginForm" class="active">
-    <input type="text" placeholder="Username" required />
-    <input type="password" placeholder="Password" required />
+  <form id="loginForm" style="display: flex; flex-direction: column;">
+    <input type="text" id="loginUsername" placeholder="Username" required />
+    <input type="password" id="loginPassword" placeholder="Password" required />
     <button type="submit">Login</button>
 
     <!-- Forgot Password Link -->
@@ -30,16 +30,16 @@
   </form>
 
   <!-- Register Form -->
-  <form id="registerForm">
-    <input type="text" placeholder="Full Name" required />
-    <input type="email" placeholder="Email" required />
-    <input type="text" placeholder="Username" required />
-    <input type="password" placeholder="Password" required />
+  <form id="registerForm" style="display: none; flex-direction: column;">
+    <input type="text" id="registerName" placeholder="Full Name" required />
+    <input type="email" id="registerEmail" placeholder="Email" required />
+    <input type="text" id="registerUsername" placeholder="Username" required />
+    <input type="password" id="registerPassword" placeholder="Password" required />
     <button type="submit">Register</button>
   </form>
 
   <!-- Forgot Password Form (Hidden initially) -->
-  <form id="forgotPasswordForm" style="display: none;">
+  <form id="forgotPasswordForm" style="display: none; flex-direction: column;">
     <input type="email" id="forgotEmail" placeholder="Enter your email" required />
     <button type="submit">Send Reset Link</button>
     <div style="margin-top: 10px;">
