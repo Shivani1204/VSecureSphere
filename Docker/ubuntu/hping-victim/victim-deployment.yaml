@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-hping-victim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-hping-victim
+  template:
+    metadata:
+      labels:
+        app: ubuntu-hping-victim
+    spec:
+      containers:
+      - name: ubuntu-hping-victim
+        image: shivani1204/ubuntu-hping-victim:latest
+        ports:
+        - containerPort: 5900
+        - containerPort: 6080
+

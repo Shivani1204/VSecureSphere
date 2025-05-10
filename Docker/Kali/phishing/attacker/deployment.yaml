@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kali-phishing-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kali-phishing-attacker
+  template:
+    metadata:
+      labels:
+        app: kali-phishing-attacker
+    spec:
+      containers:
+      - name: kali-phishing-attacker
+        image: shivani1204/phishing-kali-attacker:latest
+        ports:
+        - containerPort: 6080  # ✅ Update to actual web interface port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kali-phishing-attacker-service
+spec:
+  type: NodePort
+  selector:
+    app: kali-phishing-attacker
+  ports:
+    - protocol: TCP
+      port: 6080           # ✅ Service port (what you access in browser)
+      targetPort: 6080     # ✅ Must match the containerPort
+      nodePort: 30002      # ✅ External port to access via Minikube
+

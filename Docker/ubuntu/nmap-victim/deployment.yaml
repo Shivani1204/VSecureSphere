@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-victim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-victim
+  template:
+    metadata:
+      labels:
+        app: ubuntu-victim
+    spec:
+      containers:
+      - name: ubuntu-victim-container
+        image: shivani1204/ubuntu-nmap-victim:latest # Use your image
+        ports:
+        - containerPort: 6080 # noVNC web access port
+        - containerPort: 5900 # VNC port
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "0.5"
+

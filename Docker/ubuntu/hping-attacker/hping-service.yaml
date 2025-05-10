@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ubuntu-hping-attacker-service
+spec:
+  selector:
+    app: ubuntu-hping-attacker
+  ports:
+    - name: novnc-port     # Name for the noVNC port
+      protocol: TCP
+      port: 6080
+      targetPort: 6080
+      nodePort: 32457   # Fixed NodePort for noVNC
+    - name: vnc-port       # Name for the VNC port
+      protocol: TCP
+      port: 5900
+      targetPort: 5900
+  type: NodePort
+

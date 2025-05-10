@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kali-hping-attacker-service
+spec:
+  type: NodePort
+  selector:
+    app: kali-hping-attacker
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 6080
+      nodePort: 30085
+

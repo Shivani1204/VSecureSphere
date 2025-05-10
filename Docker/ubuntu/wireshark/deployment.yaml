@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-wireshark-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-wireshark-attacker
+  template:
+    metadata:
+      labels:
+        app: ubuntu-wireshark-attacker
+    spec:
+      containers:
+      - name: ubuntu-wireshark-attacker
+        image: shivani1204/wireshark:latest
+        ports:
+        - containerPort: 6080
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - NET_RAW
+

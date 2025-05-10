@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kali-nmap-attacker-service
+spec:
+  selector:
+    app: kali-nmap-attacker
+  ports:
+    - name: vnc-port
+      protocol: TCP
+      port: 5900
+      targetPort: 5900
+      nodePort: 32375
+    - name: novnc-port
+      protocol: TCP
+      port: 6080
+      targetPort: 6080
+      nodePort: 32267
+  type: NodePort
+

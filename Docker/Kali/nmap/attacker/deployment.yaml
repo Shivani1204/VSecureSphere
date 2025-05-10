@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kali-nmap-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kali-nmap-attacker
+  template:
+    metadata:
+      labels:
+        app: kali-nmap-attacker
+    spec:
+      containers:
+        - name: kali-nmap-attacker
+          image: shivani1204/kali-nmap-attacker:latest
+          ports:
+            - containerPort: 5900
+            - containerPort: 6080
+          securityContext:
+            capabilities:
+              add:
+                - NET_RAW
+                - NET_ADMIN
+

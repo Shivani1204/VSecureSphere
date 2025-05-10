@@ -7,7 +7,7 @@ if (localStorage.getItem("loggedIn") === "true") {
 function toggleForm(form) {
     document.getElementById('loginForm').style.display = "none";
     document.getElementById('registerForm').style.display = "none";
-    document.getElementById('forgotPasswordForm').style.display = "none";
+    // document.getElementById('forgotPasswordForm').style.display = "none";
 
     document.getElementById(form + 'Form').style.display = "flex";
 }
@@ -83,6 +83,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 });
 
 // Handle forgot password form submission
+
 document.getElementById("forgotPasswordForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
