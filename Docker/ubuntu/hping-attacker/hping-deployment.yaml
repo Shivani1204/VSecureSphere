@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-hping-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-hping-attacker
+  template:
+    metadata:
+      labels:
+        app: ubuntu-hping-attacker
+    spec:
+      containers:
+      - name: ubuntu-hping-attacker
+        image: shivani1204/ubuntu-hping-attacker:latest
+        ports:
+        - containerPort: 5900
+        - containerPort: 6080

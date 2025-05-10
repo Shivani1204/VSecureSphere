@@ -1,0 +1,20 @@
+1. kali nmap victim
+url : 
+http://192.168.49.2:32417/
+
+2. kali nmap attacker
+url : 
+http://192.168.49.2:30456/
+
+3. kali wireshark
+url : 
+http://192.168.49.2:32421/
+
+4. kali hping attacker
+url : 
+http://192.168.49.2:30085/
+
+5. kali hping victim
+url : 
+http://192.168.49.2:30001/
+

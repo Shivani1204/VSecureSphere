@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-iptables-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-iptables
+  template:
+    metadata:
+      labels:
+        app: ubuntu-iptables
+    spec:
+      containers:
+      - name: ubuntu-iptables-container
+        image: shivani1204/iptables-ubuntu:latest
+        ports:
+        - containerPort: 6080
+        - containerPort: 5900
+        securityContext:
+          privileged: true  # Required for iptables
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ubuntu-iptables-service
+spec:
+  selector:
+    app: ubuntu-iptables
+  ports:
+    - name: novnc
+      protocol: TCP
+      port: 6080
+      targetPort: 6080
+      nodePort: 32400  # Change to an available NodePort
+    - name: vnc
+      protocol: TCP
+      port: 5900
+      targetPort: 5900
+      nodePort: 32401  # Change to an available NodePort
+  type: NodePort
+

@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-04-28T12:26:32Z"
+  labels:
+    app: nessus
+  name: nessus
+  namespace: default
+  resourceVersion: "60928"
+  uid: 3d4049fa-2005-4d6d-8f50-df1483e14620
+spec:
+  clusterIP: 10.97.55.165
+  clusterIPs:
+  - 10.97.55.165
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31833
+    port: 8834
+    protocol: TCP
+    targetPort: 8834
+  selector:
+    app: nessus
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

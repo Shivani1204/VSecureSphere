@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kali-hping-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kali-hping-attacker
+  template:
+    metadata:
+      labels:
+        app: kali-hping-attacker
+    spec:
+      containers:
+        - name: kali-hping-attacker
+          image: shivani1204/kali-hping-attacker:latest
+          ports:
+            - containerPort: 6080
+            - containerPort: 5900
+

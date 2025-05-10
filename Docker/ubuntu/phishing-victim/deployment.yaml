@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-phishing-victim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-phishing-victim
+  template:
+    metadata:
+      labels:
+        app: ubuntu-phishing-victim
+    spec:
+      containers:
+      - name: ubuntu-phishing-victim
+        image: shivani1204/ubuntu-phishing-victim:latest
+        ports:
+        - containerPort: 6080  # ✅ Update to match container's internal port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ubuntu-phishing-victim-service
+spec:
+  type: NodePort
+  selector:
+    app: ubuntu-phishing-victim
+  ports:
+    - protocol: TCP
+      port: 6080           # ✅ Match with containerPort
+      targetPort: 6080     # ✅ Port exposed from the container
+      nodePort: 30003      # ✅ External port to access it on browser
+

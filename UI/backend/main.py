@@ -96,7 +96,7 @@ async def login_user(user: LoginUser):
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     # Now we compare the provided password with the stored hash
-    is_password_correct = bcrypt.checkpw(user.password.encode('utf-8'), existing_user["password"].encode('utf-8'))
+    is_password_correct = await verify_password(user.password, existing_user["password"])
 
     if not is_password_correct:
         raise HTTPException(status_code=401, detail="Invalid username or password")

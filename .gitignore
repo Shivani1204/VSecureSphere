@@ -1,2 +1,12 @@
 # Ignore .vscode folder
 .vscode/
+
+# Ignore Python cache files
+UI/backend/__pycache__/
+*.pyc
+
+# Ignore virtual environment
+UI/backend/venv/
+
+# Ignore .env files
+UI/backend/.env
