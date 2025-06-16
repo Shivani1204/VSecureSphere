@@ -24,9 +24,8 @@
       </div>
     </center>
 
+    <script src="config.js"></script>
     <script>
-      // Get mobile from URL
-      import config from "./config.js";
 
       const urlParams = new URLSearchParams(window.location.search);
       const mobile_number = urlParams.get("mobile");
@@ -40,7 +39,7 @@
 
           try {
             // First verify OTP
-            const verifyResponse = await fetch(`${config.API_URL}/verify-otp`, {
+            const verifyResponse = await fetch(`${window.API_URL}/verify-otp`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

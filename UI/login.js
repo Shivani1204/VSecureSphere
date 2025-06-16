@@ -1,5 +1,4 @@
-// Auto-redirect if already logged in
-import config from './config.js';
+
 
 if (localStorage.getItem("loggedIn") === "true") {
     window.location.href = "index1.html"; // Correct redirect
@@ -32,7 +31,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const password = document.getElementById('loginPassword').value;
 
     try {
-        const response = await fetch(`${config.API_URL}/login`, {
+        const response = await fetch(`${window.API_URL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -64,7 +63,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const password = document.getElementById('registerPassword').value;
 
     try {
-        const response = await fetch(`${config.API_URL}/register`, {
+        const response = await fetch(`${window.API_URL}/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, username, password })
@@ -92,7 +91,7 @@ document.getElementById("forgotPasswordForm").addEventListener("submit", async f
     const email = document.getElementById("forgotEmail").value;
 
     try {
-        const response = await fetch(`${config.API_URL}/forgot-password`, {
+        const response = await fetch(`${window.API_URL}/forgot-password`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
