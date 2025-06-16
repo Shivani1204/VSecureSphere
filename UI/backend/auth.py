@@ -3,6 +3,7 @@ from database import user_collection
 from models import UserRegister, UserLogin, ForgotPasswordRequest, ResetPasswordRequest
 from utils import hash_password, verify_password, send_reset_email
 from bson.objectid import ObjectId
+from dotenv import load_dotenv
 
 router = APIRouter()
 
@@ -34,7 +35,7 @@ def forgot_password(request: ForgotPasswordRequest):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    reset_link = f"http://localhost:8000/reset-password/{str(user['_id'])}"
+    reset_link = f"{os.getenv("API_URL")}/reset-password/{str(user['_id'])}"
     send_reset_email(request.email, reset_link)
     return {"message": "Reset email sent"}
 
