@@ -39,7 +39,7 @@
 
           try {
             // First verify OTP
-            const verifyResponse = await fetch(`${window.API_URL}/verify-otp`, {
+            const verifyResponse = await fetch(`${window.config.API_URL}/verify-otp`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
