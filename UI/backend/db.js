@@ -1,7 +1,7 @@
 // db.js
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://localhost:27017"; // Default MongoDB URI
+const uri = window.config.MONGO_URI || "mongodb://localhost:27017"; // Default MongoDB URI
 const client = new MongoClient(uri);
 
 async function connectDB() {

@@ -9,6 +9,7 @@ import bcrypt
 from datetime import datetime, timedelta
 import secrets
 import os
+from dotenv import load_dotenv
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -27,7 +28,7 @@ EMAIL_ADDRESS = os.getenv("EMAIL_USER", "mrunalshardul234@gmail.com")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASS", "oatb gtic zpjr yqae")
 
 # Connect to MongoDB
-MONGO_DETAILS = "mongodb://localhost:27017"
+MONGO_DETAILS = os.getenv("MONGO_URI") or "mongodb://localhost:27017"
 client = AsyncIOMotorClient(MONGO_DETAILS)
 db = client.vsecuresphere
 users_collection = db.users
