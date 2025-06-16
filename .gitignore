@@ -10,3 +10,4 @@ UI/backend/venv/
 
 # Ignore .env files
 UI/backend/.env
+UI/config.js
