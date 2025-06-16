@@ -4,6 +4,7 @@ from models import UserRegister, UserLogin, ForgotPasswordRequest, ResetPassword
 from utils import hash_password, verify_password, send_reset_email
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
+load_dotenv()
 
 router = APIRouter()
 

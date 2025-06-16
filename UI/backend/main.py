@@ -11,6 +11,9 @@ import secrets
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
+
 # Initialize FastAPI app
 app = FastAPI()
 
