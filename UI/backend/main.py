@@ -29,7 +29,7 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASS", "oatb gtic zpjr yqae")
 
 # Connect to MongoDB
 MONGO_DETAILS = os.getenv("MONGO_URI") or "mongodb://localhost:27017"
-priint(f"Connecting to MongoDB at {MONGO_DETAILS}")
+print(f"Connecting to MongoDB at {MONGO_DETAILS}")
 client = AsyncIOMotorClient(MONGO_DETAILS)
 db = client.vsecuresphere
 users_collection = db.users
