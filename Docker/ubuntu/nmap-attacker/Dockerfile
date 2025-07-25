@@ -1,23 +1,44 @@
-# Use the official Nessus image as base
-FROM tenableofficial/nessus:latest
+# Use the latest Ubuntu base image
+FROM ubuntu:latest
 
-# Create necessary directories
-RUN mkdir -p /opt/nessus/etc/nessus
+# Set environment variables to suppress prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Create a comprehensive nessusd.conf with SSL explicitly disabled
-RUN echo "# Nessus daemon configuration\n\
-xmlrpc_listen_port = 8834\n\
-www_server_only = yes\n\
-www_server_ip = 0.0.0.0\n\
-www_server_port = 8834\n\
-ssl = no\n\
-start_web_server = yes\n\
-force_pubkey_auth = no\n\
-listen_address = 0.0.0.0\n\
-allow_header_host = yes" > /opt/nessus/etc/nessus/nessusd.conf
+# Install necessary packages including XFCE, VNC, network tools, and git for noVNC
+RUN apt-get update && apt-get install -y \
+    xfce4 \
+    xfce4-terminal \
+    tigervnc-standalone-server \
+    tigervnc-common \
+    x11vnc \
+    xvfb \
+    x11-xserver-utils \
+    dbus-x11 \
+    nmap \
+    iputils-ping \
+    net-tools \
+    curl \
+    wget \
+    git \
+    python3-websockify \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Expose the Nessus port
-EXPOSE 8834
+# Set the VNC password (replace 'mypassword' with your desired password)
+RUN mkdir -p ~/.vnc && echo "VSecureSphere" | vncpasswd -f > ~/.vnc/passwd && chmod 600 ~/.vnc/passwd
 
-# Run nessusd with the quiet flag
-CMD ["/opt/nessus/sbin/nessusd", "-q"]
+# Install noVNC and configure it
+RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC && \
+    cd /opt/noVNC && \
+    git checkout v1.3.0 && \
+    ln -s vnc_lite.html index.html
+
+# Expose ports for VNC (5900) and noVNC (6080)
+EXPOSE 5900 6080
+
+# Start the VNC server, noVNC, and websockify when the container starts
+CMD ["sh", "-c", "Xvfb :1 -screen 0 1024x768x16 & \
+                  export DISPLAY=:1 && \
+                  startxfce4 & \
+                  x11vnc -display :1 -usepw -forever -listen 0.0.0.0 -rfbport 5900 -shared & \
+                  /opt/noVNC/utils/novnc_proxy --vnc localhost:5900 --listen 6080"]
+
