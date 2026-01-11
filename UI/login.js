@@ -30,7 +30,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const password = document.getElementById('loginPassword').value;
 
     try {
-        const response = await fetch("http://localhost:8000/login", {
+        const response = await fetch("http://192.168.29.107:31954/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -62,7 +62,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const password = document.getElementById('registerPassword').value;
 
     try {
-        const response = await fetch("http://localhost:8000/register", {
+        const response = await fetch("http://192.168.29.107:31954/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, username, password })
@@ -90,7 +90,7 @@ document.getElementById("forgotPasswordForm").addEventListener("submit", async f
     const email = document.getElementById("forgotEmail").value;
 
     try {
-        const response = await fetch("http://localhost:8000/forgot-password", {
+        const response = await fetch("http://192.168.29.107:31954/forgot-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })

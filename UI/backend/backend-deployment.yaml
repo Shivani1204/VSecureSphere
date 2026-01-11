@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vsecuresphere-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: shivani1204/vsecuresphere-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MONGO_URI
+              value: "mongodb://mongo-service:27017"
+            - name: EMAIL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: email-secrets
+                  key: EMAIL_USER
+            - name: EMAIL_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: email-secrets
+                  key: EMAIL_PASS
+
