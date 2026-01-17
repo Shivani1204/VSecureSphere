@@ -10,3 +10,6 @@ UI/backend/venv/
 
 # Ignore .env files
 UI/backend/.env
+
+venv/
+*.zip
