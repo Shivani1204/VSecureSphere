@@ -164,26 +164,25 @@ Paste EXACTLY:
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: InitConfiguration
 nodeRegistration:
-criSocket: unix:///run/containerd/containerd.sock
-kubeletExtraArgs:
-fail-swap-on: "false"
+  criSocket: unix:///run/containerd/containerd.sock
+  kubeletExtraArgs:
+    fail-swap-on: "false"
 
 ---
-
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
 kubernetesVersion: v1.33.7
 networking:
-podSubnet: 10.244.0.0/16
+  podSubnet: 10.244.0.0/16
 
 ---
-
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 cgroupDriver: systemd
 failSwapOn: false
 memorySwap:
-swapBehavior: LimitedSwap
+  swapBehavior: LimitedSwap
+
 ```
 
 Save and exit.
