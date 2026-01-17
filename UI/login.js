@@ -1,6 +1,6 @@
 // Auto-redirect if already logged in
 if (localStorage.getItem("loggedIn") === "true") {
-    window.location.href = "index1.html"; // Correct redirect
+    window.location.href = "homepage.html"; // Correct redirect
 }
 
 // Toggle between forms
@@ -42,7 +42,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             localStorage.setItem("loggedIn", "true");
             localStorage.setItem("username", username);
             alert(data.message || "Login successful!");
-            window.location.href = "index1.html";
+            window.location.href = "homepage.html";
         } else {
             alert(data.detail || "Login failed. Check your credentials.");
         }
