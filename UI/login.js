@@ -39,7 +39,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 
     try {
-        const response = await fetch("http://192.168.29.107:31954/login", {
+        const response = await fetch("http://3.110.193.27:31954/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -85,7 +85,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     }
 
     try {
-        const response = await fetch("http://192.168.29.107:31954/register", {
+        const response = await fetch("http://3.110.193.27:31954/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -129,7 +129,7 @@ document.getElementById("forgotPasswordForm").addEventListener("submit", async f
     }
 
     try {
-        const response = await fetch("http://192.168.29.107:31954/forgot-password", {
+        const response = await fetch("http://3.110.193.27:31954/forgot-password", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

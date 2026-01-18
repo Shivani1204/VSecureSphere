@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mongo
 spec:
+  serviceName: mongo-service
   replicas: 1
   selector:
     matchLabels:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mongo
-          image: shivani1204/mongo:latest
+          image: mongo:6.0
           ports:
             - containerPort: 27017
           args:
@@ -22,8 +23,12 @@ spec:
           volumeMounts:
             - name: mongo-data
               mountPath: /data/db
-      volumes:
-        - name: mongo-data
-          persistentVolumeClaim:
-            claimName: mongo-pvc
-
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-data
+      spec:
+        accessModes: ["ReadWriteMany"]
+        storageClassName: mongo-nfs-sc
+        resources:
+          requests:
+            storage: 5Gi
