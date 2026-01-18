@@ -22,20 +22,48 @@
 </div>
 
 <script>
-  const user = JSON.parse(localStorage.getItem("user"));
+  const API_BASE = "http://3.110.193.27:31201";
 
-  if (!user) window.location.href = "index.html";
+  const username = localStorage.getItem("username");
+  if (!username) {
+    window.location.href = "index.html";
+  }
 
-  document.getElementById("pName").innerText = user.name;
-  document.getElementById("pEmail").innerText = user.email;
-  document.getElementById("pScore").innerText = user.quizScore;
+  async function loadProfile() {
+    try {
+      const response = await fetch(`${API_BASE}/profile/${username}`);
 
-  const labsList = document.getElementById("labsList");
-  user.labsCompleted.forEach(lab => {
-    const li = document.createElement("li");
-    li.textContent = lab;
-    labsList.appendChild(li);
-  });
+      if (!response.ok) {
+        throw new Error("Failed to load profile");
+      }
+
+      const user = await response.json();
+
+      document.getElementById("pName").innerText = user.name;
+      document.getElementById("pEmail").innerText = user.email;
+      document.getElementById("pScore").innerText = user.quizScore;
+
+      const labsList = document.getElementById("labsList");
+      labsList.innerHTML = "";
+
+      if (user.labsCompleted.length === 0) {
+        labsList.innerHTML = "<li>No labs completed yet</li>";
+      } else {
+        user.labsCompleted.forEach(lab => {
+          const li = document.createElement("li");
+          li.textContent = lab;
+          labsList.appendChild(li);
+        });
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Unable to load profile. Please login again.");
+      window.location.href = "index.html";
+    }
+  }
+
+  loadProfile();
 </script>
 
 </body>

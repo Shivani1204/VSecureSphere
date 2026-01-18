@@ -206,3 +206,38 @@ async def get_attempts(user_id: str, experiment_id: str):
     }).to_list(length=None)
 
     return {"attempts": attempts}
+
+# =========================
+# USER PROFILE (NEW)
+# =========================
+@app.get("/profile/{username}")
+async def get_user_profile(username: str):
+    # Fetch user basic info (exclude password)
+    user = await users_collection.find_one(
+        {"username": username},
+        {"_id": 0, "password": 0}
+    )
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # Fetch knowledge check attempts
+    attempts = await attempts_collection.find(
+        {"user_id": username}
+    ).to_list(length=None)
+
+    total_score = sum(a.get("score", 0) for a in attempts)
+    labs_completed = list({
+        a.get("experiment_id")
+        for a in attempts
+        if a.get("passed") is True
+    })
+
+    return {
+        "name": user.get("name"),
+        "email": user.get("email"),
+        "username": user.get("username"),
+        "quizScore": total_score,
+        "labsCompleted": labs_completed
+    }
+

@@ -1,4 +1,4 @@
-const API_BASE = "http://3.110.193.27:31954";
+const API_BASE = "http://3.110.193.27:31201";
 
 // ===============================
 // AUTO REDIRECT IF ALREADY LOGGED IN
@@ -108,8 +108,24 @@ document.getElementById("registerForm").addEventListener("submit", async functio
             return;
         }
 
+        // CREATE USER OBJECT ON REGISTER
+        const user = {
+            name,
+            email,
+            username,
+            quizScore: 0,
+            labsCompleted: []
+        };
+
+        // STORE USER LOCALLY (for profile page)
+        localStorage.setItem("user", JSON.stringify(user));
+
+        // ENSURE USER IS NOT LOGGED IN YET
+        localStorage.removeItem("access_token");
+
         alert("Registration successful 🎉 Please login.");
         toggleForm("login");
+
 
     } catch (error) {
         console.error("Register error:", error);
