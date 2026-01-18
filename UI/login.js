@@ -1,7 +1,9 @@
+const API_BASE = "http://3.110.193.27:31954";
+
 // ===============================
 // AUTO REDIRECT IF ALREADY LOGGED IN
 // ===============================
-if (localStorage.getItem("access_token")) {
+if (localStorage.getItem("access_token") === "logged_in") {
     window.location.href = "homepage.html";
 }
 
@@ -39,7 +41,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     }
 
     try {
-        const response = await fetch("http://3.110.193.27:31954/login", {
+        const response = await fetch(`${API_BASE}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -56,7 +58,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         }
 
         // ✅ SAVE JWT + USER INFO
-        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("access_token", "logged_in");
         localStorage.setItem("username", username);
 
         alert("Login successful ✅");
@@ -85,7 +87,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     }
 
     try {
-        const response = await fetch("http://3.110.193.27:31954/register", {
+        const response = await fetch(`${API_BASE}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -129,7 +131,7 @@ document.getElementById("forgotPasswordForm").addEventListener("submit", async f
     }
 
     try {
-        const response = await fetch("http://3.110.193.27:31954/forgot-password", {
+        const response = await fetch(`${API_BASE}/forgot-password`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
