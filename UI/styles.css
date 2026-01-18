@@ -893,3 +893,45 @@ body {
 .logout-link:hover {
   text-decoration: underline;
 }
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #c066dcdd;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 180px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.profile-dropdown a {
+  display: block;
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.profile-dropdown a:hover {
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.profile-dropdown.show {
+  display: block;
+}
+
+.profile-card {
+  width: 400px;
+  margin: 120px auto;
+  background: #ffffffdd;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}

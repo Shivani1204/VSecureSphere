@@ -6,53 +6,122 @@
     <title>Conclusion</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="experiment-container">
-        <aside class="sidebar">
-            <ul>
-                <h3><u><b>Experiment 1:-</b></u></h3>
-                <li><a href="homepage.html">&#8226; Home</a></li>
-                <li><a href="page1.html">&#8226; Introduction</a></li>
-                <li><a href="aim.html">&#8226; Aim</a></li>
-                <li><a href="theory.html">&#8226; Theory</a></li>
-                <li><a href="procedure.html">&#8226; Procedure</a></li>
-                <li><a href="perform-lab.html">&#8226; Perform Lab</a></li>
-                <li><a href="knowledge-check.html">&#8226; Knowledge Check</a></li>
-                <li><a href="conclusion.html">&#8226; Conclusion</a></li>
-                
-            </ul>
-        </aside>
 
-        <div class="content-box">
-            <h2><u>Conclusion</u></h2>
-            <br>
-            <p>
-                In this experiment, we successfully explored how <b>Nmap</b> can be used for <b>network scanning</b> to gather critical information about <b>active hosts, open ports, and running services</b>. By performing various types of scans, we gained hands-on experience in <b>detecting live devices, analyzing network configurations, and understanding port states</b> in the context of cybersecurity.
-            </p>
-        
-            <p>
-                Through practical application, we were able to:
-                <ul>
-                    <li><b>Identify live hosts</b> on a network using different scanning techniques.</li>
-                    <li><b>Detect open ports</b> and analyze the <b>services</b> running on them.</li>
-                    <li>Understand the significance of different <b>scan types</b> such as <b>SYN Scan (-sS), TCP Connect Scan (-sT), UDP Scan (-sU), and OS Detection (-O)</b>.</li>
-                    <li>Observe how the <b>Nmap Scripting Engine (NSE)</b> enhances scanning capabilities by detecting <b>vulnerabilities</b> and performing <b>in-depth security audits</b>.</li>
-                    <li>Analyze the role of <b>firewalls and intrusion detection systems (IDS)</b> in blocking or responding to scans.</li>
-                </ul>
-            </p>
-        
-            <p>
-                This experiment emphasized the importance of <b>network security and proactive monitoring</b>. Open ports can serve as potential <b>entry points for attackers</b>, making regular scanning a necessary practice for organizations to safeguard their infrastructure. <b>Nmap</b> proves to be an <b>essential tool</b> for <b>security professionals and network administrators</b>, allowing them to <b>detect misconfigurations, identify outdated services, and ensure unnecessary ports remain closed</b>.
-            </p>
-        
-            <p>
-                Furthermore, we explored how different <b>scan parameters and timing options</b> impact the efficiency of network scans. Using <b>optimized scan techniques</b> can help balance <b>speed and accuracy</b> while <b>avoiding detection by security systems</b>. Understanding these concepts is crucial for <b>ethical hacking, penetration testing, and cybersecurity defense strategies</b>.
-            </p>
-        
-            <p>
-                Overall, this experiment reinforced the significance of <b>Nmap</b> in <b>cybersecurity and network management</b>. By applying these techniques in <b>real-world scenarios</b>, professionals can <b>strengthen network defenses, detect vulnerabilities early, and maintain a secure digital environment</b>.
-            </p>
+<body>
+
+<div class="experiment-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul>
+            <h3><u><b>Experiment 1:-</b></u></h3>
+            <li><a href="homepage.html">&#8226; Home</a></li>
+            <li><a href="page1.html">&#8226; Introduction</a></li>
+            <li><a href="aim.html">&#8226; Aim</a></li>
+            <li><a href="theory.html">&#8226; Theory</a></li>
+            <li><a href="procedure.html">&#8226; Procedure</a></li>
+            <li><a href="perform-lab.html">&#8226; Perform Lab</a></li>
+            <li><a href="knowledge-check.html">&#8226; Knowledge Check</a></li>
+            <li><a href="conclusion.html">&#8226; Conclusion</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content-box">
+
+        <h2><u>Conclusion</u></h2>
+
+        <p>
+            In this experiment, we successfully explored how <b>Nmap</b> can be used for
+            <b>network scanning</b> to gather critical information about
+            <b>active hosts, open ports, and running services</b>.
+        </p>
+
+        <p>
+            Through practical application, we were able to:
+        </p>
+
+        <ul>
+            <li><b>Identify live hosts</b> on a network using different scanning techniques.</li>
+            <li><b>Detect open ports</b> and analyze the <b>services</b> running on them.</li>
+            <li>Understand the significance of different <b>scan types</b> such as
+                <b>SYN Scan (-sS), TCP Connect Scan (-sT), UDP Scan (-sU), and OS Detection (-O)</b>.
+            </li>
+            <li>Observe how the <b>Nmap Scripting Engine (NSE)</b> enhances scanning capabilities.</li>
+            <li>Analyze the role of <b>firewalls and intrusion detection systems (IDS)</b>.</li>
+        </ul>
+
+        <p>
+            This experiment emphasized the importance of <b>network security and proactive monitoring</b>.
+            Open ports can serve as potential <b>entry points for attackers</b>, making regular scanning essential.
+        </p>
+
+        <p>
+            Furthermore, we explored how different <b>scan parameters and timing options</b>
+            impact the efficiency of network scans. These concepts are crucial for
+            <b>ethical hacking, penetration testing, and cybersecurity defense</b>.
+        </p>
+
+        <p>
+            Overall, this experiment reinforced the significance of <b>Nmap</b> in
+            <b>cybersecurity and network management</b>, enabling professionals to
+            <b>maintain a secure digital environment</b>.
+        </p>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- Finish Lab Button -->
+        <div style="text-align: center;">
+            <button class="fancy-button"
+                    onclick="markLabCompleted('port_scanning')">
+                Finish Lab
+            </button>
         </div>
-              
+
+    </div>
+</div>
+
+<!-- Script -->
+<script>
+async function markLabCompleted(experimentId) {
+    try {
+        const token = localStorage.getItem("access_token");
+
+        if (!token) {
+            alert("Please login first");
+            window.location.href = "../index.html";
+            return;
+        }
+
+        const response = await fetch("http://127.0.0.1:8000/mark-lab-complete", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ experiment_id: experimentId })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Lab completed successfully ✅");
+            window.location.href = "../homepage.html";
+        } else {
+            alert(data.detail || "Failed to mark lab complete");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Server error. Please try again.");
+    }
+}
+</script>
+
 </body>
 </html>

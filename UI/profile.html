@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="profile-card">
+  <h2>User Profile</h2>
+  <p><strong>Name:</strong> <span id="pName"></span></p>
+  <p><strong>Email:</strong> <span id="pEmail"></span></p>
+
+  <hr>
+
+  <h3>Quiz Performance</h3>
+  <p>Total Score: <span id="pScore"></span></p>
+
+  <h3>Labs Completed</h3>
+  <ul id="labsList"></ul>
+</div>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) window.location.href = "index.html";
+
+  document.getElementById("pName").innerText = user.name;
+  document.getElementById("pEmail").innerText = user.email;
+  document.getElementById("pScore").innerText = user.quizScore;
+
+  const labsList = document.getElementById("labsList");
+  user.labsCompleted.forEach(lab => {
+    const li = document.createElement("li");
+    li.textContent = lab;
+    labsList.appendChild(li);
+  });
+</script>
+
+</body>
+</html>

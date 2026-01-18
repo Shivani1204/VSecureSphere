@@ -17,7 +17,20 @@
             <li><a href="#about"><i class="fa fa-fw fa-address-card"></i>About Us</a></li>
             <li><a href="#experiments"><i class="fa fa-fw fa-bug"></i>Experiments</a></li>
             <li><a href="#contact"><i class="fa fa-fw fa-address-book"></i>Contact Us</a></li>
-            <li><a href="#" onclick="logout()" class="logout-link"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li>
+            <li class="profile-menu">
+            <a href="#" id="profileBtn">
+                <i class="fa fa-fw fa-user"></i> Profile
+            </a>
+
+            <!-- Dropdown -->
+            <div class="profile-dropdown" id="profileDropdown">
+                <p id="navUsername">User</p>
+                <hr>
+                <a href="profile.html">View Profile</a>
+                <a href="#" onclick="logout()" class="logout-link">Logout</a>
+            </div>
+            </li>
+
         </ul>
     </nav>
     
@@ -252,6 +265,28 @@
         });
         
     </script>
+    <script>
+    const profileBtn = document.getElementById("profileBtn");
+    const dropdown = document.getElementById("profileDropdown");
+
+    profileBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle("show");
+    });
+
+    // Load username
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+        document.getElementById("navUsername").innerText = user.name;
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.closest('.profile-menu')) {
+        dropdown.classList.remove("show");
+        }
+    }
+    </script>
+
     
 </body>
 </html>
