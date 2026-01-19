@@ -22,49 +22,39 @@
 </div>
 
 <script>
-  const API_BASE = "http://3.110.193.27:31201";
+const API_BASE = "http://3.110.193.27:31201";
+const username = localStorage.getItem("username");
 
-  const username = localStorage.getItem("username");
-  if (!username) {
-    window.location.href = "index.html";
-  }
+if (!username) {
+    window.location.href = "login.html";
+}
 
-  async function loadProfile() {
-    try {
-      const response = await fetch(`${API_BASE}/profile/${username}`);
-
-      if (!response.ok) {
-        throw new Error("Failed to load profile");
-      }
-
-      const user = await response.json();
-
-      document.getElementById("pName").innerText = user.name;
-      document.getElementById("pEmail").innerText = user.email;
-      document.getElementById("pScore").innerText = user.quizScore;
+fetch(`${API_BASE}/profile/${username}`)
+  .then(res => res.json())
+  .then(data => {
+      document.getElementById("pName").innerText = data.name;
+      document.getElementById("pEmail").innerText = data.email;
+      document.getElementById("pScore").innerText = data.totalScore;
 
       const labsList = document.getElementById("labsList");
       labsList.innerHTML = "";
 
-      if (user.labsCompleted.length === 0) {
-        labsList.innerHTML = "<li>No labs completed yet</li>";
+      if (data.labsCompleted.length === 0) {
+          labsList.innerHTML = "<li>No labs completed yet</li>";
       } else {
-        user.labsCompleted.forEach(lab => {
-          const li = document.createElement("li");
-          li.textContent = lab;
-          labsList.appendChild(li);
-        });
+          data.labsCompleted.forEach(lab => {
+              const li = document.createElement("li");
+              li.innerText = lab;
+              labsList.appendChild(li);
+          });
       }
-
-    } catch (err) {
-      console.error(err);
+  })
+  .catch(err => {
       alert("Unable to load profile. Please login again.");
-      window.location.href = "index.html";
-    }
-  }
-
-  loadProfile();
+      window.location.href = "login.html";
+  });
 </script>
+
 
 </body>
 </html>

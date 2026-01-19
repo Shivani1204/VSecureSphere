@@ -72,6 +72,11 @@ class KnowledgeCheckAttempt(BaseModel):
     score: int
     passed: bool
 
+class LabCompletion(BaseModel):
+    user_id: str
+    experiment_id: str
+
+
 # =========================
 # Helpers
 # =========================
@@ -207,12 +212,30 @@ async def get_attempts(user_id: str, experiment_id: str):
 
     return {"attempts": attempts}
 
+@app.post("/complete-lab")
+async def complete_lab(data: LabCompletion):
+    existing = await db.completed_labs.find_one({
+        "user_id": data.user_id,
+        "experiment_id": data.experiment_id
+    })
+
+    if existing:
+        return {"message": "Lab already completed"}
+
+    await db.completed_labs.insert_one({
+        "user_id": data.user_id,
+        "experiment_id": data.experiment_id,
+        "completed_at": datetime.utcnow()
+    })
+
+    return {"message": "Lab marked as completed"}
+
+
 # =========================
 # USER PROFILE (NEW)
 # =========================
 @app.get("/profile/{username}")
-async def get_user_profile(username: str):
-    # Fetch user basic info (exclude password)
+async def get_profile(username: str):
     user = await users_collection.find_one(
         {"username": username},
         {"_id": 0, "password": 0}
@@ -221,23 +244,20 @@ async def get_user_profile(username: str):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    # Fetch knowledge check attempts
-    attempts = await attempts_collection.find(
-        {"user_id": username}
-    ).to_list(length=None)
+    attempts = await attempts_collection.find({
+        "user_id": username
+    }).to_list(length=None)
 
-    total_score = sum(a.get("score", 0) for a in attempts)
-    labs_completed = list({
-        a.get("experiment_id")
-        for a in attempts
-        if a.get("passed") is True
-    })
+    completed_labs = await db.completed_labs.find({
+        "user_id": username
+    }).to_list(length=None)
+
+    total_score = sum(a["score"] for a in attempts)
 
     return {
-        "name": user.get("name"),
-        "email": user.get("email"),
-        "username": user.get("username"),
-        "quizScore": total_score,
-        "labsCompleted": labs_completed
+        "name": user["name"],
+        "email": user["email"],
+        "totalScore": total_score,
+        "labsCompleted": [lab["experiment_id"] for lab in completed_labs]
     }
 

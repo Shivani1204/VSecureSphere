@@ -52,8 +52,40 @@
             <p>
                 Overall, this experiment emphasized the importance of <b>phishing prevention</b> as a part of a strong cybersecurity strategy. By applying these techniques in <b>realistic training environments</b>, organizations can <b>prepare users to recognize threats, reduce the attack surface, and enhance overall security posture</b>.
             </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- Finish Lab Button -->
+            <div style="text-align: center;">
+                <button onclick="finishLab()">Finish Lab</button>
+            </div>
+
         </div>
-        
-              
+    </div>
+
+<!-- Script -->
+<script>
+async function finishLab() {
+    const username = localStorage.getItem("username");
+
+    await fetch("http://3.110.193.27:31201/complete-lab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id: username,
+            experiment_id: "phis"
+        })
+    });
+
+    window.location.href = "../homepage.html";
+}
+
+</script>
+
 </body>
 </html>
+        

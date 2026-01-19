@@ -77,10 +77,7 @@
 
         <!-- Finish Lab Button -->
         <div style="text-align: center;">
-            <button class="fancy-button"
-                    onclick="markLabCompleted('port_scanning')">
-                Finish Lab
-            </button>
+            <button onclick="finishLab()">Finish Lab</button>
         </div>
 
     </div>
@@ -88,39 +85,21 @@
 
 <!-- Script -->
 <script>
-async function markLabCompleted(experimentId) {
-    try {
-        const token = localStorage.getItem("access_token");
+async function finishLab() {
+    const username = localStorage.getItem("username");
 
-        if (!token) {
-            alert("Please login first");
-            window.location.href = "../index.html";
-            return;
-        }
+    await fetch("http://3.110.193.27:31201/complete-lab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id: username,
+            experiment_id: "nmap"
+        })
+    });
 
-        const response = await fetch("http://127.0.0.1:8000/mark-lab-complete", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({ experiment_id: experimentId })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            alert("Lab completed successfully ✅");
-            window.location.href = "../homepage.html";
-        } else {
-            alert(data.detail || "Failed to mark lab complete");
-        }
-
-    } catch (error) {
-        console.error(error);
-        alert("Server error. Please try again.");
-    }
+    window.location.href = "../homepage.html";
 }
+
 </script>
 
 </body>

@@ -52,9 +52,40 @@
             <p>
                 Overall, this experiment reinforced the significance of incorporating IDS into an organization’s <b>defense-in-depth strategy</b>. A well-configured IDS acts as an early warning system, helping to <b>identify suspicious behavior, respond to threats faster, and improve the overall cybersecurity posture</b>.
             </p>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- Finish Lab Button -->
+            <div style="text-align: center;">
+                <button onclick="finishLab()">Finish Lab</button>
+            </div>
+
         </div>
-        
-        
-              
+    </div>
+
+<!-- Script -->
+<script>
+async function finishLab() {
+    const username = localStorage.getItem("username");
+
+    await fetch("http://3.110.193.27:31201/complete-lab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id: username,
+            experiment_id: "ids"
+        })
+    });
+
+    window.location.href = "../homepage.html";
+}
+
+</script>
+
 </body>
 </html>

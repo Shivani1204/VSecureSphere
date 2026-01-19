@@ -53,9 +53,40 @@
             <p>
                 Overall, the Meta experiment demonstrated how automation, combined with expert knowledge, can enhance the speed, accuracy, and effectiveness of penetration testing. These skills are essential for strengthening network security, preventing breaches, and ensuring that systems are resilient against evolving threats.
             </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- Finish Lab Button -->
+            <div style="text-align: center;">
+                <button onclick="finishLab()">Finish Lab</button>
+            </div>
+
         </div>
-        
-        
-              
+    </div>
+
+<!-- Script -->
+<script>
+async function finishLab() {
+    const username = localStorage.getItem("username");
+
+    await fetch("http://3.110.193.27:31201/complete-lab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id: username,
+            experiment_id: "meta"
+        })
+    });
+
+    window.location.href = "../homepage.html";
+}
+
+</script>
+
 </body>
 </html>
+        

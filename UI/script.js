@@ -69,6 +69,40 @@ function checkAnswers() {
     if (unanswered > 0) {
         result.innerHTML += `<p style="color: blue;">⚠️ You left ${unanswered} question(s) unanswered.</p>`;
     }
+
+    saveQuizResult(score, EXPERIMENT_ID);
+
+    async function saveQuizResult(score, experimentId) {
+        const username = localStorage.getItem("username");
+        const API_BASE = "http://3.110.193.27:31201";
+
+        if (!username) {
+            console.warn("User not logged in");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE}/submit-knowledge-check`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: username,
+                    experiment_id: experimentId,
+                    score: score,
+                    passed: score >= 5   // pass criteria
+                })
+            });
+
+            const data = await response.json();
+            console.log("Quiz saved to backend:", data);
+
+        } catch (err) {
+            console.error("Error saving quiz:", err);
+        }
+    }
+
 }
 
 // Optional: Reset attempts (for testing or if you want a reset button)

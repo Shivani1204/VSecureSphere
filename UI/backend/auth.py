@@ -33,8 +33,8 @@ def forgot_password(request: ForgotPasswordRequest):
     user = user_collection.find_one({"email": request.email})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    
-    reset_link = f"http://3.110.193.27:31954/reset-password/{str(user['_id'])}"
+
+    reset_link = f"http://3.110.193.27:31201/reset-password/{str(user['_id'])}"
     send_reset_email(request.email, reset_link)
     return {"message": "Reset email sent"}
 

@@ -78,9 +78,40 @@
                 Learning to detect and mitigate <b>SQL Injection</b> is a crucial skill for <b>ethical hackers, security professionals, and web developers</b>. 
                 By applying these techniques in <b>real-world security assessments</b>, organizations can strengthen their applications against database-related attacks and protect user data from exploitation.
             </p>
-        </div>
-        
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-              
+            <!-- Finish Lab Button -->
+            <div style="text-align: center;">
+                <button onclick="finishLab()">Finish Lab</button>
+            </div>
+
+        </div>
+    </div>
+
+<!-- Script -->
+<script>
+async function finishLab() {
+    const username = localStorage.getItem("username");
+
+    await fetch("http://3.110.193.27:31201/complete-lab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id: username,
+            experiment_id: "sqlmap"
+        })
+    });
+
+    window.location.href = "../homepage.html";
+}
+
+</script>
+
 </body>
 </html>
+        
