@@ -1,21 +1,36 @@
-// Initialize attempts counter
-let attempts = localStorage.getItem('hping_attempts') ? parseInt(localStorage.getItem('hping_attempts')) : 0;
+// ===============================
+// CONFIG
+// ===============================
+const API_BASE = "http://3.110.193.27:31201";
 
+// Each HTML must define this:
+// const EXPERIMENT_ID = "hping";
+
+// ===============================
+// ATTEMPTS COUNTER (per lab)
+// ===============================
+let attemptsKey = `${EXPERIMENT_ID}_attempts`;
+let attempts = localStorage.getItem(attemptsKey)
+    ? parseInt(localStorage.getItem(attemptsKey))
+    : 0;
+
+// ===============================
+// MAIN FUNCTION
+// ===============================
 function checkAnswers() {
     let score = 0;
     let totalQuestions = 10;
     let unanswered = 0;
 
-    // Increase attempt count
     attempts++;
-    localStorage.setItem('hping_attempts', attempts);
+    localStorage.setItem(attemptsKey, attempts);
 
     // Clear previous highlights
     document.querySelectorAll(".question").forEach((q) => {
         q.style.border = "";
         q.style.backgroundColor = "";
-        q.querySelectorAll('label').forEach((label) => {
-            label.style.color = ""; // reset label colors
+        q.querySelectorAll("label").forEach((label) => {
+            label.style.color = "";
         });
     });
 
@@ -27,86 +42,89 @@ function checkAnswers() {
         if (!selectedOption) {
             unanswered++;
             questionDiv.style.border = "2px solid #2196F3";
-            questionDiv.style.backgroundColor = "#E3F2FD"; // Light blue for unanswered
+            questionDiv.style.backgroundColor = "#E3F2FD";
         } else if (selectedOption.value === "correct") {
             score++;
             selectedOption.parentElement.style.color = "green";
             questionDiv.style.border = "2px solid green";
-            questionDiv.style.backgroundColor = "#e6ffe6"; // light green background
+            questionDiv.style.backgroundColor = "#e6ffe6";
         } else {
             selectedOption.parentElement.style.color = "red";
             questionDiv.style.border = "2px solid red";
-            questionDiv.style.backgroundColor = "#ffe6e6"; // light red background
-            correctOption.parentElement.style.color = "green"; // highlight correct answer
+            questionDiv.style.backgroundColor = "#ffe6e6";
+            correctOption.parentElement.style.color = "green";
         }
     }
 
-    // Display result
-    const result = document.getElementById('result');
-    result.innerHTML = `<h3>You scored ${score} out of ${totalQuestions}</h3>
-                        <p><strong>Attempt Number:</strong> ${attempts}</p>`;
-    result.style.textAlign = "center";
-    result.style.marginTop = "20px";
-    result.style.padding = "15px";
-    result.style.fontSize = "18px";
-    result.style.fontWeight = "bold";
-    result.style.display = "flex";  
-    result.style.flexDirection = "column";  
-    result.style.alignItems = "center";  
-    result.style.justifyContent = "center";
+    // ===============================
+    // SHOW RESULT
+    // ===============================
+    const result = document.getElementById("result");
+    result.innerHTML = `
+        <h3>You scored ${score} out of ${totalQuestions}</h3>
+        <p><strong>Attempt Number:</strong> ${attempts}</p>
+    `;
+    result.style.display = "flex";
+    result.style.flexDirection = "column";
+    result.style.alignItems = "center";
 
-    if (score === totalQuestions) {
+    const passed = score >= totalQuestions / 2;
+
+    if (passed) {
         result.style.color = "green";
-        result.innerHTML += `<p style="color: green;">🎉 Excellent! Perfect Score! 🎉</p>`;
-    } else if (score >= totalQuestions / 2) {
-        result.style.color = "orange";
-        result.innerHTML += `<p style="color: orange;">😊 Good job! Keep improving! 😊</p>`;
+        result.innerHTML += `<p>✅ Passed</p>`;
     } else {
         result.style.color = "red";
-        result.innerHTML += `<p style="color: red;">💡 Needs Improvement. Try again! 💡</p>`;
+        result.innerHTML += `<p>❌ Needs Improvement</p>`;
     }
 
     if (unanswered > 0) {
-        result.innerHTML += `<p style="color: blue;">⚠️ You left ${unanswered} question(s) unanswered.</p>`;
+        result.innerHTML += `<p style="color: blue;">⚠️ ${unanswered} unanswered</p>`;
     }
 
-    saveQuizResult(score, EXPERIMENT_ID);
-
-    async function saveQuizResult(score, experimentId) {
-        const username = localStorage.getItem("username");
-        const API_BASE = "http://3.110.193.27:31201";
-
-        if (!username) {
-            console.warn("User not logged in");
-            return;
-        }
-
-        try {
-            const response = await fetch(`${API_BASE}/submit-knowledge-check`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    user_id: username,
-                    experiment_id: experimentId,
-                    score: score,
-                    passed: score >= 5   // pass criteria
-                })
-            });
-
-            const data = await response.json();
-            console.log("Quiz saved to backend:", data);
-
-        } catch (err) {
-            console.error("Error saving quiz:", err);
-        }
-    }
-
+    // ===============================
+    // SAVE TO BACKEND
+    // ===============================
+    saveQuizResult(score, passed);
 }
 
-// Optional: Reset attempts (for testing or if you want a reset button)
+// ===============================
+// BACKEND CALL
+// ===============================
+async function saveQuizResult(score, passed) {
+    const username = localStorage.getItem("username");
+
+    if (!username) {
+        alert("Please login again");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/submit-knowledge-check`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: username,
+                experiment_id: EXPERIMENT_ID,
+                score: score,
+                passed: passed
+            })
+        });
+
+        const data = await response.json();
+        console.log("Quiz saved:", data);
+
+    } catch (error) {
+        console.error("Error saving quiz:", error);
+    }
+}
+
+// ===============================
+// RESET (OPTIONAL)
+// ===============================
 function resetAttempts() {
-    localStorage.removeItem('hping_attempts');
+    localStorage.removeItem(attemptsKey);
     attempts = 0;
 }

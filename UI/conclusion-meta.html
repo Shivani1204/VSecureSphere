@@ -66,26 +66,14 @@
             </div>
 
         </div>
+
+        <script>
+           const EXPERIMENT_ID = "meta";
+        </script>
+        <script src="conclusion.js"></script>
+
     </div>
 
-<!-- Script -->
-<script>
-async function finishLab() {
-    const username = localStorage.getItem("username");
-
-    await fetch("http://3.110.193.27:31201/complete-lab", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            user_id: username,
-            experiment_id: "meta"
-        })
-    });
-
-    window.location.href = "../homepage.html";
-}
-
-</script>
 
 </body>
 </html>

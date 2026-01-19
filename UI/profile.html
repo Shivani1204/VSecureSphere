@@ -22,37 +22,36 @@
 </div>
 
 <script>
-const API_BASE = "http://3.110.193.27:31201";
 const username = localStorage.getItem("username");
 
 if (!username) {
     window.location.href = "login.html";
 }
 
-fetch(`${API_BASE}/profile/${username}`)
-  .then(res => res.json())
-  .then(data => {
-      document.getElementById("pName").innerText = data.name;
-      document.getElementById("pEmail").innerText = data.email;
-      document.getElementById("pScore").innerText = data.totalScore;
+fetch(`http://3.110.193.27:31201/profile/${username}`)
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("pName").innerText = data.name;
+        document.getElementById("pEmail").innerText = data.email;
+        document.getElementById("pScore").innerText = data.total_score;
 
-      const labsList = document.getElementById("labsList");
-      labsList.innerHTML = "";
+        const labsList = document.getElementById("labsList");
+        labsList.innerHTML = "";
 
-      if (data.labsCompleted.length === 0) {
-          labsList.innerHTML = "<li>No labs completed yet</li>";
-      } else {
-          data.labsCompleted.forEach(lab => {
-              const li = document.createElement("li");
-              li.innerText = lab;
-              labsList.appendChild(li);
-          });
-      }
-  })
-  .catch(err => {
-      alert("Unable to load profile. Please login again.");
-      window.location.href = "login.html";
-  });
+        if (data.labs.length === 0) {
+            labsList.innerHTML = "<li>No labs completed yet</li>";
+        } else {
+            data.labs.forEach(lab => {
+                const li = document.createElement("li");
+                li.innerText = lab;
+                labsList.appendChild(li);
+            });
+        }
+    })
+    .catch(() => {
+        alert("Unable to load profile. Please login again.");
+        window.location.href = "login.html";
+    });
 </script>
 
 
