@@ -38,11 +38,11 @@ def forgot_password(request: ForgotPasswordRequest):
     send_reset_email(request.email, reset_link)
     return {"message": "Reset email sent"}
 
-@router.post("/reset-password/{user_id}")
-def reset_password(user_id: str, request: ResetPasswordRequest):
+@router.post("/reset-password/{username}")
+def reset_password(username: str, request: ResetPasswordRequest):
     hashed = hash_password(request.new_password)
     result = user_collection.update_one(
-        {"_id": ObjectId(user_id)},
+        {"_id": ObjectId(username)},
         {"$set": {"password": hashed}}
     )
     if result.modified_count == 0:

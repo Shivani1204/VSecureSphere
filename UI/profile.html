@@ -14,8 +14,20 @@
 
   <hr>
 
-  <h3>Quiz Performance</h3>
-  <p>Total Score: <span id="pScore"></span></p>
+  <h3>Quiz History</h3>
+
+  <table id="quizTable" border="1" width="100%" style="border-collapse:collapse">
+    <thead>
+      <tr>
+        <th>Experiment</th>
+        <th>Attempt</th>
+        <th>Score</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <h3>Labs Completed</h3>
   <ul id="labsList"></ul>
@@ -25,34 +37,66 @@
 const username = localStorage.getItem("username");
 
 if (!username) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 fetch(`http://3.110.193.27:31201/profile/${username}`)
-    .then(res => res.json())
+    .then(res => {
+        if (!res.ok) throw new Error("Profile fetch failed");
+        return res.json();
+    })
     .then(data => {
         document.getElementById("pName").innerText = data.name;
         document.getElementById("pEmail").innerText = data.email;
-        document.getElementById("pScore").innerText = data.total_score;
+
+        // ✅ FIXED FIELD NAME
+        const tbody = document.querySelector("#quizTable tbody");
+        tbody.innerHTML = "";
+
+        if (data.attempts.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align:center">
+                        No quiz attempts yet
+                    </td>
+                </tr>`;
+            return;
+        }
+        data.attempts.forEach(a => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${a.experiment}</td>
+                <td>${a.attempt}</td>
+                <td>${a.score} / 10</td>
+                <td>${a.passed ? "✅ Passed" : "❌ Needs Improvement"}</td>
+                <td>${a.timestamp}</td>
+            `;
+
+            tbody.appendChild(row);
+        });
 
         const labsList = document.getElementById("labsList");
         labsList.innerHTML = "";
 
-        if (data.labs.length === 0) {
+        // ✅ FIXED FIELD NAME
+        if (!data.labsCompleted || data.labsCompleted.length === 0) {
             labsList.innerHTML = "<li>No labs completed yet</li>";
         } else {
-            data.labs.forEach(lab => {
+            data.labsCompleted.forEach(lab => {
                 const li = document.createElement("li");
                 li.innerText = lab;
                 labsList.appendChild(li);
             });
         }
     })
-    .catch(() => {
+    .catch(err => {
+        console.error("Profile load error:", err);
         alert("Unable to load profile. Please login again.");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     });
 </script>
+
 
 
 </body>

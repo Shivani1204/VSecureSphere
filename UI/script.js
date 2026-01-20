@@ -106,7 +106,7 @@ async function saveQuizResult(score, passed) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                user_id: username,
+                username: username,
                 experiment_id: EXPERIMENT_ID,
                 score: score,
                 passed: passed

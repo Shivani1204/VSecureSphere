@@ -67,13 +67,13 @@ class ResetPasswordRequest(BaseModel):
     new_password: str
 
 class KnowledgeCheckAttempt(BaseModel):
-    user_id: str
+    username: str
     experiment_id: str
     score: int
     passed: bool
 
 class LabCompletion(BaseModel):
-    user_id: str
+    username: str
     experiment_id: str
 
 
@@ -187,12 +187,12 @@ async def reset_password(payload: ResetPasswordRequest):
 @app.post("/submit-knowledge-check")
 async def submit_knowledge_check(attempt: KnowledgeCheckAttempt):
     previous_attempts = await attempts_collection.count_documents({
-        "user_id": attempt.user_id,
+        "username": attempt.username,
         "experiment_id": attempt.experiment_id
     })
 
     await attempts_collection.insert_one({
-        "user_id": attempt.user_id,
+        "username": attempt.username,
         "experiment_id": attempt.experiment_id,
         "attempt_number": previous_attempts + 1,
         "score": attempt.score,
@@ -203,10 +203,10 @@ async def submit_knowledge_check(attempt: KnowledgeCheckAttempt):
     return {"message": "Attempt recorded", "attempt_number": previous_attempts + 1}
 
 
-@app.get("/get-knowledge-check-attempts/{user_id}/{experiment_id}")
-async def get_attempts(user_id: str, experiment_id: str):
+@app.get("/get-knowledge-check-attempts/{username}/{experiment_id}")
+async def get_attempts(username: str, experiment_id: str):
     attempts = await attempts_collection.find({
-        "user_id": user_id,
+        "username": username,
         "experiment_id": experiment_id
     }).to_list(length=None)
 
@@ -215,7 +215,7 @@ async def get_attempts(user_id: str, experiment_id: str):
 @app.post("/complete-lab")
 async def complete_lab(data: LabCompletion):
     existing = await db.completed_labs.find_one({
-        "user_id": data.user_id,
+        "username": data.username,
         "experiment_id": data.experiment_id
     })
 
@@ -223,7 +223,7 @@ async def complete_lab(data: LabCompletion):
         return {"message": "Lab already completed"}
 
     await db.completed_labs.insert_one({
-        "user_id": data.user_id,
+        "username": data.username,
         "experiment_id": data.experiment_id,
         "completed_at": datetime.utcnow()
     })
@@ -234,6 +234,10 @@ async def complete_lab(data: LabCompletion):
 # =========================
 # USER PROFILE (NEW)
 # =========================
+from zoneinfo import ZoneInfo
+
+IST = ZoneInfo("Asia/Kolkata")
+
 @app.get("/profile/{username}")
 async def get_profile(username: str):
     user = await users_collection.find_one(
@@ -245,11 +249,29 @@ async def get_profile(username: str):
         raise HTTPException(status_code=404, detail="User not found")
 
     attempts = await attempts_collection.find({
-        "user_id": username
-    }).to_list(length=None)
+        "username": username
+    }).sort("timestamp", -1).to_list(None)
+
+    formatted_attempts = []
+    for a in attempts:
+        ts = a["timestamp"]
+
+        # Ensure timestamp is timezone-aware (Mongo usually stores UTC)
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=ZoneInfo("UTC"))
+
+        ist_time = ts.astimezone(IST)
+
+        formatted_attempts.append({
+            "experiment": a["experiment_id"],
+            "attempt": a["attempt_number"],
+            "score": a["score"],
+            "passed": a["passed"],
+            "timestamp": ist_time.strftime("%Y-%m-%d %H:%M")
+        })
 
     completed_labs = await db.completed_labs.find({
-        "user_id": username
+        "username": username
     }).to_list(length=None)
 
     total_score = sum(a["score"] for a in attempts)
@@ -257,7 +279,6 @@ async def get_profile(username: str):
     return {
         "name": user["name"],
         "email": user["email"],
-        "totalScore": total_score,
+        "attempts": formatted_attempts,
         "labsCompleted": [lab["experiment_id"] for lab in completed_labs]
     }
-
