@@ -4,33 +4,131 @@
   <meta charset="UTF-8">
   <title>User Profile</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<a href="homepage.html" class="floating-home">🏠</a>
+<button class="dark-toggle" onclick="toggleDark()">🌙</button>
+<script>
+  function toggleDark() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+</script>
+
 <div class="profile-card">
+
+  <div class="profile-header">
+    <div class="avatar-menu" onclick="toggleProfileMenu()">
+      <div class="avatar" id="userAvatar"></div>
+    </div>
+
+    <div id="profileDropdown" class="profile-dropdown-avatar">
+      <a href="homepage.html">🏠 Dashboard</a>
+      <a href="profile.html">👤 Profile</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+  <script>
+
+    function toggleProfileMenu() {
+      document.getElementById("profileDropdown").classList.toggle("show");
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+
+  </script>
+
   <h2>User Profile</h2>
-  <p><strong>Name:</strong> <span id="pName"></span></p>
-  <p><strong>Email:</strong> <span id="pEmail"></span></p>
 
-  <hr>
+  <div class="profile-info">
+    <p><strong>Name:</strong> <span id="pName"></span></p>
+    <p><strong>Email:</strong> <span id="pEmail"></span></p>
+  </div>
+  <script>
 
-  <h3>Quiz History</h3>
+    function generateAvatar(name) {
+      const avatar = document.getElementById("userAvatar");
 
-  <table id="quizTable" border="1" width="100%" style="border-collapse:collapse">
-    <thead>
-      <tr>
-        <th>Experiment</th>
-        <th>Attempt</th>
-        <th>Score</th>
-        <th>Status</th>
-        <th>Date</th>
+      // Initial letter
+      const initial = name.charAt(0).toUpperCase();
+      avatar.innerText = initial;
+
+      // Hash-based color (consistent per user)
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+
+      const colors = [
+        "#f081df", "#c066dc", "#a855f7",
+        "#ec4899", "#d946ef", "#9333ea"
+      ];
+
+      avatar.style.background =
+        colors[Math.abs(hash) % colors.length];
+    }
+
+
+
+  </script>
+
+  <div class="profile-section">
+    <label for="experimentFilter"><strong>Filter by Experiment</strong></label>
+    <select id="experimentFilter">
+      <option value="all">All Experiments</option>
+    </select>
+  </div>
+
+  <div class="profile-section">
+    <h3>Quiz History</h3>
+
+    <table id="quizTable" border="1" width="100%" style="border-collapse:collapse">
+      <thead>
+        <tr>
+          <th>Experiment</th>
+          <th>Attempt</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="profile-section">
+    <h3>Attempt Progress</h3>
+    <select id="graphExperiment">
+      <option value="">Select Experiment</option>
+    </select>
+    <canvas id="attemptChart"></canvas>
+  </div>
+
+  <div class="profile-section">
+    <h3>Attempt Progress</h3>
+    <select id="graphExperiment">
+      <option value="">Select Experiment</option>
+    </select>
+    <canvas id="attemptChart"></canvas>
+  </div>
+
+  <div class="profile-section">
+    <h3>Labs Completed</h3>
+    <table id="labsTable">
+      <thead>
+        <tr>
+          <th>Experiment</th>
+          <th>Completed At</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
 
-  <h3>Labs Completed</h3>
-  <ul id="labsList"></ul>
 </div>
 
 <script>
@@ -39,6 +137,35 @@ const username = localStorage.getItem("username");
 if (!username) {
     window.location.href = "index.html";
 }
+
+function renderQuizTable(attempts) {
+    const tbody = document.querySelector("#quizTable tbody");
+    tbody.innerHTML = "";
+
+    if (attempts.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+              <td colspan="5" style="text-align:center">
+                No quiz attempts
+              </td>
+            </tr>`;
+        return;
+    }
+
+    attempts.forEach(a => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${a.experiment}</td>
+            <td>${a.attempt}</td>
+            <td>${a.score} / 10</td>
+            <td>${a.passed ? "✅ Passed" : "❌ Needs Improvement"}</td>
+            <td>${a.timestamp}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+let chartInstance = null;
 
 fetch(`http://3.110.193.27:31201/profile/${username}`)
     .then(res => {
@@ -49,9 +176,28 @@ fetch(`http://3.110.193.27:31201/profile/${username}`)
         document.getElementById("pName").innerText = data.name;
         document.getElementById("pEmail").innerText = data.email;
 
+        generateAvatar(data.name || username);
+
+
+        let allAttempts = data.attempts;
+
+
+
         // ✅ FIXED FIELD NAME
         const tbody = document.querySelector("#quizTable tbody");
         tbody.innerHTML = "";
+
+        const filter = document.getElementById("experimentFilter");
+
+        // populate dropdown
+        const experiments = [...new Set(allAttempts.map(a => a.experiment))];
+        experiments.forEach(exp => {
+            const opt = document.createElement("option");
+            opt.value = exp;
+            opt.textContent = exp;
+            filter.appendChild(opt);
+        });
+
 
         if (data.attempts.length === 0) {
             tbody.innerHTML = `
@@ -62,39 +208,102 @@ fetch(`http://3.110.193.27:31201/profile/${username}`)
                 </tr>`;
             return;
         }
-        data.attempts.forEach(a => {
-            const row = document.createElement("tr");
+        
+        renderQuizTable(allAttempts);
 
-            row.innerHTML = `
-                <td>${a.experiment}</td>
-                <td>${a.attempt}</td>
-                <td>${a.score} / 10</td>
-                <td>${a.passed ? "✅ Passed" : "❌ Needs Improvement"}</td>
-                <td>${a.timestamp}</td>
-            `;
+        const graphSelect = document.getElementById("graphExperiment");
 
-            tbody.appendChild(row);
+        // populate experiment dropdown
+        [...new Set(allAttempts.map(a => a.experiment))].forEach(exp => {
+            const opt = document.createElement("option");
+            opt.value = exp;
+            opt.textContent = exp;
+            graphSelect.appendChild(opt);
         });
 
-        const labsList = document.getElementById("labsList");
-        labsList.innerHTML = "";
 
-        // ✅ FIXED FIELD NAME
-        if (!data.labsCompleted || data.labsCompleted.length === 0) {
-            labsList.innerHTML = "<li>No labs completed yet</li>";
+
+        const labsBody = document.querySelector("#labsTable tbody");
+        labsBody.innerHTML = "";
+
+        if (!data.completed_labs || data.completed_labs.length === 0) {
+            labsBody.innerHTML = `
+                <tr>
+                  <td colspan="2">No labs completed yet</td>
+                </tr>`;
         } else {
-            data.labsCompleted.forEach(lab => {
-                const li = document.createElement("li");
-                li.innerText = lab;
-                labsList.appendChild(li);
+            data.completed_labs.forEach(lab => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${lab.experiment}</td>
+                    <td>${lab.completed_at}</td>
+                `;
+                labsBody.appendChild(row);
             });
         }
+
+
+        
+        filter.addEventListener("change", () => {
+            const selected = filter.value;
+            const filtered = selected === "all"
+                ? allAttempts
+                : allAttempts.filter(a => a.experiment === selected);
+
+            renderQuizTable(filtered);
+        });
+
     })
     .catch(err => {
         console.error("Profile load error:", err);
         alert("Unable to load profile. Please login again.");
         window.location.href = "index.html";
     });
+function drawAttemptGraph(experiment) {
+    const attemptsForExperiment = allAttempts
+        .filter(a => a.experiment === experiment)
+        .sort((a, b) => a.attempt - b.attempt);
+
+    const labels = attemptsForExperiment.map(a => `Attempt ${a.attempt}`);
+    const scores = attemptsForExperiment.map(a => a.score);
+
+    const ctx = document.getElementById("attemptChart").getContext("2d");
+
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    chartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Score",
+                data: scores,
+                borderColor: "blue",
+                backgroundColor: "rgba(0,0,255,0.1)",
+                tension: 0.3
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 0,
+                    max: 10
+                }
+            }
+        }
+    });
+}
+
+graphSelect.addEventListener("change", () => {
+    if (graphSelect.value) {
+        drawAttemptGraph(graphSelect.value);
+    }
+});
+
+
+
 </script>
 
 

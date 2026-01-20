@@ -24,12 +24,12 @@ async function finishLab() {
         const data = await response.json();
 
         if (!response.ok) {
-            alert(data.detail || "Failed to mark lab complete");
+            alert(data.detail);
             return;
         }
 
-        alert("Lab completed successfully ✅");
-        window.location.href = "homepage.html";
+        alert(data.message);
+        window.location.href = "../homepage.html";
 
     } catch (err) {
         console.error(err);

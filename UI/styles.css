@@ -929,6 +929,7 @@ body {
   display: block;
 }
 
+/*
 .profile-card {
   width: 400px;
   margin: 120px auto;
@@ -937,3 +938,187 @@ body {
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
+*/
+
+/* ===========================
+   PROFILE PAGE STYLING
+=========================== */
+
+.profile-card {
+  width: 90%;
+  max-width: 900px;
+  margin: 130px auto;
+  background: #ffffffea;
+  padding: 30px 35px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+.profile-card h2 {
+  text-align: center;
+  color: #5a1d6e;
+  margin-bottom: 20px;
+}
+
+/* Profile info */
+.profile-info {
+  display: flex;
+  justify-content: space-between;
+  background: #f6d9f7;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.profile-info span {
+  font-weight: normal;
+}
+
+/* Sections */
+.profile-section {
+  margin-bottom: 35px;
+}
+
+/* Section titles */
+.profile-section h3 {
+  color: #7a1fa2;
+  margin-bottom: 12px;
+  border-left: 5px solid #f081df;
+  padding-left: 10px;
+}
+
+/* Dropdowns */
+.profile-section select,
+#experimentFilter,
+#graphExperiment {
+  width: 250px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #c066dc;
+  background: #fff;
+  font-weight: bold;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table thead {
+  background: #f0aef5;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+table tbody tr:nth-child(even) {
+  background: #f8e6fa;
+}
+
+table tbody tr:hover {
+  background: #edd1f3;
+}
+
+/* Status colors */
+td:nth-child(4) {
+  font-weight: bold;
+}
+
+/* Chart container */
+canvas {
+  margin-top: 15px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Empty message rows */
+table td[colspan] {
+  padding: 20px;
+  font-style: italic;
+  color: #555;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.avatar-menu img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #c066dc;
+}
+
+.profile-dropdown-avatar {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #f6d9f7;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.profile-dropdown-avatar a {
+  display: block;
+  padding: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.profile-dropdown-avatar a:hover {
+  background: white;
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.dark-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 25px;
+  background: #000;
+  color: white;
+  border-radius: 50%;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+}
+.dark-mode {
+  background: #1c1c2b;
+  color: white;
+}
+.dark-mode .profile-card {
+  background: #2a2a40;
+}
+
+

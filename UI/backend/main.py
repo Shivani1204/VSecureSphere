@@ -10,6 +10,10 @@ from datetime import datetime, timedelta
 import secrets
 import os
 
+from zoneinfo import ZoneInfo
+
+IST = ZoneInfo("Asia/Kolkata")
+
 # =========================
 # FastAPI app
 # =========================
@@ -214,29 +218,51 @@ async def get_attempts(username: str, experiment_id: str):
 
 @app.post("/complete-lab")
 async def complete_lab(data: LabCompletion):
-    existing = await db.completed_labs.find_one({
+    # 1️⃣ Find latest quiz attempt
+    latest_attempt = await attempts_collection.find(
+        {
+            "username": data.username,
+            "experiment_id": data.experiment_id
+        }
+    ).sort("timestamp", -1).limit(1).to_list(1)
+
+    # 2️⃣ No quiz attempted
+    if not latest_attempt:
+        raise HTTPException(
+            status_code=400,
+            detail="Please complete the quiz before finishing the lab."
+        )
+
+    # 3️⃣ Quiz attempted but not passed
+    if not latest_attempt[0]["passed"]:
+        raise HTTPException(
+            status_code=403,
+            detail="You must pass the quiz before completing the lab."
+        )
+
+    # 4️⃣ Check if lab already completed
+    existing = await completed_labs_collection.find_one({
         "username": data.username,
         "experiment_id": data.experiment_id
     })
 
     if existing:
-        return {"message": "Lab already completed"}
+        return {"message": "Lab already completed."}
 
-    await db.completed_labs.insert_one({
+    # 5️⃣ Mark lab as completed
+    await completed_labs_collection.insert_one({
         "username": data.username,
         "experiment_id": data.experiment_id,
         "completed_at": datetime.utcnow()
     })
 
-    return {"message": "Lab marked as completed"}
+    return {"message": "Lab completed successfully ✅"}
 
 
 # =========================
 # USER PROFILE (NEW)
 # =========================
-from zoneinfo import ZoneInfo
 
-IST = ZoneInfo("Asia/Kolkata")
 
 @app.get("/profile/{username}")
 async def get_profile(username: str):
