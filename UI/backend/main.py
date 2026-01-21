@@ -218,45 +218,22 @@ async def get_attempts(username: str, experiment_id: str):
 
 @app.post("/complete-lab")
 async def complete_lab(data: LabCompletion):
-    # 1️⃣ Find latest quiz attempt
-    latest_attempt = await attempts_collection.find(
-        {
-            "username": data.username,
-            "experiment_id": data.experiment_id
-        }
-    ).sort("timestamp", -1).limit(1).to_list(1)
-
-    # 2️⃣ No quiz attempted
-    if not latest_attempt:
-        raise HTTPException(
-            status_code=400,
-            detail="Please complete the quiz before finishing the lab."
-        )
-
-    # 3️⃣ Quiz attempted but not passed
-    if not latest_attempt[0]["passed"]:
-        raise HTTPException(
-            status_code=403,
-            detail="You must pass the quiz before completing the lab."
-        )
-
-    # 4️⃣ Check if lab already completed
-    existing = await completed_labs_collection.find_one({
+    existing = await db.completed_labs.find_one({
         "username": data.username,
         "experiment_id": data.experiment_id
     })
 
     if existing:
-        return {"message": "Lab already completed."}
+        return {"message": "Lab already completed"}
 
-    # 5️⃣ Mark lab as completed
-    await completed_labs_collection.insert_one({
+    await db.completed_labs.insert_one({
         "username": data.username,
         "experiment_id": data.experiment_id,
         "completed_at": datetime.utcnow()
     })
 
-    return {"message": "Lab completed successfully ✅"}
+    return {"message": "Lab marked as completed"}
+
 
 
 # =========================
@@ -296,15 +273,26 @@ async def get_profile(username: str):
             "timestamp": ist_time.strftime("%Y-%m-%d %H:%M")
         })
 
-    completed_labs = await db.completed_labs.find({
-        "username": username
-    }).to_list(length=None)
+    completed_labs_cursor = await db.completed_labs.find(
+        {"username": username}
+    ).sort("completed_at", -1).to_list(None)
 
-    total_score = sum(a["score"] for a in attempts)
+    formatted_labs = []
+    for lab in completed_labs_cursor:
+        ts = lab["completed_at"]
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=ZoneInfo("UTC"))
+        ist_time = ts.astimezone(IST)
+
+        formatted_labs.append({
+            "experiment": lab["experiment_id"],
+            "completed_at": ist_time.strftime("%Y-%m-%d %H:%M")
+        })
+
 
     return {
         "name": user["name"],
         "email": user["email"],
         "attempts": formatted_attempts,
-        "labsCompleted": [lab["experiment_id"] for lab in completed_labs]
+        "completed_labs": formatted_labs
     }

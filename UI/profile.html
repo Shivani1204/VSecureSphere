@@ -109,13 +109,7 @@
     <canvas id="attemptChart"></canvas>
   </div>
 
-  <div class="profile-section">
-    <h3>Attempt Progress</h3>
-    <select id="graphExperiment">
-      <option value="">Select Experiment</option>
-    </select>
-    <canvas id="attemptChart"></canvas>
-  </div>
+
 
   <div class="profile-section">
     <h3>Labs Completed</h3>
@@ -166,6 +160,8 @@ function renderQuizTable(attempts) {
 }
 
 let chartInstance = null;
+let allAttempts = [];
+const graphSelect = document.getElementById("graphExperiment");
 
 fetch(`http://3.110.193.27:31201/profile/${username}`)
     .then(res => {
@@ -179,7 +175,8 @@ fetch(`http://3.110.193.27:31201/profile/${username}`)
         generateAvatar(data.name || username);
 
 
-        let allAttempts = data.attempts;
+        allAttempts = data.attempts;
+
 
 
 
@@ -210,8 +207,6 @@ fetch(`http://3.110.193.27:31201/profile/${username}`)
         }
         
         renderQuizTable(allAttempts);
-
-        const graphSelect = document.getElementById("graphExperiment");
 
         // populate experiment dropdown
         [...new Set(allAttempts.map(a => a.experiment))].forEach(exp => {
@@ -259,6 +254,7 @@ fetch(`http://3.110.193.27:31201/profile/${username}`)
         alert("Unable to load profile. Please login again.");
         window.location.href = "index.html";
     });
+
 function drawAttemptGraph(experiment) {
     const attemptsForExperiment = allAttempts
         .filter(a => a.experiment === experiment)
